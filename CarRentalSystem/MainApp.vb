@@ -8,6 +8,10 @@ Public Class MainApp
     Dim contactValue As Object
 
     Private Sub AddCustomer()
+        If String.IsNullOrWhiteSpace(customerName.Text) Or String.IsNullOrWhiteSpace(contact.Text) Or String.IsNullOrWhiteSpace(address.Text) Then
+            MessageBox.Show("Empty/Incomplete Form.")
+            Exit Sub
+        End If
         Dim query As String = "insert into customer (customer_name, address, contact) values (@v1, @v2, @v3)"
         Using connection As New MySqlConnection(connectionString)
             Using command As New MySqlCommand(query, connection)
@@ -27,6 +31,11 @@ Public Class MainApp
     End Sub
 
     Private Sub UpdateCustomer()
+        If String.IsNullOrWhiteSpace(customerName.Text) Or String.IsNullOrWhiteSpace(contact.Text) Or String.IsNullOrWhiteSpace(address.Text) Then
+            MessageBox.Show("Select customer from table.")
+            Exit Sub
+        End If
+
         Dim query As String = "update customer set customer_name=@v1, address=@v2, contact=@v3 where customer_id=@v4"
         Using connection As New MySqlConnection(connectionString)
             Using command As New MySqlCommand(query, connection)
@@ -41,6 +50,28 @@ Public Class MainApp
                     MessageBox.Show("Update complete.")
                 Catch ex As Exception
                     MessageBox.Show("Update error: " & ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
+
+    Private Sub DeleteCustomer()
+        If String.IsNullOrWhiteSpace(customerName.Text) Or String.IsNullOrWhiteSpace(contact.Text) Or String.IsNullOrWhiteSpace(address.Text) Then
+            MessageBox.Show("Select customer from table.")
+            Exit Sub
+        End If
+
+        Dim query As String = "delete from customer where customer_id=@v1"
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query, connection)
+                command.Parameters.AddWithValue("@v1", idValue)
+
+                Try
+                    connection.Open()
+                    command.ExecuteNonQuery()
+                    MessageBox.Show("Delete complete.")
+                Catch ex As Exception
+                    MessageBox.Show("Delete error: " & ex.Message)
                 End Try
             End Using
         End Using
@@ -96,6 +127,12 @@ Public Class MainApp
 
     Private Sub updateBtn_Click(sender As Object, e As EventArgs) Handles updateBtn.Click
         UpdateCustomer()
+        LoadData()
+        ClearForm()
+    End Sub
+
+    Private Sub deleteBtn_Click(sender As Object, e As EventArgs) Handles deleteBtn.Click
+        DeleteCustomer()
         LoadData()
         ClearForm()
     End Sub
