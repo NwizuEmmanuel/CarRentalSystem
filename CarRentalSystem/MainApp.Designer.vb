@@ -27,13 +27,13 @@ Partial Class MainApp
         CustomerPage = New TabPage()
         DataGridView1 = New DataGridView()
         FlowLayoutPanel4 = New FlowLayoutPanel()
-        TextBox2 = New TextBox()
-        TextBox3 = New TextBox()
+        customerName = New TextBox()
+        contact = New TextBox()
         FlowLayoutPanel2 = New FlowLayoutPanel()
-        Button3 = New Button()
-        Button4 = New Button()
-        Button2 = New Button()
-        TextBox1 = New TextBox()
+        addCustomerBtn = New Button()
+        updateBtn = New Button()
+        deleteBtn = New Button()
+        address = New TextBox()
         TabPage3 = New TabPage()
         TabPage4 = New TabPage()
         TabPage5 = New TabPage()
@@ -97,10 +97,10 @@ Partial Class MainApp
         ' 
         ' FlowLayoutPanel4
         ' 
-        FlowLayoutPanel4.Controls.Add(TextBox2)
-        FlowLayoutPanel4.Controls.Add(TextBox3)
+        FlowLayoutPanel4.Controls.Add(customerName)
+        FlowLayoutPanel4.Controls.Add(contact)
         FlowLayoutPanel4.Controls.Add(FlowLayoutPanel2)
-        FlowLayoutPanel4.Controls.Add(TextBox1)
+        FlowLayoutPanel4.Controls.Add(address)
         FlowLayoutPanel4.Dock = DockStyle.Bottom
         FlowLayoutPanel4.FlowDirection = FlowDirection.TopDown
         FlowLayoutPanel4.Location = New Point(3, 245)
@@ -109,70 +109,70 @@ Partial Class MainApp
         FlowLayoutPanel4.Size = New Size(786, 145)
         FlowLayoutPanel4.TabIndex = 3
         ' 
-        ' TextBox2
+        ' customerName
         ' 
-        TextBox2.Location = New Point(3, 10)
-        TextBox2.Margin = New Padding(3, 10, 3, 3)
-        TextBox2.Name = "TextBox2"
-        TextBox2.PlaceholderText = "Customer Name"
-        TextBox2.Size = New Size(281, 23)
-        TextBox2.TabIndex = 1
+        customerName.Location = New Point(3, 10)
+        customerName.Margin = New Padding(3, 10, 3, 3)
+        customerName.Name = "customerName"
+        customerName.PlaceholderText = "Customer Name"
+        customerName.Size = New Size(281, 23)
+        customerName.TabIndex = 1
         ' 
-        ' TextBox3
+        ' contact
         ' 
-        TextBox3.Location = New Point(3, 46)
-        TextBox3.Margin = New Padding(3, 10, 3, 3)
-        TextBox3.Name = "TextBox3"
-        TextBox3.PlaceholderText = "Contact"
-        TextBox3.Size = New Size(281, 23)
-        TextBox3.TabIndex = 1
+        contact.Location = New Point(3, 46)
+        contact.Margin = New Padding(3, 10, 3, 3)
+        contact.Name = "contact"
+        contact.PlaceholderText = "Contact"
+        contact.Size = New Size(281, 23)
+        contact.TabIndex = 1
         ' 
         ' FlowLayoutPanel2
         ' 
-        FlowLayoutPanel2.Controls.Add(Button2)
-        FlowLayoutPanel2.Controls.Add(Button3)
-        FlowLayoutPanel2.Controls.Add(Button4)
+        FlowLayoutPanel2.Controls.Add(addCustomerBtn)
+        FlowLayoutPanel2.Controls.Add(updateBtn)
+        FlowLayoutPanel2.Controls.Add(deleteBtn)
         FlowLayoutPanel2.Location = New Point(3, 75)
         FlowLayoutPanel2.Name = "FlowLayoutPanel2"
         FlowLayoutPanel2.Size = New Size(281, 45)
         FlowLayoutPanel2.TabIndex = 7
         ' 
-        ' Button3
+        ' addCustomerBtn
         ' 
-        Button3.Location = New Point(111, 3)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(75, 23)
-        Button3.TabIndex = 5
-        Button3.Text = "Update"
-        Button3.UseVisualStyleBackColor = True
+        addCustomerBtn.Location = New Point(3, 3)
+        addCustomerBtn.Name = "addCustomerBtn"
+        addCustomerBtn.Size = New Size(102, 23)
+        addCustomerBtn.TabIndex = 4
+        addCustomerBtn.Text = "Add Customer"
+        addCustomerBtn.UseVisualStyleBackColor = True
         ' 
-        ' Button4
+        ' updateBtn
         ' 
-        Button4.Location = New Point(192, 3)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(75, 23)
-        Button4.TabIndex = 6
-        Button4.Text = "Delete"
-        Button4.UseVisualStyleBackColor = True
+        updateBtn.Location = New Point(111, 3)
+        updateBtn.Name = "updateBtn"
+        updateBtn.Size = New Size(75, 23)
+        updateBtn.TabIndex = 5
+        updateBtn.Text = "Update"
+        updateBtn.UseVisualStyleBackColor = True
         ' 
-        ' Button2
+        ' deleteBtn
         ' 
-        Button2.Location = New Point(3, 3)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(102, 23)
-        Button2.TabIndex = 4
-        Button2.Text = "Add Customer"
-        Button2.UseVisualStyleBackColor = True
+        deleteBtn.Location = New Point(192, 3)
+        deleteBtn.Name = "deleteBtn"
+        deleteBtn.Size = New Size(75, 23)
+        deleteBtn.TabIndex = 6
+        deleteBtn.Text = "Delete"
+        deleteBtn.UseVisualStyleBackColor = True
         ' 
-        ' TextBox1
+        ' address
         ' 
-        TextBox1.Location = New Point(290, 10)
-        TextBox1.Margin = New Padding(3, 10, 3, 3)
-        TextBox1.Multiline = True
-        TextBox1.Name = "TextBox1"
-        TextBox1.PlaceholderText = "Address"
-        TextBox1.Size = New Size(281, 59)
-        TextBox1.TabIndex = 1
+        address.Location = New Point(290, 10)
+        address.Margin = New Padding(3, 10, 3, 3)
+        address.Multiline = True
+        address.Name = "address"
+        address.PlaceholderText = "Address"
+        address.Size = New Size(281, 59)
+        address.TabIndex = 1
         ' 
         ' TabPage3
         ' 
@@ -264,14 +264,14 @@ Partial Class MainApp
     Friend WithEvents Button1 As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents Button2 As Button
+    Friend WithEvents address As TextBox
+    Friend WithEvents customerName As TextBox
+    Friend WithEvents addCustomerBtn As Button
     Friend WithEvents FlowLayoutPanel4 As FlowLayoutPanel
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents contact As TextBox
     Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button3 As Button
+    Friend WithEvents deleteBtn As Button
+    Friend WithEvents updateBtn As Button
     Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
 
 End Class
