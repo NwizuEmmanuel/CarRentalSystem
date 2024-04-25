@@ -22,9 +22,10 @@ Partial Class MainApp
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        CustomerControl = New TabControl()
-        TabPage1 = New TabPage()
+        AppTabControl = New TabControl()
+        RegPage = New TabPage()
         SplitContainer1 = New SplitContainer()
+        searchBrandFd = New TextBox()
         deleteCarBtn = New Button()
         updateCarBtn = New Button()
         addCarBtn = New Button()
@@ -44,15 +45,37 @@ Partial Class MainApp
         addCustomerBtn = New Button()
         updateBtn = New Button()
         deleteBtn = New Button()
-        TabPage3 = New TabPage()
-        TabPage4 = New TabPage()
-        TabPage5 = New TabPage()
+        RentalPage = New TabPage()
+        SplitContainer2 = New SplitContainer()
+        CustomerNameSearch = New TextBox()
+        CustomerIdFd = New TextBox()
+        Label7 = New Label()
+        returnBtn = New Button()
+        ReturnDatePicker = New DateTimePicker()
+        Label6 = New Label()
+        Label5 = New Label()
+        RentalCarListSearch = New TextBox()
+        Label4 = New Label()
+        customerNameCombo = New ComboBox()
+        rentalSaveBtn = New Button()
+        Label3 = New Label()
+        RentalDueDate = New DateTimePicker()
+        Label2 = New Label()
+        rentalDate = New DateTimePicker()
+        RentalFeeFd = New TextBox()
+        rentalCustomerIdLabel = New Label()
+        rentalCarIdLabel = New Label()
+        SplitContainer3 = New SplitContainer()
+        RentalTable = New DataGridView()
+        RentalCarListlTable = New DataGridView()
+        ReturnPage = New TabPage()
+        LogoutPage = New TabPage()
         FlowLayoutPanel1 = New FlowLayoutPanel()
         Label1 = New Label()
         Button1 = New Button()
-        searchBrandFd = New TextBox()
-        CustomerControl.SuspendLayout()
-        TabPage1.SuspendLayout()
+        refreshBtn = New Button()
+        AppTabControl.SuspendLayout()
+        RegPage.SuspendLayout()
         CType(SplitContainer1, ComponentModel.ISupportInitialize).BeginInit()
         SplitContainer1.Panel1.SuspendLayout()
         SplitContainer1.Panel2.SuspendLayout()
@@ -62,34 +85,45 @@ Partial Class MainApp
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         FlowLayoutPanel4.SuspendLayout()
         FlowLayoutPanel2.SuspendLayout()
-        TabPage5.SuspendLayout()
+        RentalPage.SuspendLayout()
+        CType(SplitContainer2, ComponentModel.ISupportInitialize).BeginInit()
+        SplitContainer2.Panel1.SuspendLayout()
+        SplitContainer2.Panel2.SuspendLayout()
+        SplitContainer2.SuspendLayout()
+        CType(SplitContainer3, ComponentModel.ISupportInitialize).BeginInit()
+        SplitContainer3.Panel1.SuspendLayout()
+        SplitContainer3.Panel2.SuspendLayout()
+        SplitContainer3.SuspendLayout()
+        CType(RentalTable, ComponentModel.ISupportInitialize).BeginInit()
+        CType(RentalCarListlTable, ComponentModel.ISupportInitialize).BeginInit()
+        LogoutPage.SuspendLayout()
         FlowLayoutPanel1.SuspendLayout()
         SuspendLayout()
         ' 
-        ' CustomerControl
+        ' AppTabControl
         ' 
-        CustomerControl.Controls.Add(TabPage1)
-        CustomerControl.Controls.Add(CustomerPage)
-        CustomerControl.Controls.Add(TabPage3)
-        CustomerControl.Controls.Add(TabPage4)
-        CustomerControl.Controls.Add(TabPage5)
-        CustomerControl.Dock = DockStyle.Fill
-        CustomerControl.Location = New Point(0, 0)
-        CustomerControl.Name = "CustomerControl"
-        CustomerControl.SelectedIndex = 0
-        CustomerControl.Size = New Size(800, 421)
-        CustomerControl.TabIndex = 0
+        AppTabControl.Controls.Add(RegPage)
+        AppTabControl.Controls.Add(CustomerPage)
+        AppTabControl.Controls.Add(RentalPage)
+        AppTabControl.Controls.Add(ReturnPage)
+        AppTabControl.Controls.Add(LogoutPage)
+        AppTabControl.Dock = DockStyle.Fill
+        AppTabControl.Location = New Point(0, 0)
+        AppTabControl.Name = "AppTabControl"
+        AppTabControl.SelectedIndex = 0
+        AppTabControl.Size = New Size(841, 529)
+        AppTabControl.TabIndex = 0
         ' 
-        ' TabPage1
+        ' RegPage
         ' 
-        TabPage1.Controls.Add(SplitContainer1)
-        TabPage1.Location = New Point(4, 24)
-        TabPage1.Name = "TabPage1"
-        TabPage1.Padding = New Padding(3)
-        TabPage1.Size = New Size(792, 393)
-        TabPage1.TabIndex = 0
-        TabPage1.Text = "Car Registration"
-        TabPage1.UseVisualStyleBackColor = True
+        RegPage.Controls.Add(SplitContainer1)
+        RegPage.Location = New Point(4, 24)
+        RegPage.Name = "RegPage"
+        RegPage.Padding = New Padding(3)
+        RegPage.Size = New Size(833, 501)
+        RegPage.TabIndex = 0
+        RegPage.Text = "Car Registration"
+        RegPage.UseVisualStyleBackColor = True
         ' 
         ' SplitContainer1
         ' 
@@ -111,9 +145,17 @@ Partial Class MainApp
         ' SplitContainer1.Panel2
         ' 
         SplitContainer1.Panel2.Controls.Add(DataGridView2)
-        SplitContainer1.Size = New Size(786, 387)
-        SplitContainer1.SplitterDistance = 296
+        SplitContainer1.Size = New Size(827, 495)
+        SplitContainer1.SplitterDistance = 311
         SplitContainer1.TabIndex = 2
+        ' 
+        ' searchBrandFd
+        ' 
+        searchBrandFd.Location = New Point(5, 193)
+        searchBrandFd.Name = "searchBrandFd"
+        searchBrandFd.PlaceholderText = "Search Brand"
+        searchBrandFd.Size = New Size(169, 23)
+        searchBrandFd.TabIndex = 7
         ' 
         ' deleteCarBtn
         ' 
@@ -184,7 +226,7 @@ Partial Class MainApp
         DataGridView2.Dock = DockStyle.Fill
         DataGridView2.Location = New Point(0, 0)
         DataGridView2.Name = "DataGridView2"
-        DataGridView2.Size = New Size(486, 387)
+        DataGridView2.Size = New Size(512, 495)
         DataGridView2.TabIndex = 0
         ' 
         ' CustomerPage
@@ -195,7 +237,7 @@ Partial Class MainApp
         CustomerPage.Location = New Point(4, 24)
         CustomerPage.Name = "CustomerPage"
         CustomerPage.Padding = New Padding(3)
-        CustomerPage.Size = New Size(792, 393)
+        CustomerPage.Size = New Size(833, 501)
         CustomerPage.TabIndex = 1
         CustomerPage.Text = "Customer"
         CustomerPage.UseVisualStyleBackColor = True
@@ -206,7 +248,7 @@ Partial Class MainApp
         DataGridView1.Dock = DockStyle.Fill
         DataGridView1.Location = New Point(3, 3)
         DataGridView1.Name = "DataGridView1"
-        DataGridView1.Size = New Size(786, 242)
+        DataGridView1.Size = New Size(827, 350)
         DataGridView1.TabIndex = 7
         ' 
         ' FlowLayoutPanel4
@@ -217,10 +259,10 @@ Partial Class MainApp
         FlowLayoutPanel4.Controls.Add(address)
         FlowLayoutPanel4.Controls.Add(FlowLayoutPanel2)
         FlowLayoutPanel4.Dock = DockStyle.Bottom
-        FlowLayoutPanel4.Location = New Point(3, 245)
+        FlowLayoutPanel4.Location = New Point(3, 353)
         FlowLayoutPanel4.Margin = New Padding(3, 10, 3, 3)
         FlowLayoutPanel4.Name = "FlowLayoutPanel4"
-        FlowLayoutPanel4.Size = New Size(786, 145)
+        FlowLayoutPanel4.Size = New Size(827, 145)
         FlowLayoutPanel4.TabIndex = 3
         ' 
         ' customerName
@@ -297,36 +339,260 @@ Partial Class MainApp
         deleteBtn.Text = "Delete"
         deleteBtn.UseVisualStyleBackColor = True
         ' 
-        ' TabPage3
+        ' RentalPage
         ' 
-        TabPage3.Location = New Point(4, 24)
-        TabPage3.Name = "TabPage3"
-        TabPage3.Padding = New Padding(3)
-        TabPage3.Size = New Size(792, 393)
-        TabPage3.TabIndex = 2
-        TabPage3.Text = "Rental"
-        TabPage3.UseVisualStyleBackColor = True
+        RentalPage.Controls.Add(SplitContainer2)
+        RentalPage.Location = New Point(4, 24)
+        RentalPage.Name = "RentalPage"
+        RentalPage.Padding = New Padding(3)
+        RentalPage.Size = New Size(833, 501)
+        RentalPage.TabIndex = 2
+        RentalPage.Text = "Rental"
+        RentalPage.UseVisualStyleBackColor = True
         ' 
-        ' TabPage4
+        ' SplitContainer2
         ' 
-        TabPage4.Location = New Point(4, 24)
-        TabPage4.Name = "TabPage4"
-        TabPage4.Padding = New Padding(3)
-        TabPage4.Size = New Size(792, 393)
-        TabPage4.TabIndex = 3
-        TabPage4.Text = "Return"
-        TabPage4.UseVisualStyleBackColor = True
+        SplitContainer2.Dock = DockStyle.Fill
+        SplitContainer2.Location = New Point(3, 3)
+        SplitContainer2.Name = "SplitContainer2"
         ' 
-        ' TabPage5
+        ' SplitContainer2.Panel1
         ' 
-        TabPage5.Controls.Add(FlowLayoutPanel1)
-        TabPage5.Location = New Point(4, 24)
-        TabPage5.Name = "TabPage5"
-        TabPage5.Padding = New Padding(3, 10, 3, 3)
-        TabPage5.Size = New Size(792, 393)
-        TabPage5.TabIndex = 4
-        TabPage5.Text = "Log out"
-        TabPage5.UseVisualStyleBackColor = True
+        SplitContainer2.Panel1.Controls.Add(refreshBtn)
+        SplitContainer2.Panel1.Controls.Add(CustomerNameSearch)
+        SplitContainer2.Panel1.Controls.Add(CustomerIdFd)
+        SplitContainer2.Panel1.Controls.Add(Label7)
+        SplitContainer2.Panel1.Controls.Add(returnBtn)
+        SplitContainer2.Panel1.Controls.Add(ReturnDatePicker)
+        SplitContainer2.Panel1.Controls.Add(Label6)
+        SplitContainer2.Panel1.Controls.Add(Label5)
+        SplitContainer2.Panel1.Controls.Add(RentalCarListSearch)
+        SplitContainer2.Panel1.Controls.Add(Label4)
+        SplitContainer2.Panel1.Controls.Add(customerNameCombo)
+        SplitContainer2.Panel1.Controls.Add(rentalSaveBtn)
+        SplitContainer2.Panel1.Controls.Add(Label3)
+        SplitContainer2.Panel1.Controls.Add(RentalDueDate)
+        SplitContainer2.Panel1.Controls.Add(Label2)
+        SplitContainer2.Panel1.Controls.Add(rentalDate)
+        SplitContainer2.Panel1.Controls.Add(RentalFeeFd)
+        SplitContainer2.Panel1.Controls.Add(rentalCustomerIdLabel)
+        SplitContainer2.Panel1.Controls.Add(rentalCarIdLabel)
+        ' 
+        ' SplitContainer2.Panel2
+        ' 
+        SplitContainer2.Panel2.Controls.Add(SplitContainer3)
+        SplitContainer2.Size = New Size(827, 495)
+        SplitContainer2.SplitterDistance = 354
+        SplitContainer2.TabIndex = 0
+        ' 
+        ' CustomerNameSearch
+        ' 
+        CustomerNameSearch.Location = New Point(5, 263)
+        CustomerNameSearch.Name = "CustomerNameSearch"
+        CustomerNameSearch.PlaceholderText = "Search Customer name"
+        CustomerNameSearch.Size = New Size(183, 23)
+        CustomerNameSearch.TabIndex = 18
+        ' 
+        ' CustomerIdFd
+        ' 
+        CustomerIdFd.Location = New Point(102, 359)
+        CustomerIdFd.Name = "CustomerIdFd"
+        CustomerIdFd.Size = New Size(200, 23)
+        CustomerIdFd.TabIndex = 17
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Location = New Point(5, 362)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(73, 15)
+        Label7.TabIndex = 16
+        Label7.Text = "Customer ID"
+        ' 
+        ' returnBtn
+        ' 
+        returnBtn.Location = New Point(5, 427)
+        returnBtn.Name = "returnBtn"
+        returnBtn.Size = New Size(75, 23)
+        returnBtn.TabIndex = 15
+        returnBtn.Text = "Return"
+        returnBtn.UseVisualStyleBackColor = True
+        ' 
+        ' ReturnDatePicker
+        ' 
+        ReturnDatePicker.Location = New Point(102, 388)
+        ReturnDatePicker.Name = "ReturnDatePicker"
+        ReturnDatePicker.Size = New Size(200, 23)
+        ReturnDatePicker.TabIndex = 14
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Location = New Point(5, 394)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(82, 15)
+        Label6.TabIndex = 13
+        Label6.Text = "Returned Date"
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Location = New Point(5, 334)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(84, 15)
+        Label5.TabIndex = 12
+        Label5.Text = "Return Section"
+        ' 
+        ' RentalCarListSearch
+        ' 
+        RentalCarListSearch.Location = New Point(5, 292)
+        RentalCarListSearch.Name = "RentalCarListSearch"
+        RentalCarListSearch.PlaceholderText = "Search Car"
+        RentalCarListSearch.Size = New Size(183, 23)
+        RentalCarListSearch.TabIndex = 11
+        ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Location = New Point(5, 77)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(92, 15)
+        Label4.TabIndex = 10
+        Label4.Text = "Customer name"
+        ' 
+        ' customerNameCombo
+        ' 
+        customerNameCombo.AutoCompleteMode = AutoCompleteMode.Append
+        customerNameCombo.AutoCompleteSource = AutoCompleteSource.ListItems
+        customerNameCombo.FormattingEnabled = True
+        customerNameCombo.Location = New Point(103, 74)
+        customerNameCombo.Name = "customerNameCombo"
+        customerNameCombo.Size = New Size(199, 23)
+        customerNameCombo.TabIndex = 9
+        ' 
+        ' rentalSaveBtn
+        ' 
+        rentalSaveBtn.Location = New Point(5, 231)
+        rentalSaveBtn.Name = "rentalSaveBtn"
+        rentalSaveBtn.Size = New Size(75, 23)
+        rentalSaveBtn.TabIndex = 8
+        rentalSaveBtn.Text = "Save"
+        rentalSaveBtn.UseVisualStyleBackColor = True
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Location = New Point(5, 189)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(55, 15)
+        Label3.TabIndex = 7
+        Label3.Text = "Due Date"
+        ' 
+        ' RentalDueDate
+        ' 
+        RentalDueDate.Location = New Point(66, 183)
+        RentalDueDate.Name = "RentalDueDate"
+        RentalDueDate.Size = New Size(200, 23)
+        RentalDueDate.TabIndex = 6
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Location = New Point(5, 151)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(31, 15)
+        Label2.TabIndex = 5
+        Label2.Text = "Date"
+        ' 
+        ' rentalDate
+        ' 
+        rentalDate.Location = New Point(59, 145)
+        rentalDate.Name = "rentalDate"
+        rentalDate.Size = New Size(200, 23)
+        rentalDate.TabIndex = 4
+        ' 
+        ' RentalFeeFd
+        ' 
+        RentalFeeFd.Location = New Point(5, 106)
+        RentalFeeFd.Name = "RentalFeeFd"
+        RentalFeeFd.PlaceholderText = "Rental Fee"
+        RentalFeeFd.Size = New Size(183, 23)
+        RentalFeeFd.TabIndex = 3
+        ' 
+        ' rentalCustomerIdLabel
+        ' 
+        rentalCustomerIdLabel.AutoSize = True
+        rentalCustomerIdLabel.Location = New Point(5, 48)
+        rentalCustomerIdLabel.Name = "rentalCustomerIdLabel"
+        rentalCustomerIdLabel.Size = New Size(73, 15)
+        rentalCustomerIdLabel.TabIndex = 1
+        rentalCustomerIdLabel.Text = "Customer ID"
+        ' 
+        ' rentalCarIdLabel
+        ' 
+        rentalCarIdLabel.AutoSize = True
+        rentalCarIdLabel.Location = New Point(5, 17)
+        rentalCarIdLabel.Name = "rentalCarIdLabel"
+        rentalCarIdLabel.Size = New Size(39, 15)
+        rentalCarIdLabel.TabIndex = 0
+        rentalCarIdLabel.Text = "Car ID"
+        ' 
+        ' SplitContainer3
+        ' 
+        SplitContainer3.Dock = DockStyle.Fill
+        SplitContainer3.Location = New Point(0, 0)
+        SplitContainer3.Name = "SplitContainer3"
+        SplitContainer3.Orientation = Orientation.Horizontal
+        ' 
+        ' SplitContainer3.Panel1
+        ' 
+        SplitContainer3.Panel1.Controls.Add(RentalTable)
+        ' 
+        ' SplitContainer3.Panel2
+        ' 
+        SplitContainer3.Panel2.Controls.Add(RentalCarListlTable)
+        SplitContainer3.Size = New Size(469, 495)
+        SplitContainer3.SplitterDistance = 245
+        SplitContainer3.TabIndex = 2
+        ' 
+        ' RentalTable
+        ' 
+        RentalTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        RentalTable.Dock = DockStyle.Fill
+        RentalTable.Location = New Point(0, 0)
+        RentalTable.Name = "RentalTable"
+        RentalTable.Size = New Size(469, 245)
+        RentalTable.TabIndex = 1
+        ' 
+        ' RentalCarListlTable
+        ' 
+        RentalCarListlTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        RentalCarListlTable.Dock = DockStyle.Fill
+        RentalCarListlTable.Location = New Point(0, 0)
+        RentalCarListlTable.Name = "RentalCarListlTable"
+        RentalCarListlTable.Size = New Size(469, 246)
+        RentalCarListlTable.TabIndex = 0
+        ' 
+        ' ReturnPage
+        ' 
+        ReturnPage.Location = New Point(4, 24)
+        ReturnPage.Name = "ReturnPage"
+        ReturnPage.Padding = New Padding(3)
+        ReturnPage.Size = New Size(833, 501)
+        ReturnPage.TabIndex = 3
+        ReturnPage.Text = "Return"
+        ReturnPage.UseVisualStyleBackColor = True
+        ' 
+        ' LogoutPage
+        ' 
+        LogoutPage.Controls.Add(FlowLayoutPanel1)
+        LogoutPage.Location = New Point(4, 24)
+        LogoutPage.Name = "LogoutPage"
+        LogoutPage.Padding = New Padding(3, 10, 3, 3)
+        LogoutPage.Size = New Size(833, 501)
+        LogoutPage.TabIndex = 4
+        LogoutPage.Text = "Log out"
+        LogoutPage.UseVisualStyleBackColor = True
         ' 
         ' FlowLayoutPanel1
         ' 
@@ -358,24 +624,25 @@ Partial Class MainApp
         Button1.Text = "Log out"
         Button1.UseVisualStyleBackColor = True
         ' 
-        ' searchBrandFd
+        ' refreshBtn
         ' 
-        searchBrandFd.Location = New Point(5, 193)
-        searchBrandFd.Name = "searchBrandFd"
-        searchBrandFd.PlaceholderText = "Search Brand"
-        searchBrandFd.Size = New Size(169, 23)
-        searchBrandFd.TabIndex = 7
+        refreshBtn.Location = New Point(238, 17)
+        refreshBtn.Name = "refreshBtn"
+        refreshBtn.Size = New Size(75, 23)
+        refreshBtn.TabIndex = 19
+        refreshBtn.Text = "Refresh"
+        refreshBtn.UseVisualStyleBackColor = True
         ' 
         ' MainApp
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 421)
-        Controls.Add(CustomerControl)
+        ClientSize = New Size(841, 529)
+        Controls.Add(AppTabControl)
         Name = "MainApp"
         Text = "Super Cars"
-        CustomerControl.ResumeLayout(False)
-        TabPage1.ResumeLayout(False)
+        AppTabControl.ResumeLayout(False)
+        RegPage.ResumeLayout(False)
         SplitContainer1.Panel1.ResumeLayout(False)
         SplitContainer1.Panel1.PerformLayout()
         SplitContainer1.Panel2.ResumeLayout(False)
@@ -387,18 +654,30 @@ Partial Class MainApp
         FlowLayoutPanel4.ResumeLayout(False)
         FlowLayoutPanel4.PerformLayout()
         FlowLayoutPanel2.ResumeLayout(False)
-        TabPage5.ResumeLayout(False)
+        RentalPage.ResumeLayout(False)
+        SplitContainer2.Panel1.ResumeLayout(False)
+        SplitContainer2.Panel1.PerformLayout()
+        SplitContainer2.Panel2.ResumeLayout(False)
+        CType(SplitContainer2, ComponentModel.ISupportInitialize).EndInit()
+        SplitContainer2.ResumeLayout(False)
+        SplitContainer3.Panel1.ResumeLayout(False)
+        SplitContainer3.Panel2.ResumeLayout(False)
+        CType(SplitContainer3, ComponentModel.ISupportInitialize).EndInit()
+        SplitContainer3.ResumeLayout(False)
+        CType(RentalTable, ComponentModel.ISupportInitialize).EndInit()
+        CType(RentalCarListlTable, ComponentModel.ISupportInitialize).EndInit()
+        LogoutPage.ResumeLayout(False)
         FlowLayoutPanel1.ResumeLayout(False)
         FlowLayoutPanel1.PerformLayout()
         ResumeLayout(False)
     End Sub
 
-    Friend WithEvents CustomerControl As TabControl
-    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents AppTabControl As TabControl
+    Friend WithEvents RegPage As TabPage
     Friend WithEvents CustomerPage As TabPage
-    Friend WithEvents TabPage3 As TabPage
-    Friend WithEvents TabPage4 As TabPage
-    Friend WithEvents TabPage5 As TabPage
+    Friend WithEvents RentalPage As TabPage
+    Friend WithEvents ReturnPage As TabPage
+    Friend WithEvents LogoutPage As TabPage
     Friend WithEvents Button1 As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
@@ -422,5 +701,28 @@ Partial Class MainApp
     Friend WithEvents updateCarBtn As Button
     Friend WithEvents addCarBtn As Button
     Friend WithEvents searchBrandFd As TextBox
+    Friend WithEvents SplitContainer2 As SplitContainer
+    Friend WithEvents RentalCarListlTable As DataGridView
+    Friend WithEvents rentalCustomerIdLabel As Label
+    Friend WithEvents rentalCarIdLabel As Label
+    Friend WithEvents rentalDate As DateTimePicker
+    Friend WithEvents RentalFeeFd As TextBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents RentalDueDate As DateTimePicker
+    Friend WithEvents Label2 As Label
+    Friend WithEvents SplitContainer3 As SplitContainer
+    Friend WithEvents RentalTable As DataGridView
+    Friend WithEvents customerNameCombo As ComboBox
+    Friend WithEvents rentalSaveBtn As Button
+    Friend WithEvents Label4 As Label
+    Friend WithEvents RentalCarListSearch As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents returnBtn As Button
+    Friend WithEvents ReturnDatePicker As DateTimePicker
+    Friend WithEvents CustomerIdFd As TextBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents CustomerNameSearch As TextBox
+    Friend WithEvents refreshBtn As Button
 
 End Class

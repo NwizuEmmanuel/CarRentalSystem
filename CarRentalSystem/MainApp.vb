@@ -14,6 +14,10 @@ Public Class MainApp
     Dim modelValue As Object
     Dim carColorValue As Object
 
+    ' For Rental
+    Dim rentalCarId As Object
+    Dim rentalCustomerId As Object
+
     Private Sub AddCustomer()
         If String.IsNullOrWhiteSpace(customerName.Text) Or String.IsNullOrWhiteSpace(contact.Text) Or String.IsNullOrWhiteSpace(address.Text) Then
             MessageBox.Show("Empty/Incomplete Form.")
@@ -59,6 +63,41 @@ Public Class MainApp
                 End Try
             End Using
         End Using
+    End Sub
+
+    Private Sub AddRental()
+        Dim query As String = "insert into rental (car_id, customer_id, customer_name, rental_fee, date, due_date) values (@v1, @v2, @v3, @v4, @v5, @v6)"
+        Dim query2 As String = $"update car set available='no' where car_id={rentalCarId}"
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query, connection)
+                command.Parameters.AddWithValue("@v1", rentalCarId)
+                command.Parameters.AddWithValue("@v2", rentalCustomerId)
+                command.Parameters.AddWithValue("@v3", customerNameCombo.Text)
+                command.Parameters.AddWithValue("@v4", RentalFeeFd.Text)
+                command.Parameters.AddWithValue("@v5", rentalDate.Text)
+                command.Parameters.AddWithValue("@v6", RentalDueDate.Text)
+
+                Try
+                    connection.Open()
+                    command.ExecuteNonQuery()
+
+                    Using command2 As New MySqlCommand(query2, connection)
+                        Try
+                            command2.ExecuteNonQuery()
+                        Catch ex As Exception
+                            MessageBox.Show(ex.Message)
+                        End Try
+                    End Using
+                    MessageBox.Show("Rental Added.")
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+            End Using
+        End Using
+
+        rentalCarId = String.Empty
+        rentalCustomerId = String.Empty
+        RentalFeeFd.Clear()
     End Sub
 
     Private Sub UpdateCustomer()
@@ -194,6 +233,65 @@ Public Class MainApp
         End Using
     End Sub
 
+    Private Sub LoadRentalCarListData()
+        Dim query As String = "select * from car where available='yes'"
+
+        Using connection As New MySqlConnection(connectionString)
+            Using adapter As New MySqlDataAdapter(query, connection)
+                Dim dataTable As New DataTable()
+
+                Try
+                    connection.Open()
+                    adapter.Fill(dataTable)
+                    RentalCarListlTable.ClearSelection()
+                    RentalCarListlTable.DataSource = dataTable
+                Catch ex As Exception
+                    MessageBox.Show("Error loading data: " & ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
+
+    Private Sub LoadDataToCombo()
+        Dim query As String = "SELECT customer_name FROM customer"
+
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query, connection)
+                Dim adapter As New MySqlDataAdapter(command)
+                Dim dataTable As New DataTable()
+
+                Try
+                    connection.Open()
+                    adapter.Fill(dataTable)
+
+                    customerNameCombo.DataSource = dataTable
+                    customerNameCombo.DisplayMember = "customer_name"
+                Catch ex As Exception
+                    MessageBox.Show("Error loading data into ComboBox: " & ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
+
+    Private Sub LoadRentalData()
+        Dim query As String = "select * from rental where returned='no'"
+
+        Using connection As New MySqlConnection(connectionString)
+            Using adapter As New MySqlDataAdapter(query, connection)
+                Dim dataTable As New DataTable()
+
+                Try
+                    connection.Open()
+                    adapter.Fill(dataTable)
+                    RentalTable.ClearSelection()
+                    RentalTable.DataSource = dataTable
+                Catch ex As Exception
+                    MessageBox.Show("Error loading data: " & ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
+
     Private Sub ClearCustomerForm()
         customerName.Clear()
         address.Clear()
@@ -215,6 +313,9 @@ Public Class MainApp
     Private Sub MainApp_Load(sender As Object, e As EventArgs) Handles Me.Load
         LoadCustomerData()
         LoadCarData()
+        LoadRentalCarListData()
+        LoadDataToCombo()
+        LoadRentalData()
     End Sub
 
     Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
@@ -315,5 +416,124 @@ Public Class MainApp
                 End Try
             End Using
         End Using
+    End Sub
+
+    Private Sub customerNameCombo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles customerNameCombo.SelectedIndexChanged
+        Dim query As String = "select customer_id from customer where customer_name=@v1"
+
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query, connection)
+                command.Parameters.AddWithValue("@v1", customerNameCombo.Text)
+
+                Try
+                    connection.Open()
+                    Dim result As Object = command.ExecuteScalar()
+                    If result IsNot Nothing Then
+                        rentalCustomerId = result.ToString()
+                        rentalCustomerIdLabel.Text = "Customer ID " & result.ToString()
+                        'Else
+                        '    MessageBox.Show("No data found.")
+                    End If
+                Catch ex As Exception
+                    MessageBox.Show("Error retrieving data: " & ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
+
+    Private Sub RentalCarListSearch_TextChanged(sender As Object, e As EventArgs) Handles RentalCarListSearch.TextChanged
+        Dim query As String = $"select * from car where brand like '%{RentalCarListSearch.Text}%' and available='yes'"
+
+        Using connection As New MySqlConnection(connectionString)
+            Using adapter As New MySqlDataAdapter(query, connection)
+                Dim dataTable As New DataTable()
+
+                Try
+                    connection.Open()
+                    adapter.Fill(dataTable)
+                    RentalCarListlTable.ClearSelection()
+                    RentalCarListlTable.DataSource = dataTable
+                Catch ex As Exception
+                    MessageBox.Show("Error loading data: " & ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
+
+    Private Sub RentaCarListlTable_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles RentalCarListlTable.CellClick
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
+            Dim selectedRow As DataGridViewRow = RentalCarListlTable.Rows(e.RowIndex)
+            ' Access data from the selected row as needed
+            rentalCarId = selectedRow.Cells("car_id").Value
+
+            rentalCarIdLabel.Text = "Car ID " & rentalCarId
+        End If
+    End Sub
+
+    Private Sub rentalSaveBtn_Click(sender As Object, e As EventArgs) Handles rentalSaveBtn.Click
+        AddRental()
+        LoadRentalData()
+        LoadRentalCarListData()
+    End Sub
+
+    Private Sub ReturnCar()
+        Dim query As String = "update rental set returned='yes', returned_date=@v1 where customer_id=@v2"
+        Dim query2 As String = "update car set available='yes' where car_id=(select car_id from rental where customer_id=@v1)"
+
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query, connection)
+                command.Parameters.AddWithValue("@v1", ReturnDatePicker.Text)
+                command.Parameters.AddWithValue("@v2", CustomerIdFd.Text)
+
+                Try
+                    connection.Open()
+                    command.ExecuteNonQuery()
+                    MessageBox.Show("Car Returned.")
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+            End Using
+
+            Using command2 As New MySqlCommand(query2, connection)
+                command2.Parameters.AddWithValue("@v1", CustomerIdFd.Text)
+                Try
+                    command2.ExecuteNonQuery()
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+            End Using
+        End Using
+
+        ReturnDatePicker.ResetText()
+        CustomerIdFd.Clear()
+    End Sub
+
+    Private Sub returnBtn_Click(sender As Object, e As EventArgs) Handles returnBtn.Click
+        ReturnCar()
+        LoadRentalData()
+    End Sub
+
+    Private Sub CustomerNameSearch_TextChanged(sender As Object, e As EventArgs) Handles CustomerNameSearch.TextChanged
+        Dim query As String = $"select * from rental where customer_name like '%{CustomerNameSearch.Text}%' and returned='no'"
+
+        Using connection As New MySqlConnection(connectionString)
+            Using adapter As New MySqlDataAdapter(query, connection)
+                Dim dataTable As New DataTable()
+
+                Try
+                    connection.Open()
+                    adapter.Fill(dataTable)
+                    RentalTable.ClearSelection()
+                    RentalTable.DataSource = dataTable
+                Catch ex As Exception
+                    MessageBox.Show("Error loading data: " & ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
+
+    Private Sub refreshBtn_Click(sender As Object, e As EventArgs) Handles refreshBtn.Click
+        LoadRentalCarListData()
+        LoadRentalData()
     End Sub
 End Class
