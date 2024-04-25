@@ -136,4 +136,23 @@ Public Class MainApp
         LoadData()
         ClearForm()
     End Sub
+
+    Private Sub searchNameFd_TextChanged(sender As Object, e As EventArgs) Handles searchNameFd.TextChanged
+        Dim query As String = $"select * from customer where customer_name like '%{searchNameFd.Text}%'"
+
+        Using connection As New MySqlConnection(connectionString)
+            Using adapter As New MySqlDataAdapter(query, connection)
+                Dim dataTable As New DataTable()
+
+                Try
+                    connection.Open()
+                    adapter.Fill(dataTable)
+                    DataGridView1.ClearSelection()
+                    DataGridView1.DataSource = dataTable
+                Catch ex As Exception
+                    MessageBox.Show("Error loading data: " & ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
 End Class

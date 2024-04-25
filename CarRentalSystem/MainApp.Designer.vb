@@ -29,24 +29,29 @@ Partial Class MainApp
         FlowLayoutPanel4 = New FlowLayoutPanel()
         customerName = New TextBox()
         contact = New TextBox()
+        searchNameFd = New TextBox()
+        address = New TextBox()
         FlowLayoutPanel2 = New FlowLayoutPanel()
         addCustomerBtn = New Button()
         updateBtn = New Button()
         deleteBtn = New Button()
-        address = New TextBox()
         TabPage3 = New TabPage()
         TabPage4 = New TabPage()
         TabPage5 = New TabPage()
         FlowLayoutPanel1 = New FlowLayoutPanel()
         Label1 = New Label()
         Button1 = New Button()
+        DataGridView2 = New DataGridView()
+        Panel1 = New Panel()
         CustomerControl.SuspendLayout()
+        TabPage1.SuspendLayout()
         CustomerPage.SuspendLayout()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         FlowLayoutPanel4.SuspendLayout()
         FlowLayoutPanel2.SuspendLayout()
         TabPage5.SuspendLayout()
         FlowLayoutPanel1.SuspendLayout()
+        CType(DataGridView2, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' CustomerControl
@@ -65,6 +70,8 @@ Partial Class MainApp
         ' 
         ' TabPage1
         ' 
+        TabPage1.Controls.Add(Panel1)
+        TabPage1.Controls.Add(DataGridView2)
         TabPage1.Location = New Point(4, 24)
         TabPage1.Name = "TabPage1"
         TabPage1.Padding = New Padding(3)
@@ -99,10 +106,10 @@ Partial Class MainApp
         ' 
         FlowLayoutPanel4.Controls.Add(customerName)
         FlowLayoutPanel4.Controls.Add(contact)
-        FlowLayoutPanel4.Controls.Add(FlowLayoutPanel2)
+        FlowLayoutPanel4.Controls.Add(searchNameFd)
         FlowLayoutPanel4.Controls.Add(address)
+        FlowLayoutPanel4.Controls.Add(FlowLayoutPanel2)
         FlowLayoutPanel4.Dock = DockStyle.Bottom
-        FlowLayoutPanel4.FlowDirection = FlowDirection.TopDown
         FlowLayoutPanel4.Location = New Point(3, 245)
         FlowLayoutPanel4.Margin = New Padding(3, 10, 3, 3)
         FlowLayoutPanel4.Name = "FlowLayoutPanel4"
@@ -120,19 +127,38 @@ Partial Class MainApp
         ' 
         ' contact
         ' 
-        contact.Location = New Point(3, 46)
+        contact.Location = New Point(290, 10)
         contact.Margin = New Padding(3, 10, 3, 3)
         contact.Name = "contact"
         contact.PlaceholderText = "Contact"
         contact.Size = New Size(281, 23)
         contact.TabIndex = 1
         ' 
+        ' searchNameFd
+        ' 
+        searchNameFd.Location = New Point(577, 10)
+        searchNameFd.Margin = New Padding(3, 10, 3, 3)
+        searchNameFd.Name = "searchNameFd"
+        searchNameFd.PlaceholderText = "Search name"
+        searchNameFd.Size = New Size(188, 23)
+        searchNameFd.TabIndex = 8
+        ' 
+        ' address
+        ' 
+        address.Location = New Point(3, 46)
+        address.Margin = New Padding(3, 10, 3, 3)
+        address.Multiline = True
+        address.Name = "address"
+        address.PlaceholderText = "Address"
+        address.Size = New Size(281, 59)
+        address.TabIndex = 1
+        ' 
         ' FlowLayoutPanel2
         ' 
         FlowLayoutPanel2.Controls.Add(addCustomerBtn)
         FlowLayoutPanel2.Controls.Add(updateBtn)
         FlowLayoutPanel2.Controls.Add(deleteBtn)
-        FlowLayoutPanel2.Location = New Point(3, 75)
+        FlowLayoutPanel2.Location = New Point(290, 39)
         FlowLayoutPanel2.Name = "FlowLayoutPanel2"
         FlowLayoutPanel2.Size = New Size(281, 45)
         FlowLayoutPanel2.TabIndex = 7
@@ -163,16 +189,6 @@ Partial Class MainApp
         deleteBtn.TabIndex = 6
         deleteBtn.Text = "Delete"
         deleteBtn.UseVisualStyleBackColor = True
-        ' 
-        ' address
-        ' 
-        address.Location = New Point(290, 10)
-        address.Margin = New Padding(3, 10, 3, 3)
-        address.Multiline = True
-        address.Name = "address"
-        address.PlaceholderText = "Address"
-        address.Size = New Size(281, 59)
-        address.TabIndex = 1
         ' 
         ' TabPage3
         ' 
@@ -235,6 +251,23 @@ Partial Class MainApp
         Button1.Text = "Log out"
         Button1.UseVisualStyleBackColor = True
         ' 
+        ' DataGridView2
+        ' 
+        DataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridView2.Dock = DockStyle.Fill
+        DataGridView2.Location = New Point(3, 3)
+        DataGridView2.Name = "DataGridView2"
+        DataGridView2.Size = New Size(786, 387)
+        DataGridView2.TabIndex = 0
+        ' 
+        ' Panel1
+        ' 
+        Panel1.Dock = DockStyle.Left
+        Panel1.Location = New Point(3, 3)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(200, 387)
+        Panel1.TabIndex = 1
+        ' 
         ' MainApp
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -244,6 +277,7 @@ Partial Class MainApp
         Name = "MainApp"
         Text = "Super Cars"
         CustomerControl.ResumeLayout(False)
+        TabPage1.ResumeLayout(False)
         CustomerPage.ResumeLayout(False)
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         FlowLayoutPanel4.ResumeLayout(False)
@@ -252,6 +286,7 @@ Partial Class MainApp
         TabPage5.ResumeLayout(False)
         FlowLayoutPanel1.ResumeLayout(False)
         FlowLayoutPanel1.PerformLayout()
+        CType(DataGridView2, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
@@ -273,5 +308,8 @@ Partial Class MainApp
     Friend WithEvents deleteBtn As Button
     Friend WithEvents updateBtn As Button
     Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
+    Friend WithEvents searchNameFd As TextBox
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents DataGridView2 As DataGridView
 
 End Class
