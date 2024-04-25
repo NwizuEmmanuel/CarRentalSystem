@@ -7,6 +7,13 @@ Public Class MainApp
     Dim addressValue As Object
     Dim contactValue As Object
 
+    ' For Car
+    Dim carIdValue As Object
+    Dim plateNumberValue As Object
+    Dim brandValue As Object
+    Dim modelValue As Object
+    Dim carColorValue As Object
+
     Private Sub AddCustomer()
         If String.IsNullOrWhiteSpace(customerName.Text) Or String.IsNullOrWhiteSpace(contact.Text) Or String.IsNullOrWhiteSpace(address.Text) Then
             MessageBox.Show("Empty/Incomplete Form.")
@@ -30,6 +37,30 @@ Public Class MainApp
         End Using
     End Sub
 
+    Private Sub AddCar()
+        If String.IsNullOrWhiteSpace(plateNumberFd.Text) Or String.IsNullOrWhiteSpace(brandFd.Text) Or String.IsNullOrWhiteSpace(modelFd.Text) Or String.IsNullOrWhiteSpace(colorFd.Text) Then
+            MessageBox.Show("Empty/Incomplete Form.")
+            Exit Sub
+        End If
+        Dim query As String = "insert into car (plate_number, brand, model, color) values (@v1, @v2, @v3, @v4)"
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query, connection)
+                command.Parameters.AddWithValue("@v1", plateNumberFd.Text)
+                command.Parameters.AddWithValue("@v2", brandFd.Text)
+                command.Parameters.AddWithValue("@v3", modelFd.Text)
+                command.Parameters.AddWithValue("@v4", colorFd.Text)
+
+                Try
+                    connection.Open()
+                    command.ExecuteNonQuery()
+                    MessageBox.Show("Car Added.")
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
+
     Private Sub UpdateCustomer()
         If String.IsNullOrWhiteSpace(customerName.Text) Or String.IsNullOrWhiteSpace(contact.Text) Or String.IsNullOrWhiteSpace(address.Text) Then
             MessageBox.Show("Select customer from table.")
@@ -43,6 +74,32 @@ Public Class MainApp
                 command.Parameters.AddWithValue("@v2", address.Text)
                 command.Parameters.AddWithValue("@v3", contact.Text)
                 command.Parameters.AddWithValue("@v4", idValue)
+
+                Try
+                    connection.Open()
+                    command.ExecuteNonQuery()
+                    MessageBox.Show("Update complete.")
+                Catch ex As Exception
+                    MessageBox.Show("Update error: " & ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
+
+    Private Sub UpdateCar()
+        If String.IsNullOrWhiteSpace(plateNumberFd.Text) Or String.IsNullOrWhiteSpace(brandFd.Text) Or String.IsNullOrWhiteSpace(modelFd.Text) Or String.IsNullOrWhiteSpace(colorFd.Text) Then
+            MessageBox.Show("Select car from table.")
+            Exit Sub
+        End If
+
+        Dim query As String = "update car set plate_number=@v1, brand=@v2, model=@v3, color=@v4 where car_id=@v5"
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query, connection)
+                command.Parameters.AddWithValue("@v1", plateNumberFd.Text)
+                command.Parameters.AddWithValue("@v2", brandFd.Text)
+                command.Parameters.AddWithValue("@v3", modelFd.Text)
+                command.Parameters.AddWithValue("@v4", colorFd.Text)
+                command.Parameters.AddWithValue("@v5", carIdValue)
 
                 Try
                     connection.Open()
@@ -76,7 +133,30 @@ Public Class MainApp
             End Using
         End Using
     End Sub
-    Private Sub LoadData()
+
+    Private Sub DeleteCar()
+        If String.IsNullOrWhiteSpace(plateNumberFd.Text) Or String.IsNullOrWhiteSpace(brandFd.Text) Or String.IsNullOrWhiteSpace(modelFd.Text) Or String.IsNullOrWhiteSpace(colorFd.Text) Then
+            MessageBox.Show("Select car from table.")
+            Exit Sub
+        End If
+
+        Dim query As String = "delete from car where car_id=@v1"
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query, connection)
+                command.Parameters.AddWithValue("@v1", carIdValue)
+
+                Try
+                    connection.Open()
+                    command.ExecuteNonQuery()
+                    MessageBox.Show("Delete complete.")
+                Catch ex As Exception
+                    MessageBox.Show("Delete error: " & ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
+
+    Private Sub LoadCustomerData()
         Dim query As String = "select * from customer"
 
         Using connection As New MySqlConnection(connectionString)
@@ -95,19 +175,46 @@ Public Class MainApp
         End Using
     End Sub
 
-    Private Sub ClearForm()
+    Private Sub LoadCarData()
+        Dim query As String = "select * from car"
+
+        Using connection As New MySqlConnection(connectionString)
+            Using adapter As New MySqlDataAdapter(query, connection)
+                Dim dataTable As New DataTable()
+
+                Try
+                    connection.Open()
+                    adapter.Fill(dataTable)
+                    DataGridView2.ClearSelection()
+                    DataGridView2.DataSource = dataTable
+                Catch ex As Exception
+                    MessageBox.Show("Error loading data: " & ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
+
+    Private Sub ClearCustomerForm()
         customerName.Clear()
         address.Clear()
         contact.Clear()
     End Sub
+
+    Private Sub ClearCarForm()
+        plateNumberFd.Clear()
+        brandFd.Clear()
+        modelFd.Clear()
+        colorFd.Clear()
+    End Sub
     Private Sub addCustomerBtn_Click(sender As Object, e As EventArgs) Handles addCustomerBtn.Click
         AddCustomer()
-        LoadData()
-        ClearForm()
+        LoadCustomerData()
+        ClearCustomerForm()
     End Sub
 
     Private Sub MainApp_Load(sender As Object, e As EventArgs) Handles Me.Load
-        LoadData()
+        LoadCustomerData()
+        LoadCarData()
     End Sub
 
     Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
@@ -127,14 +234,14 @@ Public Class MainApp
 
     Private Sub updateBtn_Click(sender As Object, e As EventArgs) Handles updateBtn.Click
         UpdateCustomer()
-        LoadData()
-        ClearForm()
+        LoadCustomerData()
+        ClearCustomerForm()
     End Sub
 
     Private Sub deleteBtn_Click(sender As Object, e As EventArgs) Handles deleteBtn.Click
         DeleteCustomer()
-        LoadData()
-        ClearForm()
+        LoadCustomerData()
+        ClearCustomerForm()
     End Sub
 
     Private Sub searchNameFd_TextChanged(sender As Object, e As EventArgs) Handles searchNameFd.TextChanged
@@ -149,6 +256,60 @@ Public Class MainApp
                     adapter.Fill(dataTable)
                     DataGridView1.ClearSelection()
                     DataGridView1.DataSource = dataTable
+                Catch ex As Exception
+                    MessageBox.Show("Error loading data: " & ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
+
+    Private Sub addCarBtn_Click(sender As Object, e As EventArgs) Handles addCarBtn.Click
+        AddCar()
+        LoadCarData()
+        ClearCarForm()
+    End Sub
+
+    Private Sub DataGridView2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellClick
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
+            Dim selectedRow As DataGridViewRow = DataGridView2.Rows(e.RowIndex)
+            ' Access data from the selected row as needed
+            carIdValue = selectedRow.Cells("car_id").Value
+            plateNumberValue = selectedRow.Cells("plate_number").Value
+            brandValue = selectedRow.Cells("brand").Value
+            modelValue = selectedRow.Cells("model").Value
+            carColorValue = selectedRow.Cells("color").Value
+
+            plateNumberFd.Text = plateNumberValue
+            brandFd.Text = brandValue
+            modelFd.Text = modelValue
+            colorFd.Text = carColorValue
+        End If
+    End Sub
+
+    Private Sub updateCarBtn_Click(sender As Object, e As EventArgs) Handles updateCarBtn.Click
+        UpdateCar()
+        LoadCarData()
+        ClearCarForm()
+    End Sub
+
+    Private Sub deleteCarBtn_Click(sender As Object, e As EventArgs) Handles deleteCarBtn.Click
+        DeleteCar()
+        LoadCarData()
+        ClearCarForm()
+    End Sub
+
+    Private Sub searchBrandFd_TextChanged(sender As Object, e As EventArgs) Handles searchBrandFd.TextChanged
+        Dim query As String = $"select * from car where brand like '%{searchBrandFd.Text}%'"
+
+        Using connection As New MySqlConnection(connectionString)
+            Using adapter As New MySqlDataAdapter(query, connection)
+                Dim dataTable As New DataTable()
+
+                Try
+                    connection.Open()
+                    adapter.Fill(dataTable)
+                    DataGridView2.ClearSelection()
+                    DataGridView2.DataSource = dataTable
                 Catch ex As Exception
                     MessageBox.Show("Error loading data: " & ex.Message)
                 End Try

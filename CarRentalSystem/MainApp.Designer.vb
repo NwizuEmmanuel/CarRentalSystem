@@ -24,6 +24,15 @@ Partial Class MainApp
     Private Sub InitializeComponent()
         CustomerControl = New TabControl()
         TabPage1 = New TabPage()
+        SplitContainer1 = New SplitContainer()
+        deleteCarBtn = New Button()
+        updateCarBtn = New Button()
+        addCarBtn = New Button()
+        colorFd = New TextBox()
+        modelFd = New TextBox()
+        brandFd = New TextBox()
+        plateNumberFd = New TextBox()
+        DataGridView2 = New DataGridView()
         CustomerPage = New TabPage()
         DataGridView1 = New DataGridView()
         FlowLayoutPanel4 = New FlowLayoutPanel()
@@ -41,17 +50,20 @@ Partial Class MainApp
         FlowLayoutPanel1 = New FlowLayoutPanel()
         Label1 = New Label()
         Button1 = New Button()
-        DataGridView2 = New DataGridView()
-        Panel1 = New Panel()
+        searchBrandFd = New TextBox()
         CustomerControl.SuspendLayout()
         TabPage1.SuspendLayout()
+        CType(SplitContainer1, ComponentModel.ISupportInitialize).BeginInit()
+        SplitContainer1.Panel1.SuspendLayout()
+        SplitContainer1.Panel2.SuspendLayout()
+        SplitContainer1.SuspendLayout()
+        CType(DataGridView2, ComponentModel.ISupportInitialize).BeginInit()
         CustomerPage.SuspendLayout()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         FlowLayoutPanel4.SuspendLayout()
         FlowLayoutPanel2.SuspendLayout()
         TabPage5.SuspendLayout()
         FlowLayoutPanel1.SuspendLayout()
-        CType(DataGridView2, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' CustomerControl
@@ -70,8 +82,7 @@ Partial Class MainApp
         ' 
         ' TabPage1
         ' 
-        TabPage1.Controls.Add(Panel1)
-        TabPage1.Controls.Add(DataGridView2)
+        TabPage1.Controls.Add(SplitContainer1)
         TabPage1.Location = New Point(4, 24)
         TabPage1.Name = "TabPage1"
         TabPage1.Padding = New Padding(3)
@@ -79,6 +90,102 @@ Partial Class MainApp
         TabPage1.TabIndex = 0
         TabPage1.Text = "Car Registration"
         TabPage1.UseVisualStyleBackColor = True
+        ' 
+        ' SplitContainer1
+        ' 
+        SplitContainer1.Dock = DockStyle.Fill
+        SplitContainer1.Location = New Point(3, 3)
+        SplitContainer1.Name = "SplitContainer1"
+        ' 
+        ' SplitContainer1.Panel1
+        ' 
+        SplitContainer1.Panel1.Controls.Add(searchBrandFd)
+        SplitContainer1.Panel1.Controls.Add(deleteCarBtn)
+        SplitContainer1.Panel1.Controls.Add(updateCarBtn)
+        SplitContainer1.Panel1.Controls.Add(addCarBtn)
+        SplitContainer1.Panel1.Controls.Add(colorFd)
+        SplitContainer1.Panel1.Controls.Add(modelFd)
+        SplitContainer1.Panel1.Controls.Add(brandFd)
+        SplitContainer1.Panel1.Controls.Add(plateNumberFd)
+        ' 
+        ' SplitContainer1.Panel2
+        ' 
+        SplitContainer1.Panel2.Controls.Add(DataGridView2)
+        SplitContainer1.Size = New Size(786, 387)
+        SplitContainer1.SplitterDistance = 296
+        SplitContainer1.TabIndex = 2
+        ' 
+        ' deleteCarBtn
+        ' 
+        deleteCarBtn.Location = New Point(203, 147)
+        deleteCarBtn.Name = "deleteCarBtn"
+        deleteCarBtn.Size = New Size(75, 23)
+        deleteCarBtn.TabIndex = 6
+        deleteCarBtn.Text = "Delete"
+        deleteCarBtn.UseVisualStyleBackColor = True
+        ' 
+        ' updateCarBtn
+        ' 
+        updateCarBtn.Location = New Point(99, 147)
+        updateCarBtn.Name = "updateCarBtn"
+        updateCarBtn.Size = New Size(75, 23)
+        updateCarBtn.TabIndex = 5
+        updateCarBtn.Text = "Update"
+        updateCarBtn.UseVisualStyleBackColor = True
+        ' 
+        ' addCarBtn
+        ' 
+        addCarBtn.Location = New Point(5, 147)
+        addCarBtn.Name = "addCarBtn"
+        addCarBtn.Size = New Size(75, 23)
+        addCarBtn.TabIndex = 4
+        addCarBtn.Text = "Add"
+        addCarBtn.UseVisualStyleBackColor = True
+        ' 
+        ' colorFd
+        ' 
+        colorFd.CharacterCasing = CharacterCasing.Lower
+        colorFd.Location = New Point(5, 108)
+        colorFd.Name = "colorFd"
+        colorFd.PlaceholderText = "Color"
+        colorFd.Size = New Size(231, 23)
+        colorFd.TabIndex = 3
+        ' 
+        ' modelFd
+        ' 
+        modelFd.CharacterCasing = CharacterCasing.Upper
+        modelFd.Location = New Point(5, 79)
+        modelFd.Name = "modelFd"
+        modelFd.PlaceholderText = "Model"
+        modelFd.Size = New Size(231, 23)
+        modelFd.TabIndex = 2
+        ' 
+        ' brandFd
+        ' 
+        brandFd.CharacterCasing = CharacterCasing.Upper
+        brandFd.Location = New Point(5, 50)
+        brandFd.Name = "brandFd"
+        brandFd.PlaceholderText = "Brand"
+        brandFd.Size = New Size(231, 23)
+        brandFd.TabIndex = 1
+        ' 
+        ' plateNumberFd
+        ' 
+        plateNumberFd.CharacterCasing = CharacterCasing.Upper
+        plateNumberFd.Location = New Point(5, 21)
+        plateNumberFd.Name = "plateNumberFd"
+        plateNumberFd.PlaceholderText = "Plate number"
+        plateNumberFd.Size = New Size(231, 23)
+        plateNumberFd.TabIndex = 0
+        ' 
+        ' DataGridView2
+        ' 
+        DataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridView2.Dock = DockStyle.Fill
+        DataGridView2.Location = New Point(0, 0)
+        DataGridView2.Name = "DataGridView2"
+        DataGridView2.Size = New Size(486, 387)
+        DataGridView2.TabIndex = 0
         ' 
         ' CustomerPage
         ' 
@@ -251,22 +358,13 @@ Partial Class MainApp
         Button1.Text = "Log out"
         Button1.UseVisualStyleBackColor = True
         ' 
-        ' DataGridView2
+        ' searchBrandFd
         ' 
-        DataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView2.Dock = DockStyle.Fill
-        DataGridView2.Location = New Point(3, 3)
-        DataGridView2.Name = "DataGridView2"
-        DataGridView2.Size = New Size(786, 387)
-        DataGridView2.TabIndex = 0
-        ' 
-        ' Panel1
-        ' 
-        Panel1.Dock = DockStyle.Left
-        Panel1.Location = New Point(3, 3)
-        Panel1.Name = "Panel1"
-        Panel1.Size = New Size(200, 387)
-        Panel1.TabIndex = 1
+        searchBrandFd.Location = New Point(5, 193)
+        searchBrandFd.Name = "searchBrandFd"
+        searchBrandFd.PlaceholderText = "Search Brand"
+        searchBrandFd.Size = New Size(169, 23)
+        searchBrandFd.TabIndex = 7
         ' 
         ' MainApp
         ' 
@@ -278,6 +376,12 @@ Partial Class MainApp
         Text = "Super Cars"
         CustomerControl.ResumeLayout(False)
         TabPage1.ResumeLayout(False)
+        SplitContainer1.Panel1.ResumeLayout(False)
+        SplitContainer1.Panel1.PerformLayout()
+        SplitContainer1.Panel2.ResumeLayout(False)
+        CType(SplitContainer1, ComponentModel.ISupportInitialize).EndInit()
+        SplitContainer1.ResumeLayout(False)
+        CType(DataGridView2, ComponentModel.ISupportInitialize).EndInit()
         CustomerPage.ResumeLayout(False)
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         FlowLayoutPanel4.ResumeLayout(False)
@@ -286,7 +390,6 @@ Partial Class MainApp
         TabPage5.ResumeLayout(False)
         FlowLayoutPanel1.ResumeLayout(False)
         FlowLayoutPanel1.PerformLayout()
-        CType(DataGridView2, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
@@ -309,7 +412,15 @@ Partial Class MainApp
     Friend WithEvents updateBtn As Button
     Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
     Friend WithEvents searchNameFd As TextBox
-    Friend WithEvents Panel1 As Panel
     Friend WithEvents DataGridView2 As DataGridView
+    Friend WithEvents SplitContainer1 As SplitContainer
+    Friend WithEvents colorFd As TextBox
+    Friend WithEvents modelFd As TextBox
+    Friend WithEvents brandFd As TextBox
+    Friend WithEvents plateNumberFd As TextBox
+    Friend WithEvents deleteCarBtn As Button
+    Friend WithEvents updateCarBtn As Button
+    Friend WithEvents addCarBtn As Button
+    Friend WithEvents searchBrandFd As TextBox
 
 End Class
