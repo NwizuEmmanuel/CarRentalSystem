@@ -22,6 +22,7 @@ Partial Class MainApp
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainApp))
         AppTabControl = New TabControl()
         RegPage = New TabPage()
         SplitContainer1 = New SplitContainer()
@@ -47,6 +48,7 @@ Partial Class MainApp
         deleteBtn = New Button()
         RentalPage = New TabPage()
         SplitContainer2 = New SplitContainer()
+        refreshBtn = New Button()
         CustomerNameSearch = New TextBox()
         CustomerIdFd = New TextBox()
         Label7 = New Label()
@@ -72,8 +74,7 @@ Partial Class MainApp
         LogoutPage = New TabPage()
         FlowLayoutPanel1 = New FlowLayoutPanel()
         Label1 = New Label()
-        Button1 = New Button()
-        refreshBtn = New Button()
+        LogoutBtn = New Button()
         AppTabControl.SuspendLayout()
         RegPage.SuspendLayout()
         CType(SplitContainer1, ComponentModel.ISupportInitialize).BeginInit()
@@ -164,6 +165,7 @@ Partial Class MainApp
         deleteCarBtn.Size = New Size(75, 23)
         deleteCarBtn.TabIndex = 6
         deleteCarBtn.Text = "Delete"
+        deleteCarBtn.TextImageRelation = TextImageRelation.ImageBeforeText
         deleteCarBtn.UseVisualStyleBackColor = True
         ' 
         ' updateCarBtn
@@ -385,6 +387,15 @@ Partial Class MainApp
         SplitContainer2.SplitterDistance = 354
         SplitContainer2.TabIndex = 0
         ' 
+        ' refreshBtn
+        ' 
+        refreshBtn.Location = New Point(238, 17)
+        refreshBtn.Name = "refreshBtn"
+        refreshBtn.Size = New Size(75, 23)
+        refreshBtn.TabIndex = 19
+        refreshBtn.Text = "Refresh"
+        refreshBtn.UseVisualStyleBackColor = True
+        ' 
         ' CustomerNameSearch
         ' 
         CustomerNameSearch.Location = New Point(5, 263)
@@ -597,7 +608,7 @@ Partial Class MainApp
         ' FlowLayoutPanel1
         ' 
         FlowLayoutPanel1.Controls.Add(Label1)
-        FlowLayoutPanel1.Controls.Add(Button1)
+        FlowLayoutPanel1.Controls.Add(LogoutBtn)
         FlowLayoutPanel1.FlowDirection = FlowDirection.TopDown
         FlowLayoutPanel1.Location = New Point(8, 13)
         FlowLayoutPanel1.Name = "FlowLayoutPanel1"
@@ -614,31 +625,25 @@ Partial Class MainApp
         Label1.TabIndex = 0
         Label1.Text = "Log out from system here."
         ' 
-        ' Button1
+        ' LogoutBtn
         ' 
-        Button1.Location = New Point(3, 25)
-        Button1.Margin = New Padding(3, 10, 3, 3)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(75, 23)
-        Button1.TabIndex = 1
-        Button1.Text = "Log out"
-        Button1.UseVisualStyleBackColor = True
-        ' 
-        ' refreshBtn
-        ' 
-        refreshBtn.Location = New Point(238, 17)
-        refreshBtn.Name = "refreshBtn"
-        refreshBtn.Size = New Size(75, 23)
-        refreshBtn.TabIndex = 19
-        refreshBtn.Text = "Refresh"
-        refreshBtn.UseVisualStyleBackColor = True
+        LogoutBtn.Location = New Point(3, 25)
+        LogoutBtn.Margin = New Padding(3, 10, 3, 3)
+        LogoutBtn.Name = "LogoutBtn"
+        LogoutBtn.Size = New Size(75, 23)
+        LogoutBtn.TabIndex = 1
+        LogoutBtn.Text = "Log out"
+        LogoutBtn.UseVisualStyleBackColor = True
         ' 
         ' MainApp
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), Image)
+        BackgroundImageLayout = ImageLayout.Center
         ClientSize = New Size(841, 529)
         Controls.Add(AppTabControl)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "MainApp"
         Text = "Super Cars"
         AppTabControl.ResumeLayout(False)
@@ -678,7 +683,7 @@ Partial Class MainApp
     Friend WithEvents RentalPage As TabPage
     Friend WithEvents ReturnPage As TabPage
     Friend WithEvents LogoutPage As TabPage
-    Friend WithEvents Button1 As Button
+    Friend WithEvents LogoutBtn As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents address As TextBox

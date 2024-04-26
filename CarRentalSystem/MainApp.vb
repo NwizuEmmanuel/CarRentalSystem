@@ -536,4 +536,9 @@ Public Class MainApp
         LoadRentalCarListData()
         LoadRentalData()
     End Sub
+
+    Private Sub LogoutBtn_Click(sender As Object, e As EventArgs) Handles LogoutBtn.Click
+        Me.Hide()
+        Login.Show()
+    End Sub
 End Class
