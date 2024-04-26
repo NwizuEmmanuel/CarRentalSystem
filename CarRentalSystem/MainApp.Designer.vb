@@ -639,7 +639,6 @@ Partial Class MainApp
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), Image)
         BackgroundImageLayout = ImageLayout.Center
         ClientSize = New Size(841, 529)
         Controls.Add(AppTabControl)

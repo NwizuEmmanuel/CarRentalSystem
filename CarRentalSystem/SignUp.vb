@@ -22,6 +22,10 @@ Public Class SignUp
                 End Try
             End Using
         End Using
+
+        UsernameFd.Clear()
+        PasswordFd.Clear()
+        EmailFd.Clear()
     End Sub
 
     Private Sub LoginLink_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LoginLink.LinkClicked
