@@ -66,6 +66,10 @@ Public Class MainApp
     End Sub
 
     Private Sub AddRental()
+        If String.IsNullOrWhiteSpace(RentalCarIDTextbox.Text) Or String.IsNullOrWhiteSpace(RentalCustomerIDTextbox.Text) Or String.IsNullOrWhiteSpace(customerNameCombo.Text) Or String.IsNullOrWhiteSpace(RentalFeeFd.Text) Or String.IsNullOrWhiteSpace(rentalDate.Text) Or String.IsNullOrWhiteSpace(RentalDueDate.Text) Then
+            MessageBox.Show("complete the form.")
+            Exit Sub
+        End If
         Dim query As String = "insert into rental (car_id, customer_id, customer_name, rental_fee, date, due_date) values (@v1, @v2, @v3, @v4, @v5, @v6)"
         Dim query2 As String = $"update car set available='no' where car_id={rentalCarId}"
         Using connection As New MySqlConnection(connectionString)
@@ -74,8 +78,8 @@ Public Class MainApp
                 command.Parameters.AddWithValue("@v2", rentalCustomerId)
                 command.Parameters.AddWithValue("@v3", customerNameCombo.Text)
                 command.Parameters.AddWithValue("@v4", RentalFeeFd.Text)
-                command.Parameters.AddWithValue("@v5", rentalDate.Text)
-                command.Parameters.AddWithValue("@v6", RentalDueDate.Text)
+                command.Parameters.AddWithValue("@v5", DateTime.Parse(rentalDate.Text))
+                command.Parameters.AddWithValue("@v6", DateTime.Parse(RentalDueDate.Text))
 
                 Try
                     connection.Open()
@@ -274,7 +278,7 @@ Public Class MainApp
     End Sub
 
     Private Sub LoadRentalData()
-        Dim query As String = "select * from rental where returned='no'"
+        Dim query As String = "select * from rental"
 
         Using connection As New MySqlConnection(connectionString)
             Using adapter As New MySqlDataAdapter(query, connection)
@@ -316,6 +320,9 @@ Public Class MainApp
         LoadRentalCarListData()
         LoadDataToCombo()
         LoadRentalData()
+        LoadReturnCustomerNameCombo()
+        LoadReturnData()
+        LoadReturnCustomerNameCombo()
     End Sub
 
     Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
@@ -430,31 +437,12 @@ Public Class MainApp
                     Dim result As Object = command.ExecuteScalar()
                     If result IsNot Nothing Then
                         rentalCustomerId = result.ToString()
-                        rentalCustomerIdLabel.Text = "Customer ID " & result.ToString()
+                        RentalCustomerIDTextbox.Text = result.ToString()
                         'Else
                         '    MessageBox.Show("No data found.")
                     End If
                 Catch ex As Exception
                     MessageBox.Show("Error retrieving data: " & ex.Message)
-                End Try
-            End Using
-        End Using
-    End Sub
-
-    Private Sub RentalCarListSearch_TextChanged(sender As Object, e As EventArgs) Handles RentalCarListSearch.TextChanged
-        Dim query As String = $"select * from car where brand like '%{RentalCarListSearch.Text}%' and available='yes'"
-
-        Using connection As New MySqlConnection(connectionString)
-            Using adapter As New MySqlDataAdapter(query, connection)
-                Dim dataTable As New DataTable()
-
-                Try
-                    connection.Open()
-                    adapter.Fill(dataTable)
-                    RentalCarListlTable.ClearSelection()
-                    RentalCarListlTable.DataSource = dataTable
-                Catch ex As Exception
-                    MessageBox.Show("Error loading data: " & ex.Message)
                 End Try
             End Using
         End Using
@@ -466,7 +454,7 @@ Public Class MainApp
             ' Access data from the selected row as needed
             rentalCarId = selectedRow.Cells("car_id").Value
 
-            rentalCarIdLabel.Text = "Car ID " & rentalCarId
+            RentalCarIDTextbox.Text = rentalCarId
         End If
     End Sub
 
@@ -476,45 +464,8 @@ Public Class MainApp
         LoadRentalCarListData()
     End Sub
 
-    Private Sub ReturnCar()
-        Dim query As String = "update rental set returned='yes', returned_date=@v1 where customer_id=@v2"
-        Dim query2 As String = "update car set available='yes' where car_id=(select car_id from rental where customer_id=@v1)"
-
-        Using connection As New MySqlConnection(connectionString)
-            Using command As New MySqlCommand(query, connection)
-                command.Parameters.AddWithValue("@v1", ReturnDatePicker.Text)
-                command.Parameters.AddWithValue("@v2", CustomerIdFd.Text)
-
-                Try
-                    connection.Open()
-                    command.ExecuteNonQuery()
-                    MessageBox.Show("Car Returned.")
-                Catch ex As Exception
-                    MessageBox.Show(ex.Message)
-                End Try
-            End Using
-
-            Using command2 As New MySqlCommand(query2, connection)
-                command2.Parameters.AddWithValue("@v1", CustomerIdFd.Text)
-                Try
-                    command2.ExecuteNonQuery()
-                Catch ex As Exception
-                    MessageBox.Show(ex.Message)
-                End Try
-            End Using
-        End Using
-
-        ReturnDatePicker.ResetText()
-        CustomerIdFd.Clear()
-    End Sub
-
-    Private Sub returnBtn_Click(sender As Object, e As EventArgs) Handles returnBtn.Click
-        ReturnCar()
-        LoadRentalData()
-    End Sub
-
     Private Sub CustomerNameSearch_TextChanged(sender As Object, e As EventArgs) Handles CustomerNameSearch.TextChanged
-        Dim query As String = $"select * from rental where customer_name like '%{CustomerNameSearch.Text}%' and returned='no'"
+        Dim query As String = $"select * from rental where customer_name like '%{CustomerNameSearch.Text}%'"
 
         Using connection As New MySqlConnection(connectionString)
             Using adapter As New MySqlDataAdapter(query, connection)
@@ -535,10 +486,214 @@ Public Class MainApp
     Private Sub refreshBtn_Click(sender As Object, e As EventArgs) Handles refreshBtn.Click
         LoadRentalCarListData()
         LoadRentalData()
+        LoadDataToCombo()
     End Sub
 
     Private Sub LogoutBtn_Click(sender As Object, e As EventArgs) Handles LogoutBtn.Click
         Me.Hide()
         Login.Show()
+    End Sub
+
+    Private Sub RefreshCarBtn_Click(sender As Object, e As EventArgs) Handles RefreshCarBtn.Click
+        LoadCarData()
+    End Sub
+
+    Private Sub AddReturnCars()
+        Dim query As String = "insert into rental_return (car_id, customer_id, customer_name, date, elapsed_days, fee)" & "
+ values (@v1, @v2, @v3, @v4, @v5, @v6)"
+        Dim query2 As String = "update car set available='yes'"
+        Dim query3 As String = "delete from rental where customer_id=@v1"
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query, connection)
+                command.Parameters.AddWithValue("@v1", ReturnCarIDTextbox.Text)
+                command.Parameters.AddWithValue("@v2", ReturnCustomerIDTextBox.Text)
+                command.Parameters.AddWithValue("@v3", ReturnCustomerNameCombo.Text)
+                command.Parameters.AddWithValue("@v4", DateTime.Parse(ReturnDateDatepicker.Text))
+                command.Parameters.AddWithValue("@v5", ReturnElapsedDayTextBox.Text)
+                command.Parameters.AddWithValue("@v6", ReturnFeeTextbox.Text)
+
+                Try
+                    connection.Open()
+                    command.ExecuteNonQuery()
+                    MessageBox.Show("Added successfully.")
+                    Using command2 As New MySqlCommand(query2, connection)
+                        Try
+                            command2.ExecuteNonQuery()
+                        Catch ex As Exception
+                            MessageBox.Show(ex.Message)
+                        End Try
+                    End Using
+
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+            End Using
+
+            Using command3 As New MySqlCommand(query3, connection)
+                command3.Parameters.AddWithValue("@v1", ReturnCustomerIDTextBox.Text)
+
+                Try
+                    command3.ExecuteNonQuery()
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
+
+    Private Sub LoadReturnData()
+        Dim query As String = "select * from rental_return"
+        Using connecton As New MySqlConnection(connectionString)
+            Using adapter As New MySqlDataAdapter(query, connecton)
+                Dim dataTable As New DataTable()
+
+                Try
+                    connecton.Open()
+                    adapter.Fill(dataTable)
+                    ReturnTable.ClearSelection()
+                    ReturnTable.DataSource = dataTable
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
+
+    Private Sub LoadReturnCustomerNameCombo()
+        Dim query As String = "SELECT customer_name FROM rental"
+
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query, connection)
+                Dim adapter As New MySqlDataAdapter(command)
+                Dim dataTable As New DataTable()
+
+                Try
+                    connection.Open()
+                    adapter.Fill(dataTable)
+
+                    ReturnCustomerNameCombo.DataSource = dataTable
+                    ReturnCustomerNameCombo.DisplayMember = "customer_name"
+                Catch ex As Exception
+                    MessageBox.Show("Error loading data into ComboBox: " & ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
+
+    Private Sub ReturnCustomerNameCombo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ReturnCustomerNameCombo.SelectedIndexChanged
+        Dim query As String = "select car_id from rental where customer_name=@v1"
+        Dim query2 As String = "select customer_id from rental where customer_name=@v1"
+        Dim query3 As String = "select due_date from rental where customer_name=@v1"
+
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query, connection)
+                command.Parameters.AddWithValue("@v1", ReturnCustomerNameCombo.Text)
+
+                Try
+                    connection.Open()
+                    Dim result As Object = command.ExecuteScalar()
+                    If result IsNot Nothing Then
+                        ReturnCarIDTextbox.Text = result.ToString()
+                    End If
+                Catch ex As Exception
+                    MessageBox.Show("Error retrieving data: " & ex.Message)
+                End Try
+            End Using
+
+            Using command2 As New MySqlCommand(query2, connection)
+                command2.Parameters.AddWithValue("@v1", ReturnCustomerNameCombo.Text)
+
+                Try
+                    Dim result As Object = command2.ExecuteScalar()
+                    If result IsNot Nothing Then
+                        ReturnCustomerIDTextBox.Text = result.ToString()
+                    End If
+                Catch ex As Exception
+                    MessageBox.Show("Error retrieving data: " & ex.Message)
+                End Try
+            End Using
+
+            Using command3 As New MySqlCommand(query3, connection)
+                command3.Parameters.AddWithValue("@v1", ReturnCustomerNameCombo.Text)
+
+                Try
+                    Dim result As Object = command3.ExecuteScalar()
+                    If result IsNot Nothing Then
+                        ReturnDueDateLabel.Text = "Due Date: " & result.ToString()
+                    End If
+                Catch ex As Exception
+                    MessageBox.Show("Error retrieving data: " & ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
+
+    Private Sub ReturnSaveBtn_Click(sender As Object, e As EventArgs) Handles ReturnSaveBtn.Click
+        AddReturnCars()
+        LoadReturnData()
+    End Sub
+
+    Private Sub DeleteReturnCar()
+        Dim id As Integer
+        If ReturnTable.SelectedRows.Count > 0 Then
+            Dim selectedRow As DataGridViewRow = ReturnTable.SelectedRows(0)
+
+            id = Convert.ToInt32(selectedRow.Cells("return_id").Value)
+        End If
+
+        Dim query As String = "delete from rental_return where return_id=@v1"
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query, connection)
+                command.Parameters.AddWithValue("@v1", id)
+                connection.Open()
+                Dim dialog As DialogResult = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo)
+
+                If dialog = DialogResult.Yes Then
+                    Try
+                        command.ExecuteNonQuery()
+                        MessageBox.Show("Deleted Successfully.")
+                    Catch ex As Exception
+                        MessageBox.Show(ex.Message)
+                    End Try
+                End If
+            End Using
+        End Using
+    End Sub
+    Private Sub ReturnDeleteBtn_Click(sender As Object, e As EventArgs) Handles ReturnDeleteBtn.Click
+        DeleteReturnCar()
+        LoadReturnData()
+    End Sub
+
+    Private Sub ReturnRefreshBtn_Click(sender As Object, e As EventArgs) Handles ReturnRefreshBtn.Click
+        LoadReturnData()
+        LoadReturnCustomerNameCombo()
+    End Sub
+
+    Private Sub DeleteRentalBtn_Click(sender As Object, e As EventArgs) Handles DeleteRentalBtn.Click
+        Dim id As Integer
+        If RentalTable.SelectedRows.Count > 0 Then
+            Dim selectedRow As DataGridViewRow = RentalTable.SelectedRows(0)
+
+            id = Convert.ToInt32(selectedRow.Cells("rental_id").Value)
+        End If
+
+        Dim query As String = "delete from rental where rental_id=@v1"
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query, connection)
+                command.Parameters.AddWithValue("@v1", id)
+                connection.Open()
+                Dim dialog As DialogResult = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo)
+
+                If dialog = DialogResult.Yes Then
+                    Try
+                        command.ExecuteNonQuery()
+                        MessageBox.Show("Deleted Successfully.")
+                    Catch ex As Exception
+                        MessageBox.Show(ex.Message)
+                    End Try
+                End If
+            End Using
+        End Using
+        LoadRentalData()
     End Sub
 End Class
