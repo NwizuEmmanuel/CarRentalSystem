@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2024 at 03:56 AM
+-- Generation Time: Apr 28, 2024 at 03:58 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,10 +41,8 @@ CREATE TABLE `car` (
 --
 
 INSERT INTO `car` (`car_id`, `plate_number`, `brand`, `model`, `color`, `available`) VALUES
-(5, 'ER4543', 'HONDA', 'XARUS', 'black', 'yes'),
-(6, 'FGDDFD34', 'PAGANI', 'PA345', 'red', 'yes'),
-(7, 'ERTWR343', 'PORCHE', 'C45', 'black', 'yes'),
-(8, 'FGH5643', 'TOYOTA', 'CR343', 'blue', 'yes');
+(9, 'YRY4554', 'TOYOTA', '300', 'black', 'yes'),
+(10, 'HEH444', 'PAGANI', '450', 'red', 'yes');
 
 -- --------------------------------------------------------
 
@@ -64,9 +62,8 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`customer_id`, `customer_name`, `address`, `contact`) VALUES
-(4, 'Abacha Abacha', 'Milk Tea Street', '0393039'),
-(7, 'Linda Okeke', 'Linda', '93040393'),
-(8, 'Hisoka Hi', 'Gon Island', '334334343');
+(10, 'Mary Linda', 'Linda Street', '4590333'),
+(11, 'Lolo Jojo', 'Lolo Compound', '45903453');
 
 -- --------------------------------------------------------
 
@@ -80,20 +77,32 @@ CREATE TABLE `rental` (
   `customer_id` int(11) NOT NULL,
   `customer_name` varchar(255) NOT NULL,
   `rental_fee` int(11) NOT NULL,
-  `date` varchar(255) NOT NULL,
-  `due_date` varchar(255) NOT NULL,
-  `returned` varchar(3) NOT NULL DEFAULT 'no',
-  `returned_date` varchar(255) DEFAULT NULL
+  `date` datetime NOT NULL,
+  `due_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rental_return`
+--
+
+CREATE TABLE `rental_return` (
+  `return_id` int(11) NOT NULL,
+  `car_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `customer_name` varchar(255) NOT NULL,
+  `date` datetime NOT NULL,
+  `elapsed_days` int(11) NOT NULL,
+  `fee` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `rental`
+-- Dumping data for table `rental_return`
 --
 
-INSERT INTO `rental` (`rental_id`, `car_id`, `customer_id`, `customer_name`, `rental_fee`, `date`, `due_date`, `returned`, `returned_date`) VALUES
-(9, 5, 8, 'Hisoka Hi', 4555, 'Friday, 26 April 2024', 'Saturday, 27 April 2024', 'yes', 'Saturday, 27 April 2024'),
-(10, 7, 4, 'Abacha Abacha', 3000, 'Friday, 26 April 2024', 'Saturday, 27 April 2024', 'yes', 'Sunday, 28 April 2024'),
-(12, 0, 0, 'Abacha Abacha', 0, 'Friday, 26 April 2024', 'Friday, 26 April 2024', 'no', NULL);
+INSERT INTO `rental_return` (`return_id`, `car_id`, `customer_id`, `customer_name`, `date`, `elapsed_days`, `fee`) VALUES
+(6, 9, 11, 'Lolo Jojo', '2024-04-29 00:00:00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -131,7 +140,8 @@ ALTER TABLE `car`
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
-  ADD PRIMARY KEY (`customer_id`);
+  ADD PRIMARY KEY (`customer_id`),
+  ADD UNIQUE KEY `customer_name` (`customer_name`);
 
 --
 -- Indexes for table `rental`
@@ -140,6 +150,14 @@ ALTER TABLE `rental`
   ADD PRIMARY KEY (`rental_id`),
   ADD KEY `rental_to_car` (`car_id`),
   ADD KEY `rental_to_customer` (`customer_id`);
+
+--
+-- Indexes for table `rental_return`
+--
+ALTER TABLE `rental_return`
+  ADD PRIMARY KEY (`return_id`),
+  ADD KEY `car_fk` (`car_id`),
+  ADD KEY `customer_fk` (`customer_id`);
 
 --
 -- Indexes for table `user`
@@ -155,25 +173,49 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `car`
 --
 ALTER TABLE `car`
-  MODIFY `car_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `car_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `rental`
 --
 ALTER TABLE `rental`
-  MODIFY `rental_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `rental_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `rental_return`
+--
+ALTER TABLE `rental_return`
+  MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `rental`
+--
+ALTER TABLE `rental`
+  ADD CONSTRAINT `rental_to_car` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`),
+  ADD CONSTRAINT `rental_to_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
+
+--
+-- Constraints for table `rental_return`
+--
+ALTER TABLE `rental_return`
+  ADD CONSTRAINT `car_fk` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`),
+  ADD CONSTRAINT `customer_fk` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
