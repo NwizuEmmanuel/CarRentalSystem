@@ -26,6 +26,9 @@ Partial Class MainApp
         AppTabControl = New TabControl()
         RegPage = New TabPage()
         SplitContainer1 = New SplitContainer()
+        FlowLayoutPanel20 = New FlowLayoutPanel()
+        Label13 = New Label()
+        AddCarPhotoBtn = New Button()
         CarDescriptionTextBox = New TextBox()
         FlowLayoutPanel11 = New FlowLayoutPanel()
         addCarBtn = New Button()
@@ -146,6 +149,7 @@ Partial Class MainApp
         SplitContainer1.Panel1.SuspendLayout()
         SplitContainer1.Panel2.SuspendLayout()
         SplitContainer1.SuspendLayout()
+        FlowLayoutPanel20.SuspendLayout()
         FlowLayoutPanel11.SuspendLayout()
         CType(DataGridView2, ComponentModel.ISupportInitialize).BeginInit()
         CustomerPage.SuspendLayout()
@@ -231,6 +235,7 @@ Partial Class MainApp
         ' 
         ' SplitContainer1.Panel1
         ' 
+        SplitContainer1.Panel1.Controls.Add(FlowLayoutPanel20)
         SplitContainer1.Panel1.Controls.Add(CarDescriptionTextBox)
         SplitContainer1.Panel1.Controls.Add(FlowLayoutPanel11)
         SplitContainer1.Panel1.Controls.Add(searchBrandFd)
@@ -246,6 +251,35 @@ Partial Class MainApp
         SplitContainer1.SplitterDistance = 341
         SplitContainer1.TabIndex = 2
         ' 
+        ' FlowLayoutPanel20
+        ' 
+        FlowLayoutPanel20.Controls.Add(Label13)
+        FlowLayoutPanel20.Controls.Add(AddCarPhotoBtn)
+        FlowLayoutPanel20.FlowDirection = FlowDirection.TopDown
+        FlowLayoutPanel20.Location = New Point(5, 205)
+        FlowLayoutPanel20.Name = "FlowLayoutPanel20"
+        FlowLayoutPanel20.Size = New Size(231, 61)
+        FlowLayoutPanel20.TabIndex = 11
+        ' 
+        ' Label13
+        ' 
+        Label13.AutoSize = True
+        Label13.Location = New Point(3, 0)
+        Label13.Name = "Label13"
+        Label13.Size = New Size(85, 15)
+        Label13.TabIndex = 0
+        Label13.Text = "Add Car Photo"
+        ' 
+        ' AddCarPhotoBtn
+        ' 
+        AddCarPhotoBtn.Location = New Point(3, 25)
+        AddCarPhotoBtn.Margin = New Padding(3, 10, 3, 3)
+        AddCarPhotoBtn.Name = "AddCarPhotoBtn"
+        AddCarPhotoBtn.Size = New Size(75, 23)
+        AddCarPhotoBtn.TabIndex = 1
+        AddCarPhotoBtn.Text = "Add Photo"
+        AddCarPhotoBtn.UseVisualStyleBackColor = True
+        ' 
         ' CarDescriptionTextBox
         ' 
         CarDescriptionTextBox.Location = New Point(8, 137)
@@ -260,7 +294,7 @@ Partial Class MainApp
         FlowLayoutPanel11.Controls.Add(addCarBtn)
         FlowLayoutPanel11.Controls.Add(updateCarBtn)
         FlowLayoutPanel11.Controls.Add(deleteCarBtn)
-        FlowLayoutPanel11.Location = New Point(8, 205)
+        FlowLayoutPanel11.Location = New Point(8, 272)
         FlowLayoutPanel11.Name = "FlowLayoutPanel11"
         FlowLayoutPanel11.Size = New Size(293, 43)
         FlowLayoutPanel11.TabIndex = 9
@@ -295,7 +329,7 @@ Partial Class MainApp
         ' 
         ' searchBrandFd
         ' 
-        searchBrandFd.Location = New Point(5, 278)
+        searchBrandFd.Location = New Point(5, 362)
         searchBrandFd.Name = "searchBrandFd"
         searchBrandFd.PlaceholderText = "Search Brand"
         searchBrandFd.Size = New Size(169, 23)
@@ -866,7 +900,7 @@ Partial Class MainApp
         GroupBox2.Size = New Size(283, 45)
         GroupBox2.TabIndex = 16
         GroupBox2.TabStop = False
-        GroupBox2.Text = "GroupBox2"
+        GroupBox2.Text = "Car Rating"
         ' 
         ' RateFiveRadioBtn
         ' 
@@ -1089,7 +1123,7 @@ Partial Class MainApp
         ' TableLayoutPanel1
         ' 
         TableLayoutPanel1.ColumnCount = 1
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
         TableLayoutPanel1.Controls.Add(DriverDataGridView, 0, 0)
         TableLayoutPanel1.Controls.Add(Panel2, 0, 1)
         TableLayoutPanel1.Dock = DockStyle.Fill
@@ -1375,7 +1409,7 @@ Partial Class MainApp
         ' 
         ' MainApp
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImageLayout = ImageLayout.Center
         ClientSize = New Size(921, 578)
@@ -1391,6 +1425,8 @@ Partial Class MainApp
         SplitContainer1.Panel2.ResumeLayout(False)
         CType(SplitContainer1, ComponentModel.ISupportInitialize).EndInit()
         SplitContainer1.ResumeLayout(False)
+        FlowLayoutPanel20.ResumeLayout(False)
+        FlowLayoutPanel20.PerformLayout()
         FlowLayoutPanel11.ResumeLayout(False)
         CType(DataGridView2, ComponentModel.ISupportInitialize).EndInit()
         CustomerPage.ResumeLayout(False)
@@ -1580,5 +1616,8 @@ Partial Class MainApp
     Friend WithEvents RateTwoRadioBtn As RadioButton
     Friend WithEvents RateOneRadioBtn As RadioButton
     Friend WithEvents RateFiveRadioBtn As RadioButton
+    Friend WithEvents FlowLayoutPanel20 As FlowLayoutPanel
+    Friend WithEvents Label13 As Label
+    Friend WithEvents AddCarPhotoBtn As Button
 
 End Class

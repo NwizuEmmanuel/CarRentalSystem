@@ -23,6 +23,7 @@ Public Class MainApp
 
     Dim globalDriverID As Object
     Dim carRating As Int32
+    Dim carPhotoPath As String
 
     Private Sub AddCustomer()
         If String.IsNullOrWhiteSpace(customerName.Text) Or String.IsNullOrWhiteSpace(contact.Text) Or String.IsNullOrWhiteSpace(address.Text) Then
@@ -52,7 +53,12 @@ Public Class MainApp
             MessageBox.Show("Empty/Incomplete Form.")
             Exit Sub
         End If
-        Dim query As String = "insert into car (plate_number, brand, model, color, car_description) values (@v1, @v2, @v3, @v4, @v5)"
+        If String.IsNullOrWhiteSpace(carPhotoPath) Then
+            MessageBox.Show("Photo missing.")
+            Exit Sub
+        End If
+        Dim query As String = "insert into car (plate_number, brand, model, color, car_description, car_photo) values (@v1, @v2, @v3, @v4, @v5, @v6)"
+        Dim imageByte As Byte() = File.ReadAllBytes(carPhotoPath)
         Using connection As New MySqlConnection(connectionString)
             Using command As New MySqlCommand(query, connection)
                 command.Parameters.AddWithValue("@v1", plateNumberFd.Text)
@@ -60,6 +66,7 @@ Public Class MainApp
                 command.Parameters.AddWithValue("@v3", modelFd.Text)
                 command.Parameters.AddWithValue("@v4", colorFd.Text)
                 command.Parameters.AddWithValue("@v5", CarDescriptionTextBox.Text)
+                command.Parameters.AddWithValue("@v6", imageByte)
 
                 Try
                     connection.Open()
@@ -1088,6 +1095,15 @@ Public Class MainApp
             LoadReturnCustomerNameCombo()
         ElseIf AppTabControl.SelectedTab Is DriverPage Then
             LoadDriverData()
+        End If
+    End Sub
+
+    Private Sub AddCarPhotoBtn_Click(sender As Object, e As EventArgs) Handles AddCarPhotoBtn.Click
+        Dim openFileDialog As New OpenFileDialog()
+
+        If openFileDialog.ShowDialog() = DialogResult.OK Then
+            carPhotoPath = openFileDialog.FileName
+            MessageBox.Show("Photo Added.")
         End If
     End Sub
 End Class
