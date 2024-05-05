@@ -34,4 +34,5 @@ Public Class Login
         Me.Hide()
         SignUp.Show()
     End Sub
+
 End Class

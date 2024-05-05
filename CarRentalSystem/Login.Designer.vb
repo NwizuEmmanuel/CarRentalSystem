@@ -27,37 +27,43 @@ Partial Class Login
         UsernameFd = New TextBox()
         LoginBtn = New Button()
         SignUpLink = New LinkLabel()
-        Label1 = New Label()
+        SplitContainer1 = New SplitContainer()
+        PictureBox1 = New PictureBox()
+        CType(SplitContainer1, ComponentModel.ISupportInitialize).BeginInit()
+        SplitContainer1.Panel1.SuspendLayout()
+        SplitContainer1.Panel2.SuspendLayout()
+        SplitContainer1.SuspendLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' PasswordFd
         ' 
         PasswordFd.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        PasswordFd.Location = New Point(272, 155)
+        PasswordFd.Location = New Point(17, 85)
         PasswordFd.Name = "PasswordFd"
         PasswordFd.PasswordChar = "$"c
         PasswordFd.PlaceholderText = "password"
-        PasswordFd.Size = New Size(264, 29)
+        PasswordFd.Size = New Size(318, 29)
         PasswordFd.TabIndex = 1
         ' 
         ' UsernameFd
         ' 
         UsernameFd.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         UsernameFd.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        UsernameFd.Location = New Point(272, 108)
+        UsernameFd.Location = New Point(17, 27)
         UsernameFd.Name = "UsernameFd"
         UsernameFd.PlaceholderText = "username"
-        UsernameFd.Size = New Size(262, 29)
+        UsernameFd.Size = New Size(318, 29)
         UsernameFd.TabIndex = 2
         ' 
         ' LoginBtn
         ' 
-        LoginBtn.BackColor = SystemColors.HotTrack
+        LoginBtn.BackColor = SystemColors.Control
         LoginBtn.Cursor = Cursors.Hand
         LoginBtn.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        LoginBtn.Location = New Point(272, 207)
+        LoginBtn.Location = New Point(17, 132)
         LoginBtn.Name = "LoginBtn"
-        LoginBtn.Size = New Size(264, 42)
+        LoginBtn.Size = New Size(113, 32)
         LoginBtn.TabIndex = 3
         LoginBtn.Text = "Login"
         LoginBtn.UseVisualStyleBackColor = False
@@ -66,45 +72,66 @@ Partial Class Login
         ' 
         SignUpLink.AutoSize = True
         SignUpLink.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        SignUpLink.Location = New Point(272, 269)
+        SignUpLink.Location = New Point(17, 181)
         SignUpLink.Name = "SignUpLink"
         SignUpLink.Size = New Size(64, 21)
         SignUpLink.TabIndex = 4
         SignUpLink.TabStop = True
         SignUpLink.Text = "Signup"
         ' 
-        ' Label1
+        ' SplitContainer1
         ' 
-        Label1.AutoSize = True
-        Label1.BackColor = SystemColors.ActiveCaptionText
-        Label1.Font = New Font("Segoe Script", 21.75F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label1.ForeColor = SystemColors.Control
-        Label1.Location = New Point(306, 44)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(186, 48)
-        Label1.TabIndex = 5
-        Label1.Text = "Super Cars"
+        SplitContainer1.Dock = DockStyle.Fill
+        SplitContainer1.Location = New Point(0, 0)
+        SplitContainer1.Name = "SplitContainer1"
+        ' 
+        ' SplitContainer1.Panel1
+        ' 
+        SplitContainer1.Panel1.Controls.Add(PictureBox1)
+        ' 
+        ' SplitContainer1.Panel2
+        ' 
+        SplitContainer1.Panel2.Controls.Add(SignUpLink)
+        SplitContainer1.Panel2.Controls.Add(PasswordFd)
+        SplitContainer1.Panel2.Controls.Add(LoginBtn)
+        SplitContainer1.Panel2.Controls.Add(UsernameFd)
+        SplitContainer1.Size = New Size(578, 307)
+        SplitContainer1.SplitterDistance = 192
+        SplitContainer1.TabIndex = 5
+        ' 
+        ' PictureBox1
+        ' 
+        PictureBox1.Dock = DockStyle.Fill
+        PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
+        PictureBox1.Location = New Point(0, 0)
+        PictureBox1.Name = "PictureBox1"
+        PictureBox1.Size = New Size(192, 307)
+        PictureBox1.SizeMode = PictureBoxSizeMode.CenterImage
+        PictureBox1.TabIndex = 0
+        PictureBox1.TabStop = False
         ' 
         ' Login
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), Image)
         BackgroundImageLayout = ImageLayout.Center
-        ClientSize = New Size(798, 450)
-        Controls.Add(Label1)
-        Controls.Add(SignUpLink)
-        Controls.Add(UsernameFd)
-        Controls.Add(PasswordFd)
-        Controls.Add(LoginBtn)
+        ClientSize = New Size(578, 307)
+        Controls.Add(SplitContainer1)
+        MaximizeBox = False
         Name = "Login"
         Text = "Login"
+        SplitContainer1.Panel1.ResumeLayout(False)
+        SplitContainer1.Panel2.ResumeLayout(False)
+        SplitContainer1.Panel2.PerformLayout()
+        CType(SplitContainer1, ComponentModel.ISupportInitialize).EndInit()
+        SplitContainer1.ResumeLayout(False)
+        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
-        PerformLayout()
     End Sub
     Friend WithEvents PasswordFd As TextBox
     Friend WithEvents UsernameFd As TextBox
     Friend WithEvents LoginBtn As Button
     Friend WithEvents SignUpLink As LinkLabel
-    Friend WithEvents Label1 As Label
+    Friend WithEvents SplitContainer1 As SplitContainer
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

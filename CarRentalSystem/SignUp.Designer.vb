@@ -28,13 +28,18 @@ Partial Class SignUp
         EmailFd = New TextBox()
         SignUpBtn = New Button()
         LoginLink = New LinkLabel()
-        Label1 = New Label()
+        Panel1 = New Panel()
+        Panel2 = New Panel()
+        PictureBox1 = New PictureBox()
+        Panel1.SuspendLayout()
+        Panel2.SuspendLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' UsernameFd
         ' 
         UsernameFd.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        UsernameFd.Location = New Point(281, 102)
+        UsernameFd.Location = New Point(15, 20)
         UsernameFd.Name = "UsernameFd"
         UsernameFd.PlaceholderText = "username"
         UsernameFd.Size = New Size(235, 29)
@@ -43,7 +48,7 @@ Partial Class SignUp
         ' PasswordFd
         ' 
         PasswordFd.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        PasswordFd.Location = New Point(281, 172)
+        PasswordFd.Location = New Point(15, 125)
         PasswordFd.Name = "PasswordFd"
         PasswordFd.PasswordChar = "$"c
         PasswordFd.PlaceholderText = "password"
@@ -53,7 +58,7 @@ Partial Class SignUp
         ' EmailFd
         ' 
         EmailFd.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        EmailFd.Location = New Point(281, 137)
+        EmailFd.Location = New Point(15, 72)
         EmailFd.Name = "EmailFd"
         EmailFd.PlaceholderText = "email"
         EmailFd.Size = New Size(235, 29)
@@ -61,9 +66,9 @@ Partial Class SignUp
         ' 
         ' SignUpBtn
         ' 
-        SignUpBtn.BackColor = SystemColors.HotTrack
+        SignUpBtn.BackColor = SystemColors.Control
         SignUpBtn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        SignUpBtn.Location = New Point(281, 233)
+        SignUpBtn.Location = New Point(15, 173)
         SignUpBtn.Name = "SignUpBtn"
         SignUpBtn.Size = New Size(235, 36)
         SignUpBtn.TabIndex = 3
@@ -74,42 +79,60 @@ Partial Class SignUp
         ' 
         LoginLink.AutoSize = True
         LoginLink.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        LoginLink.Location = New Point(281, 283)
+        LoginLink.Location = New Point(15, 223)
         LoginLink.Name = "LoginLink"
         LoginLink.Size = New Size(53, 21)
         LoginLink.TabIndex = 4
         LoginLink.TabStop = True
         LoginLink.Text = "Log in"
         ' 
-        ' Label1
+        ' Panel1
         ' 
-        Label1.AutoSize = True
-        Label1.BackColor = SystemColors.ActiveCaptionText
-        Label1.Font = New Font("Segoe Script", 18F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label1.ForeColor = SystemColors.Control
-        Label1.Location = New Point(325, 38)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(156, 40)
-        Label1.TabIndex = 5
-        Label1.Text = "Super Cars"
+        Panel1.Controls.Add(UsernameFd)
+        Panel1.Controls.Add(EmailFd)
+        Panel1.Controls.Add(LoginLink)
+        Panel1.Controls.Add(PasswordFd)
+        Panel1.Controls.Add(SignUpBtn)
+        Panel1.Location = New Point(218, 12)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(316, 349)
+        Panel1.TabIndex = 6
+        ' 
+        ' Panel2
+        ' 
+        Panel2.Controls.Add(PictureBox1)
+        Panel2.Location = New Point(12, 12)
+        Panel2.Name = "Panel2"
+        Panel2.Size = New Size(200, 349)
+        Panel2.TabIndex = 7
+        ' 
+        ' PictureBox1
+        ' 
+        PictureBox1.Dock = DockStyle.Fill
+        PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
+        PictureBox1.Location = New Point(0, 0)
+        PictureBox1.Name = "PictureBox1"
+        PictureBox1.Size = New Size(200, 349)
+        PictureBox1.SizeMode = PictureBoxSizeMode.CenterImage
+        PictureBox1.TabIndex = 0
+        PictureBox1.TabStop = False
         ' 
         ' SignUp
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), Image)
         BackgroundImageLayout = ImageLayout.Center
-        ClientSize = New Size(800, 450)
-        Controls.Add(Label1)
-        Controls.Add(LoginLink)
-        Controls.Add(SignUpBtn)
-        Controls.Add(EmailFd)
-        Controls.Add(PasswordFd)
-        Controls.Add(UsernameFd)
+        ClientSize = New Size(551, 373)
+        Controls.Add(Panel2)
+        Controls.Add(Panel1)
+        MaximizeBox = False
         Name = "SignUp"
         Text = "SignUp"
+        Panel1.ResumeLayout(False)
+        Panel1.PerformLayout()
+        Panel2.ResumeLayout(False)
+        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
-        PerformLayout()
     End Sub
 
     Friend WithEvents UsernameFd As TextBox
@@ -117,5 +140,7 @@ Partial Class SignUp
     Friend WithEvents EmailFd As TextBox
     Friend WithEvents SignUpBtn As Button
     Friend WithEvents LoginLink As LinkLabel
-    Friend WithEvents Label1 As Label
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

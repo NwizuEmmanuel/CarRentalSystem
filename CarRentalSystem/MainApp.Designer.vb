@@ -26,11 +26,12 @@ Partial Class MainApp
         AppTabControl = New TabControl()
         RegPage = New TabPage()
         SplitContainer1 = New SplitContainer()
-        RefreshCarBtn = New Button()
-        searchBrandFd = New TextBox()
-        deleteCarBtn = New Button()
-        updateCarBtn = New Button()
+        CarDescriptionTextBox = New TextBox()
+        FlowLayoutPanel11 = New FlowLayoutPanel()
         addCarBtn = New Button()
+        updateCarBtn = New Button()
+        deleteCarBtn = New Button()
+        searchBrandFd = New TextBox()
         colorFd = New TextBox()
         modelFd = New TextBox()
         brandFd = New TextBox()
@@ -50,36 +51,52 @@ Partial Class MainApp
         searchNameFd = New TextBox()
         RentalPage = New TabPage()
         SplitContainer2 = New SplitContainer()
-        RentalCustomerIDTextbox = New TextBox()
-        Label5 = New Label()
+        FlowLayoutPanel21 = New FlowLayoutPanel()
+        FlowLayoutPanel12 = New FlowLayoutPanel()
+        rentalCarIdLabel = New Label()
         RentalCarIDTextbox = New TextBox()
-        DeleteRentalBtn = New Button()
-        refreshBtn = New Button()
-        CustomerNameSearch = New TextBox()
+        FlowLayoutPanel13 = New FlowLayoutPanel()
+        rentalCustomerIdLabel = New Label()
+        RentalCustomerIDTextbox = New TextBox()
+        FlowLayoutPanel14 = New FlowLayoutPanel()
         Label4 = New Label()
         customerNameCombo = New ComboBox()
-        rentalSaveBtn = New Button()
-        Label3 = New Label()
-        RentalDueDate = New DateTimePicker()
+        FlowLayoutPanel15 = New FlowLayoutPanel()
+        Label5 = New Label()
+        RentalUnitFeeFd = New TextBox()
+        FlowLayoutPanel16 = New FlowLayoutPanel()
+        Label20 = New Label()
+        RentalDaysNumericUpDown = New NumericUpDown()
+        FlowLayoutPanel17 = New FlowLayoutPanel()
         Label2 = New Label()
-        rentalDate = New DateTimePicker()
-        RentalFeeFd = New TextBox()
-        rentalCustomerIdLabel = New Label()
-        rentalCarIdLabel = New Label()
+        CarRentalDatePicker = New DateTimePicker()
+        FlowLayoutPanel18 = New FlowLayoutPanel()
+        Label3 = New Label()
+        RentalDriverComboBox = New ComboBox()
+        GroupBox1 = New GroupBox()
+        NoRadioBtn = New RadioButton()
+        YesRadioBtn = New RadioButton()
+        FlowLayoutPanel19 = New FlowLayoutPanel()
+        rentalSaveBtn = New Button()
+        DeleteRentalBtn = New Button()
+        CustomerNameSearch = New TextBox()
         SplitContainer3 = New SplitContainer()
         RentalTable = New DataGridView()
         RentalCarListlTable = New DataGridView()
         ReturnPage = New TabPage()
         ReturnTable = New DataGridView()
         Panel1 = New Panel()
-        ReturnRefreshBtn = New Button()
+        GroupBox2 = New GroupBox()
+        RateFiveRadioBtn = New RadioButton()
+        RateFourRadioBtn = New RadioButton()
+        RateThreeRadioBtn = New RadioButton()
+        RateTwoRadioBtn = New RadioButton()
+        RateOneRadioBtn = New RadioButton()
         ReturnDueDateLabel = New Label()
         ReturnDeleteBtn = New Button()
         ReturnSaveBtn = New Button()
-        ReturnFeeTextbox = New TextBox()
+        ReturnPenaltyUnitFeeTextbox = New TextBox()
         Label14 = New Label()
-        ReturnElapsedDayTextBox = New TextBox()
-        Label13 = New Label()
         Label12 = New Label()
         ReturnDateDatepicker = New DateTimePicker()
         ReturnCustomerNameCombo = New ComboBox()
@@ -92,12 +109,44 @@ Partial Class MainApp
         FlowLayoutPanel1 = New FlowLayoutPanel()
         Label1 = New Label()
         LogoutBtn = New Button()
+        DriverPage = New TabPage()
+        TableLayoutPanel1 = New TableLayoutPanel()
+        DriverDataGridView = New DataGridView()
+        Panel2 = New Panel()
+        Label17 = New Label()
+        DriverPictureBox = New PictureBox()
+        FlowLayoutPanel3 = New FlowLayoutPanel()
+        FlowLayoutPanel5 = New FlowLayoutPanel()
+        Label6 = New Label()
+        DriverFullnameTextBox = New TextBox()
+        FlowLayoutPanel6 = New FlowLayoutPanel()
+        Label7 = New Label()
+        DriverContactTextBox = New TextBox()
+        FlowLayoutPanel7 = New FlowLayoutPanel()
+        Label15 = New Label()
+        DriverAddressTextBox = New TextBox()
+        FlowLayoutPanel8 = New FlowLayoutPanel()
+        Label16 = New Label()
+        UploadDriverPhotoBtn = New Button()
+        FlowLayoutPanel9 = New FlowLayoutPanel()
+        AddDriverBtn = New Button()
+        DriverUpdateBtn = New Button()
+        DriverDeleteBtn = New Button()
+        FlowLayoutPanel10 = New FlowLayoutPanel()
+        Label18 = New Label()
+        DriverUpdatePhotoBtn = New Button()
+        TCPage = New TabPage()
+        FlowLayout20 = New Panel()
+        Label19 = New Label()
+        OpenTCBtn = New Button()
+        PrintDocument1 = New Printing.PrintDocument()
         AppTabControl.SuspendLayout()
         RegPage.SuspendLayout()
         CType(SplitContainer1, ComponentModel.ISupportInitialize).BeginInit()
         SplitContainer1.Panel1.SuspendLayout()
         SplitContainer1.Panel2.SuspendLayout()
         SplitContainer1.SuspendLayout()
+        FlowLayoutPanel11.SuspendLayout()
         CType(DataGridView2, ComponentModel.ISupportInitialize).BeginInit()
         CustomerPage.SuspendLayout()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
@@ -108,6 +157,17 @@ Partial Class MainApp
         SplitContainer2.Panel1.SuspendLayout()
         SplitContainer2.Panel2.SuspendLayout()
         SplitContainer2.SuspendLayout()
+        FlowLayoutPanel21.SuspendLayout()
+        FlowLayoutPanel12.SuspendLayout()
+        FlowLayoutPanel13.SuspendLayout()
+        FlowLayoutPanel14.SuspendLayout()
+        FlowLayoutPanel15.SuspendLayout()
+        FlowLayoutPanel16.SuspendLayout()
+        CType(RentalDaysNumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        FlowLayoutPanel17.SuspendLayout()
+        FlowLayoutPanel18.SuspendLayout()
+        GroupBox1.SuspendLayout()
+        FlowLayoutPanel19.SuspendLayout()
         CType(SplitContainer3, ComponentModel.ISupportInitialize).BeginInit()
         SplitContainer3.Panel1.SuspendLayout()
         SplitContainer3.Panel2.SuspendLayout()
@@ -117,8 +177,23 @@ Partial Class MainApp
         ReturnPage.SuspendLayout()
         CType(ReturnTable, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
+        GroupBox2.SuspendLayout()
         LogoutPage.SuspendLayout()
         FlowLayoutPanel1.SuspendLayout()
+        DriverPage.SuspendLayout()
+        TableLayoutPanel1.SuspendLayout()
+        CType(DriverDataGridView, ComponentModel.ISupportInitialize).BeginInit()
+        Panel2.SuspendLayout()
+        CType(DriverPictureBox, ComponentModel.ISupportInitialize).BeginInit()
+        FlowLayoutPanel3.SuspendLayout()
+        FlowLayoutPanel5.SuspendLayout()
+        FlowLayoutPanel6.SuspendLayout()
+        FlowLayoutPanel7.SuspendLayout()
+        FlowLayoutPanel8.SuspendLayout()
+        FlowLayoutPanel9.SuspendLayout()
+        FlowLayoutPanel10.SuspendLayout()
+        TCPage.SuspendLayout()
+        FlowLayout20.SuspendLayout()
         SuspendLayout()
         ' 
         ' AppTabControl
@@ -128,11 +203,13 @@ Partial Class MainApp
         AppTabControl.Controls.Add(RentalPage)
         AppTabControl.Controls.Add(ReturnPage)
         AppTabControl.Controls.Add(LogoutPage)
+        AppTabControl.Controls.Add(DriverPage)
+        AppTabControl.Controls.Add(TCPage)
         AppTabControl.Dock = DockStyle.Fill
         AppTabControl.Location = New Point(0, 0)
         AppTabControl.Name = "AppTabControl"
         AppTabControl.SelectedIndex = 0
-        AppTabControl.Size = New Size(841, 529)
+        AppTabControl.Size = New Size(921, 578)
         AppTabControl.TabIndex = 0
         ' 
         ' RegPage
@@ -141,7 +218,7 @@ Partial Class MainApp
         RegPage.Location = New Point(4, 24)
         RegPage.Name = "RegPage"
         RegPage.Padding = New Padding(3)
-        RegPage.Size = New Size(833, 501)
+        RegPage.Size = New Size(913, 550)
         RegPage.TabIndex = 0
         RegPage.Text = "Car Registration"
         RegPage.UseVisualStyleBackColor = True
@@ -154,11 +231,9 @@ Partial Class MainApp
         ' 
         ' SplitContainer1.Panel1
         ' 
-        SplitContainer1.Panel1.Controls.Add(RefreshCarBtn)
+        SplitContainer1.Panel1.Controls.Add(CarDescriptionTextBox)
+        SplitContainer1.Panel1.Controls.Add(FlowLayoutPanel11)
         SplitContainer1.Panel1.Controls.Add(searchBrandFd)
-        SplitContainer1.Panel1.Controls.Add(deleteCarBtn)
-        SplitContainer1.Panel1.Controls.Add(updateCarBtn)
-        SplitContainer1.Panel1.Controls.Add(addCarBtn)
         SplitContainer1.Panel1.Controls.Add(colorFd)
         SplitContainer1.Panel1.Controls.Add(modelFd)
         SplitContainer1.Panel1.Controls.Add(brandFd)
@@ -167,30 +242,50 @@ Partial Class MainApp
         ' SplitContainer1.Panel2
         ' 
         SplitContainer1.Panel2.Controls.Add(DataGridView2)
-        SplitContainer1.Size = New Size(827, 495)
-        SplitContainer1.SplitterDistance = 311
+        SplitContainer1.Size = New Size(907, 544)
+        SplitContainer1.SplitterDistance = 341
         SplitContainer1.TabIndex = 2
         ' 
-        ' RefreshCarBtn
+        ' CarDescriptionTextBox
         ' 
-        RefreshCarBtn.Location = New Point(5, 269)
-        RefreshCarBtn.Name = "RefreshCarBtn"
-        RefreshCarBtn.Size = New Size(75, 23)
-        RefreshCarBtn.TabIndex = 8
-        RefreshCarBtn.Text = "Refresh"
-        RefreshCarBtn.UseVisualStyleBackColor = True
+        CarDescriptionTextBox.Location = New Point(8, 137)
+        CarDescriptionTextBox.Multiline = True
+        CarDescriptionTextBox.Name = "CarDescriptionTextBox"
+        CarDescriptionTextBox.PlaceholderText = "Car Description"
+        CarDescriptionTextBox.Size = New Size(228, 62)
+        CarDescriptionTextBox.TabIndex = 10
         ' 
-        ' searchBrandFd
+        ' FlowLayoutPanel11
         ' 
-        searchBrandFd.Location = New Point(5, 193)
-        searchBrandFd.Name = "searchBrandFd"
-        searchBrandFd.PlaceholderText = "Search Brand"
-        searchBrandFd.Size = New Size(169, 23)
-        searchBrandFd.TabIndex = 7
+        FlowLayoutPanel11.Controls.Add(addCarBtn)
+        FlowLayoutPanel11.Controls.Add(updateCarBtn)
+        FlowLayoutPanel11.Controls.Add(deleteCarBtn)
+        FlowLayoutPanel11.Location = New Point(8, 205)
+        FlowLayoutPanel11.Name = "FlowLayoutPanel11"
+        FlowLayoutPanel11.Size = New Size(293, 43)
+        FlowLayoutPanel11.TabIndex = 9
+        ' 
+        ' addCarBtn
+        ' 
+        addCarBtn.Location = New Point(3, 3)
+        addCarBtn.Name = "addCarBtn"
+        addCarBtn.Size = New Size(75, 23)
+        addCarBtn.TabIndex = 4
+        addCarBtn.Text = "Add"
+        addCarBtn.UseVisualStyleBackColor = True
+        ' 
+        ' updateCarBtn
+        ' 
+        updateCarBtn.Location = New Point(84, 3)
+        updateCarBtn.Name = "updateCarBtn"
+        updateCarBtn.Size = New Size(75, 23)
+        updateCarBtn.TabIndex = 5
+        updateCarBtn.Text = "Update"
+        updateCarBtn.UseVisualStyleBackColor = True
         ' 
         ' deleteCarBtn
         ' 
-        deleteCarBtn.Location = New Point(203, 147)
+        deleteCarBtn.Location = New Point(165, 3)
         deleteCarBtn.Name = "deleteCarBtn"
         deleteCarBtn.Size = New Size(75, 23)
         deleteCarBtn.TabIndex = 6
@@ -198,23 +293,13 @@ Partial Class MainApp
         deleteCarBtn.TextImageRelation = TextImageRelation.ImageBeforeText
         deleteCarBtn.UseVisualStyleBackColor = True
         ' 
-        ' updateCarBtn
+        ' searchBrandFd
         ' 
-        updateCarBtn.Location = New Point(99, 147)
-        updateCarBtn.Name = "updateCarBtn"
-        updateCarBtn.Size = New Size(75, 23)
-        updateCarBtn.TabIndex = 5
-        updateCarBtn.Text = "Update"
-        updateCarBtn.UseVisualStyleBackColor = True
-        ' 
-        ' addCarBtn
-        ' 
-        addCarBtn.Location = New Point(5, 147)
-        addCarBtn.Name = "addCarBtn"
-        addCarBtn.Size = New Size(75, 23)
-        addCarBtn.TabIndex = 4
-        addCarBtn.Text = "Add"
-        addCarBtn.UseVisualStyleBackColor = True
+        searchBrandFd.Location = New Point(5, 278)
+        searchBrandFd.Name = "searchBrandFd"
+        searchBrandFd.PlaceholderText = "Search Brand"
+        searchBrandFd.Size = New Size(169, 23)
+        searchBrandFd.TabIndex = 7
         ' 
         ' colorFd
         ' 
@@ -258,7 +343,7 @@ Partial Class MainApp
         DataGridView2.Dock = DockStyle.Fill
         DataGridView2.Location = New Point(0, 0)
         DataGridView2.Name = "DataGridView2"
-        DataGridView2.Size = New Size(512, 495)
+        DataGridView2.Size = New Size(562, 544)
         DataGridView2.TabIndex = 0
         ' 
         ' CustomerPage
@@ -269,7 +354,7 @@ Partial Class MainApp
         CustomerPage.Location = New Point(4, 24)
         CustomerPage.Name = "CustomerPage"
         CustomerPage.Padding = New Padding(3)
-        CustomerPage.Size = New Size(833, 501)
+        CustomerPage.Size = New Size(913, 550)
         CustomerPage.TabIndex = 1
         CustomerPage.Text = "Customer"
         CustomerPage.UseVisualStyleBackColor = True
@@ -280,7 +365,7 @@ Partial Class MainApp
         DataGridView1.Dock = DockStyle.Fill
         DataGridView1.Location = New Point(323, 3)
         DataGridView1.Name = "DataGridView1"
-        DataGridView1.Size = New Size(507, 495)
+        DataGridView1.Size = New Size(587, 544)
         DataGridView1.TabIndex = 7
         ' 
         ' FlowLayoutPanel4
@@ -296,7 +381,7 @@ Partial Class MainApp
         FlowLayoutPanel4.Location = New Point(3, 3)
         FlowLayoutPanel4.Margin = New Padding(3, 10, 3, 3)
         FlowLayoutPanel4.Name = "FlowLayoutPanel4"
-        FlowLayoutPanel4.Size = New Size(320, 495)
+        FlowLayoutPanel4.Size = New Size(320, 544)
         FlowLayoutPanel4.TabIndex = 3
         ' 
         ' customerName
@@ -389,7 +474,7 @@ Partial Class MainApp
         RentalPage.Location = New Point(4, 24)
         RentalPage.Name = "RentalPage"
         RentalPage.Padding = New Padding(3)
-        RentalPage.Size = New Size(833, 501)
+        RentalPage.Size = New Size(913, 550)
         RentalPage.TabIndex = 2
         RentalPage.Text = "Rental"
         RentalPage.UseVisualStyleBackColor = True
@@ -402,83 +487,102 @@ Partial Class MainApp
         ' 
         ' SplitContainer2.Panel1
         ' 
-        SplitContainer2.Panel1.Controls.Add(RentalCustomerIDTextbox)
-        SplitContainer2.Panel1.Controls.Add(Label5)
-        SplitContainer2.Panel1.Controls.Add(RentalCarIDTextbox)
-        SplitContainer2.Panel1.Controls.Add(DeleteRentalBtn)
-        SplitContainer2.Panel1.Controls.Add(refreshBtn)
-        SplitContainer2.Panel1.Controls.Add(CustomerNameSearch)
-        SplitContainer2.Panel1.Controls.Add(Label4)
-        SplitContainer2.Panel1.Controls.Add(customerNameCombo)
-        SplitContainer2.Panel1.Controls.Add(rentalSaveBtn)
-        SplitContainer2.Panel1.Controls.Add(Label3)
-        SplitContainer2.Panel1.Controls.Add(RentalDueDate)
-        SplitContainer2.Panel1.Controls.Add(Label2)
-        SplitContainer2.Panel1.Controls.Add(rentalDate)
-        SplitContainer2.Panel1.Controls.Add(RentalFeeFd)
-        SplitContainer2.Panel1.Controls.Add(rentalCustomerIdLabel)
-        SplitContainer2.Panel1.Controls.Add(rentalCarIdLabel)
+        SplitContainer2.Panel1.Controls.Add(FlowLayoutPanel21)
         ' 
         ' SplitContainer2.Panel2
         ' 
         SplitContainer2.Panel2.Controls.Add(SplitContainer3)
-        SplitContainer2.Size = New Size(827, 495)
-        SplitContainer2.SplitterDistance = 354
+        SplitContainer2.Size = New Size(907, 544)
+        SplitContainer2.SplitterDistance = 350
         SplitContainer2.TabIndex = 0
         ' 
-        ' RentalCustomerIDTextbox
+        ' FlowLayoutPanel21
         ' 
-        RentalCustomerIDTextbox.Location = New Point(98, 76)
-        RentalCustomerIDTextbox.Name = "RentalCustomerIDTextbox"
-        RentalCustomerIDTextbox.Size = New Size(158, 23)
-        RentalCustomerIDTextbox.TabIndex = 23
+        FlowLayoutPanel21.AutoScroll = True
+        FlowLayoutPanel21.Controls.Add(FlowLayoutPanel12)
+        FlowLayoutPanel21.Controls.Add(FlowLayoutPanel13)
+        FlowLayoutPanel21.Controls.Add(FlowLayoutPanel14)
+        FlowLayoutPanel21.Controls.Add(FlowLayoutPanel15)
+        FlowLayoutPanel21.Controls.Add(FlowLayoutPanel16)
+        FlowLayoutPanel21.Controls.Add(FlowLayoutPanel17)
+        FlowLayoutPanel21.Controls.Add(FlowLayoutPanel18)
+        FlowLayoutPanel21.Controls.Add(GroupBox1)
+        FlowLayoutPanel21.Controls.Add(FlowLayoutPanel19)
+        FlowLayoutPanel21.Controls.Add(CustomerNameSearch)
+        FlowLayoutPanel21.Dock = DockStyle.Fill
+        FlowLayoutPanel21.FlowDirection = FlowDirection.TopDown
+        FlowLayoutPanel21.Location = New Point(0, 0)
+        FlowLayoutPanel21.Name = "FlowLayoutPanel21"
+        FlowLayoutPanel21.Size = New Size(350, 544)
+        FlowLayoutPanel21.TabIndex = 33
+        FlowLayoutPanel21.WrapContents = False
         ' 
-        ' Label5
+        ' FlowLayoutPanel12
         ' 
-        Label5.AutoSize = True
-        Label5.Location = New Point(3, 173)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(61, 15)
-        Label5.TabIndex = 22
-        Label5.Text = "Rental Fee"
+        FlowLayoutPanel12.Controls.Add(rentalCarIdLabel)
+        FlowLayoutPanel12.Controls.Add(RentalCarIDTextbox)
+        FlowLayoutPanel12.FlowDirection = FlowDirection.TopDown
+        FlowLayoutPanel12.Location = New Point(3, 3)
+        FlowLayoutPanel12.Name = "FlowLayoutPanel12"
+        FlowLayoutPanel12.Size = New Size(248, 48)
+        FlowLayoutPanel12.TabIndex = 24
+        ' 
+        ' rentalCarIdLabel
+        ' 
+        rentalCarIdLabel.AutoSize = True
+        rentalCarIdLabel.Location = New Point(3, 0)
+        rentalCarIdLabel.Name = "rentalCarIdLabel"
+        rentalCarIdLabel.Size = New Size(39, 15)
+        rentalCarIdLabel.TabIndex = 0
+        rentalCarIdLabel.Text = "Car ID"
         ' 
         ' RentalCarIDTextbox
         ' 
-        RentalCarIDTextbox.Location = New Point(98, 47)
+        RentalCarIDTextbox.Location = New Point(3, 18)
         RentalCarIDTextbox.Name = "RentalCarIDTextbox"
-        RentalCarIDTextbox.Size = New Size(158, 23)
+        RentalCarIDTextbox.Size = New Size(238, 23)
         RentalCarIDTextbox.TabIndex = 21
         ' 
-        ' DeleteRentalBtn
+        ' FlowLayoutPanel13
         ' 
-        DeleteRentalBtn.Location = New Point(128, 283)
-        DeleteRentalBtn.Name = "DeleteRentalBtn"
-        DeleteRentalBtn.Size = New Size(75, 23)
-        DeleteRentalBtn.TabIndex = 20
-        DeleteRentalBtn.Text = "Delete"
-        DeleteRentalBtn.UseVisualStyleBackColor = True
+        FlowLayoutPanel13.Controls.Add(rentalCustomerIdLabel)
+        FlowLayoutPanel13.Controls.Add(RentalCustomerIDTextbox)
+        FlowLayoutPanel13.FlowDirection = FlowDirection.TopDown
+        FlowLayoutPanel13.Location = New Point(3, 57)
+        FlowLayoutPanel13.Name = "FlowLayoutPanel13"
+        FlowLayoutPanel13.Size = New Size(248, 52)
+        FlowLayoutPanel13.TabIndex = 25
         ' 
-        ' refreshBtn
+        ' rentalCustomerIdLabel
         ' 
-        refreshBtn.Location = New Point(238, 17)
-        refreshBtn.Name = "refreshBtn"
-        refreshBtn.Size = New Size(75, 23)
-        refreshBtn.TabIndex = 19
-        refreshBtn.Text = "Refresh"
-        refreshBtn.UseVisualStyleBackColor = True
+        rentalCustomerIdLabel.AutoSize = True
+        rentalCustomerIdLabel.Location = New Point(3, 0)
+        rentalCustomerIdLabel.Name = "rentalCustomerIdLabel"
+        rentalCustomerIdLabel.Size = New Size(73, 15)
+        rentalCustomerIdLabel.TabIndex = 1
+        rentalCustomerIdLabel.Text = "Customer ID"
         ' 
-        ' CustomerNameSearch
+        ' RentalCustomerIDTextbox
         ' 
-        CustomerNameSearch.Location = New Point(3, 341)
-        CustomerNameSearch.Name = "CustomerNameSearch"
-        CustomerNameSearch.PlaceholderText = "Search Customer name"
-        CustomerNameSearch.Size = New Size(183, 23)
-        CustomerNameSearch.TabIndex = 18
+        RentalCustomerIDTextbox.Location = New Point(3, 18)
+        RentalCustomerIDTextbox.Name = "RentalCustomerIDTextbox"
+        RentalCustomerIDTextbox.Size = New Size(235, 23)
+        RentalCustomerIDTextbox.TabIndex = 23
+        ' 
+        ' FlowLayoutPanel14
+        ' 
+        FlowLayoutPanel14.Controls.Add(Label4)
+        FlowLayoutPanel14.Controls.Add(customerNameCombo)
+        FlowLayoutPanel14.FlowDirection = FlowDirection.TopDown
+        FlowLayoutPanel14.Location = New Point(3, 115)
+        FlowLayoutPanel14.Name = "FlowLayoutPanel14"
+        FlowLayoutPanel14.Size = New Size(248, 55)
+        FlowLayoutPanel14.TabIndex = 26
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(0, 129)
+        Label4.Location = New Point(3, 0)
         Label4.Name = "Label4"
         Label4.Size = New Size(92, 15)
         Label4.TabIndex = 10
@@ -489,77 +593,187 @@ Partial Class MainApp
         customerNameCombo.AutoCompleteMode = AutoCompleteMode.Append
         customerNameCombo.AutoCompleteSource = AutoCompleteSource.ListItems
         customerNameCombo.FormattingEnabled = True
-        customerNameCombo.Location = New Point(98, 126)
+        customerNameCombo.Location = New Point(3, 18)
         customerNameCombo.Name = "customerNameCombo"
-        customerNameCombo.Size = New Size(199, 23)
+        customerNameCombo.Size = New Size(232, 23)
         customerNameCombo.TabIndex = 9
+        ' 
+        ' FlowLayoutPanel15
+        ' 
+        FlowLayoutPanel15.Controls.Add(Label5)
+        FlowLayoutPanel15.Controls.Add(RentalUnitFeeFd)
+        FlowLayoutPanel15.FlowDirection = FlowDirection.TopDown
+        FlowLayoutPanel15.Location = New Point(3, 176)
+        FlowLayoutPanel15.Name = "FlowLayoutPanel15"
+        FlowLayoutPanel15.Size = New Size(248, 55)
+        FlowLayoutPanel15.TabIndex = 27
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Location = New Point(3, 0)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(86, 15)
+        Label5.TabIndex = 22
+        Label5.Text = "Rental Unit Fee"
+        ' 
+        ' RentalUnitFeeFd
+        ' 
+        RentalUnitFeeFd.Location = New Point(3, 18)
+        RentalUnitFeeFd.Name = "RentalUnitFeeFd"
+        RentalUnitFeeFd.PlaceholderText = "Rental Fee"
+        RentalUnitFeeFd.Size = New Size(232, 23)
+        RentalUnitFeeFd.TabIndex = 3
+        ' 
+        ' FlowLayoutPanel16
+        ' 
+        FlowLayoutPanel16.Controls.Add(Label20)
+        FlowLayoutPanel16.Controls.Add(RentalDaysNumericUpDown)
+        FlowLayoutPanel16.FlowDirection = FlowDirection.TopDown
+        FlowLayoutPanel16.Location = New Point(3, 237)
+        FlowLayoutPanel16.Name = "FlowLayoutPanel16"
+        FlowLayoutPanel16.Size = New Size(248, 48)
+        FlowLayoutPanel16.TabIndex = 28
+        ' 
+        ' Label20
+        ' 
+        Label20.AutoSize = True
+        Label20.Location = New Point(3, 0)
+        Label20.Name = "Label20"
+        Label20.Size = New Size(92, 15)
+        Label20.TabIndex = 29
+        Label20.Text = "Number of days"
+        ' 
+        ' RentalDaysNumericUpDown
+        ' 
+        RentalDaysNumericUpDown.Location = New Point(3, 18)
+        RentalDaysNumericUpDown.Name = "RentalDaysNumericUpDown"
+        RentalDaysNumericUpDown.Size = New Size(232, 23)
+        RentalDaysNumericUpDown.TabIndex = 30
+        ' 
+        ' FlowLayoutPanel17
+        ' 
+        FlowLayoutPanel17.Controls.Add(Label2)
+        FlowLayoutPanel17.Controls.Add(CarRentalDatePicker)
+        FlowLayoutPanel17.FlowDirection = FlowDirection.TopDown
+        FlowLayoutPanel17.Location = New Point(3, 291)
+        FlowLayoutPanel17.Name = "FlowLayoutPanel17"
+        FlowLayoutPanel17.Size = New Size(248, 54)
+        FlowLayoutPanel17.TabIndex = 29
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Location = New Point(3, 0)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(31, 15)
+        Label2.TabIndex = 5
+        Label2.Text = "Date"
+        ' 
+        ' CarRentalDatePicker
+        ' 
+        CarRentalDatePicker.Location = New Point(3, 18)
+        CarRentalDatePicker.Name = "CarRentalDatePicker"
+        CarRentalDatePicker.Size = New Size(232, 23)
+        CarRentalDatePicker.TabIndex = 4
+        ' 
+        ' FlowLayoutPanel18
+        ' 
+        FlowLayoutPanel18.Controls.Add(Label3)
+        FlowLayoutPanel18.Controls.Add(RentalDriverComboBox)
+        FlowLayoutPanel18.FlowDirection = FlowDirection.TopDown
+        FlowLayoutPanel18.Location = New Point(3, 351)
+        FlowLayoutPanel18.Name = "FlowLayoutPanel18"
+        FlowLayoutPanel18.Size = New Size(259, 47)
+        FlowLayoutPanel18.TabIndex = 30
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Location = New Point(3, 0)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(38, 15)
+        Label3.TabIndex = 7
+        Label3.Text = "Driver"
+        ' 
+        ' RentalDriverComboBox
+        ' 
+        RentalDriverComboBox.AutoCompleteMode = AutoCompleteMode.Append
+        RentalDriverComboBox.AutoCompleteSource = AutoCompleteSource.ListItems
+        RentalDriverComboBox.FormattingEnabled = True
+        RentalDriverComboBox.Location = New Point(3, 18)
+        RentalDriverComboBox.Name = "RentalDriverComboBox"
+        RentalDriverComboBox.Size = New Size(232, 23)
+        RentalDriverComboBox.TabIndex = 8
+        ' 
+        ' GroupBox1
+        ' 
+        GroupBox1.Controls.Add(NoRadioBtn)
+        GroupBox1.Controls.Add(YesRadioBtn)
+        GroupBox1.Location = New Point(3, 404)
+        GroupBox1.Name = "GroupBox1"
+        GroupBox1.Size = New Size(259, 52)
+        GroupBox1.TabIndex = 33
+        GroupBox1.TabStop = False
+        GroupBox1.Text = "Paid"
+        ' 
+        ' NoRadioBtn
+        ' 
+        NoRadioBtn.AutoSize = True
+        NoRadioBtn.Location = New Point(96, 22)
+        NoRadioBtn.Name = "NoRadioBtn"
+        NoRadioBtn.Size = New Size(41, 19)
+        NoRadioBtn.TabIndex = 35
+        NoRadioBtn.TabStop = True
+        NoRadioBtn.Text = "No"
+        NoRadioBtn.UseVisualStyleBackColor = True
+        ' 
+        ' YesRadioBtn
+        ' 
+        YesRadioBtn.AutoSize = True
+        YesRadioBtn.Location = New Point(23, 22)
+        YesRadioBtn.Name = "YesRadioBtn"
+        YesRadioBtn.Size = New Size(42, 19)
+        YesRadioBtn.TabIndex = 34
+        YesRadioBtn.TabStop = True
+        YesRadioBtn.Text = "Yes"
+        YesRadioBtn.UseVisualStyleBackColor = True
+        ' 
+        ' FlowLayoutPanel19
+        ' 
+        FlowLayoutPanel19.Controls.Add(rentalSaveBtn)
+        FlowLayoutPanel19.Controls.Add(DeleteRentalBtn)
+        FlowLayoutPanel19.Location = New Point(3, 462)
+        FlowLayoutPanel19.Name = "FlowLayoutPanel19"
+        FlowLayoutPanel19.Size = New Size(245, 44)
+        FlowLayoutPanel19.TabIndex = 31
         ' 
         ' rentalSaveBtn
         ' 
-        rentalSaveBtn.Location = New Point(3, 283)
+        rentalSaveBtn.Location = New Point(3, 3)
         rentalSaveBtn.Name = "rentalSaveBtn"
         rentalSaveBtn.Size = New Size(75, 23)
         rentalSaveBtn.TabIndex = 8
         rentalSaveBtn.Text = "Save"
         rentalSaveBtn.UseVisualStyleBackColor = True
         ' 
-        ' Label3
+        ' DeleteRentalBtn
         ' 
-        Label3.AutoSize = True
-        Label3.Location = New Point(5, 245)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(55, 15)
-        Label3.TabIndex = 7
-        Label3.Text = "Due Date"
+        DeleteRentalBtn.Location = New Point(84, 3)
+        DeleteRentalBtn.Name = "DeleteRentalBtn"
+        DeleteRentalBtn.Size = New Size(75, 23)
+        DeleteRentalBtn.TabIndex = 20
+        DeleteRentalBtn.Text = "Delete"
+        DeleteRentalBtn.UseVisualStyleBackColor = True
         ' 
-        ' RentalDueDate
+        ' CustomerNameSearch
         ' 
-        RentalDueDate.Location = New Point(97, 237)
-        RentalDueDate.Name = "RentalDueDate"
-        RentalDueDate.Size = New Size(200, 23)
-        RentalDueDate.TabIndex = 6
-        ' 
-        ' Label2
-        ' 
-        Label2.AutoSize = True
-        Label2.Location = New Point(5, 207)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(31, 15)
-        Label2.TabIndex = 5
-        Label2.Text = "Date"
-        ' 
-        ' rentalDate
-        ' 
-        rentalDate.Location = New Point(97, 201)
-        rentalDate.Name = "rentalDate"
-        rentalDate.Size = New Size(200, 23)
-        rentalDate.TabIndex = 4
-        ' 
-        ' RentalFeeFd
-        ' 
-        RentalFeeFd.Location = New Point(98, 172)
-        RentalFeeFd.Name = "RentalFeeFd"
-        RentalFeeFd.PlaceholderText = "Rental Fee"
-        RentalFeeFd.Size = New Size(183, 23)
-        RentalFeeFd.TabIndex = 3
-        ' 
-        ' rentalCustomerIdLabel
-        ' 
-        rentalCustomerIdLabel.AutoSize = True
-        rentalCustomerIdLabel.Location = New Point(3, 84)
-        rentalCustomerIdLabel.Name = "rentalCustomerIdLabel"
-        rentalCustomerIdLabel.Size = New Size(73, 15)
-        rentalCustomerIdLabel.TabIndex = 1
-        rentalCustomerIdLabel.Text = "Customer ID"
-        ' 
-        ' rentalCarIdLabel
-        ' 
-        rentalCarIdLabel.AutoSize = True
-        rentalCarIdLabel.Location = New Point(5, 50)
-        rentalCarIdLabel.Name = "rentalCarIdLabel"
-        rentalCarIdLabel.Size = New Size(39, 15)
-        rentalCarIdLabel.TabIndex = 0
-        rentalCarIdLabel.Text = "Car ID"
+        CustomerNameSearch.Location = New Point(3, 529)
+        CustomerNameSearch.Margin = New Padding(3, 20, 3, 3)
+        CustomerNameSearch.Name = "CustomerNameSearch"
+        CustomerNameSearch.PlaceholderText = "Search Customer name"
+        CustomerNameSearch.Size = New Size(183, 23)
+        CustomerNameSearch.TabIndex = 18
         ' 
         ' SplitContainer3
         ' 
@@ -575,8 +789,8 @@ Partial Class MainApp
         ' SplitContainer3.Panel2
         ' 
         SplitContainer3.Panel2.Controls.Add(RentalCarListlTable)
-        SplitContainer3.Size = New Size(469, 495)
-        SplitContainer3.SplitterDistance = 245
+        SplitContainer3.Size = New Size(553, 544)
+        SplitContainer3.SplitterDistance = 269
         SplitContainer3.TabIndex = 2
         ' 
         ' RentalTable
@@ -585,7 +799,7 @@ Partial Class MainApp
         RentalTable.Dock = DockStyle.Fill
         RentalTable.Location = New Point(0, 0)
         RentalTable.Name = "RentalTable"
-        RentalTable.Size = New Size(469, 245)
+        RentalTable.Size = New Size(553, 269)
         RentalTable.TabIndex = 1
         ' 
         ' RentalCarListlTable
@@ -594,7 +808,7 @@ Partial Class MainApp
         RentalCarListlTable.Dock = DockStyle.Fill
         RentalCarListlTable.Location = New Point(0, 0)
         RentalCarListlTable.Name = "RentalCarListlTable"
-        RentalCarListlTable.Size = New Size(469, 246)
+        RentalCarListlTable.Size = New Size(553, 271)
         RentalCarListlTable.TabIndex = 0
         ' 
         ' ReturnPage
@@ -604,7 +818,7 @@ Partial Class MainApp
         ReturnPage.Location = New Point(4, 24)
         ReturnPage.Name = "ReturnPage"
         ReturnPage.Padding = New Padding(3)
-        ReturnPage.Size = New Size(833, 501)
+        ReturnPage.Size = New Size(913, 550)
         ReturnPage.TabIndex = 3
         ReturnPage.Text = "Return"
         ReturnPage.UseVisualStyleBackColor = True
@@ -615,19 +829,17 @@ Partial Class MainApp
         ReturnTable.Dock = DockStyle.Fill
         ReturnTable.Location = New Point(408, 3)
         ReturnTable.Name = "ReturnTable"
-        ReturnTable.Size = New Size(422, 495)
+        ReturnTable.Size = New Size(502, 544)
         ReturnTable.TabIndex = 1
         ' 
         ' Panel1
         ' 
-        Panel1.Controls.Add(ReturnRefreshBtn)
+        Panel1.Controls.Add(GroupBox2)
         Panel1.Controls.Add(ReturnDueDateLabel)
         Panel1.Controls.Add(ReturnDeleteBtn)
         Panel1.Controls.Add(ReturnSaveBtn)
-        Panel1.Controls.Add(ReturnFeeTextbox)
+        Panel1.Controls.Add(ReturnPenaltyUnitFeeTextbox)
         Panel1.Controls.Add(Label14)
-        Panel1.Controls.Add(ReturnElapsedDayTextBox)
-        Panel1.Controls.Add(Label13)
         Panel1.Controls.Add(Label12)
         Panel1.Controls.Add(ReturnDateDatepicker)
         Panel1.Controls.Add(ReturnCustomerNameCombo)
@@ -639,17 +851,77 @@ Partial Class MainApp
         Panel1.Dock = DockStyle.Left
         Panel1.Location = New Point(3, 3)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(405, 495)
+        Panel1.Size = New Size(405, 544)
         Panel1.TabIndex = 0
         ' 
-        ' ReturnRefreshBtn
+        ' GroupBox2
         ' 
-        ReturnRefreshBtn.Location = New Point(308, 12)
-        ReturnRefreshBtn.Name = "ReturnRefreshBtn"
-        ReturnRefreshBtn.Size = New Size(75, 23)
-        ReturnRefreshBtn.TabIndex = 15
-        ReturnRefreshBtn.Text = "Refresh"
-        ReturnRefreshBtn.UseVisualStyleBackColor = True
+        GroupBox2.Controls.Add(RateFiveRadioBtn)
+        GroupBox2.Controls.Add(RateFourRadioBtn)
+        GroupBox2.Controls.Add(RateThreeRadioBtn)
+        GroupBox2.Controls.Add(RateTwoRadioBtn)
+        GroupBox2.Controls.Add(RateOneRadioBtn)
+        GroupBox2.Location = New Point(5, 227)
+        GroupBox2.Name = "GroupBox2"
+        GroupBox2.Size = New Size(283, 45)
+        GroupBox2.TabIndex = 16
+        GroupBox2.TabStop = False
+        GroupBox2.Text = "GroupBox2"
+        ' 
+        ' RateFiveRadioBtn
+        ' 
+        RateFiveRadioBtn.AutoSize = True
+        RateFiveRadioBtn.Location = New Point(155, 20)
+        RateFiveRadioBtn.Name = "RateFiveRadioBtn"
+        RateFiveRadioBtn.Size = New Size(31, 19)
+        RateFiveRadioBtn.TabIndex = 4
+        RateFiveRadioBtn.TabStop = True
+        RateFiveRadioBtn.Text = "5"
+        RateFiveRadioBtn.UseVisualStyleBackColor = True
+        ' 
+        ' RateFourRadioBtn
+        ' 
+        RateFourRadioBtn.AutoSize = True
+        RateFourRadioBtn.Location = New Point(118, 20)
+        RateFourRadioBtn.Name = "RateFourRadioBtn"
+        RateFourRadioBtn.Size = New Size(31, 19)
+        RateFourRadioBtn.TabIndex = 3
+        RateFourRadioBtn.TabStop = True
+        RateFourRadioBtn.Text = "4"
+        RateFourRadioBtn.UseVisualStyleBackColor = True
+        ' 
+        ' RateThreeRadioBtn
+        ' 
+        RateThreeRadioBtn.AutoSize = True
+        RateThreeRadioBtn.Location = New Point(81, 20)
+        RateThreeRadioBtn.Name = "RateThreeRadioBtn"
+        RateThreeRadioBtn.Size = New Size(31, 19)
+        RateThreeRadioBtn.TabIndex = 2
+        RateThreeRadioBtn.TabStop = True
+        RateThreeRadioBtn.Text = "3"
+        RateThreeRadioBtn.UseVisualStyleBackColor = True
+        ' 
+        ' RateTwoRadioBtn
+        ' 
+        RateTwoRadioBtn.AutoSize = True
+        RateTwoRadioBtn.Location = New Point(44, 20)
+        RateTwoRadioBtn.Name = "RateTwoRadioBtn"
+        RateTwoRadioBtn.Size = New Size(31, 19)
+        RateTwoRadioBtn.TabIndex = 1
+        RateTwoRadioBtn.TabStop = True
+        RateTwoRadioBtn.Text = "2"
+        RateTwoRadioBtn.UseVisualStyleBackColor = True
+        ' 
+        ' RateOneRadioBtn
+        ' 
+        RateOneRadioBtn.AutoSize = True
+        RateOneRadioBtn.Location = New Point(6, 20)
+        RateOneRadioBtn.Name = "RateOneRadioBtn"
+        RateOneRadioBtn.Size = New Size(31, 19)
+        RateOneRadioBtn.TabIndex = 0
+        RateOneRadioBtn.TabStop = True
+        RateOneRadioBtn.Text = "1"
+        RateOneRadioBtn.UseVisualStyleBackColor = True
         ' 
         ' ReturnDueDateLabel
         ' 
@@ -678,37 +950,21 @@ Partial Class MainApp
         ReturnSaveBtn.Text = "Save"
         ReturnSaveBtn.UseVisualStyleBackColor = True
         ' 
-        ' ReturnFeeTextbox
+        ' ReturnPenaltyUnitFeeTextbox
         ' 
-        ReturnFeeTextbox.Location = New Point(5, 286)
-        ReturnFeeTextbox.Name = "ReturnFeeTextbox"
-        ReturnFeeTextbox.Size = New Size(155, 23)
-        ReturnFeeTextbox.TabIndex = 11
+        ReturnPenaltyUnitFeeTextbox.Location = New Point(5, 293)
+        ReturnPenaltyUnitFeeTextbox.Name = "ReturnPenaltyUnitFeeTextbox"
+        ReturnPenaltyUnitFeeTextbox.Size = New Size(155, 23)
+        ReturnPenaltyUnitFeeTextbox.TabIndex = 11
         ' 
         ' Label14
         ' 
         Label14.AutoSize = True
-        Label14.Location = New Point(5, 268)
+        Label14.Location = New Point(5, 275)
         Label14.Name = "Label14"
-        Label14.Size = New Size(25, 15)
+        Label14.Size = New Size(92, 15)
         Label14.TabIndex = 10
-        Label14.Text = "Fee"
-        ' 
-        ' ReturnElapsedDayTextBox
-        ' 
-        ReturnElapsedDayTextBox.Location = New Point(3, 242)
-        ReturnElapsedDayTextBox.Name = "ReturnElapsedDayTextBox"
-        ReturnElapsedDayTextBox.Size = New Size(157, 23)
-        ReturnElapsedDayTextBox.TabIndex = 9
-        ' 
-        ' Label13
-        ' 
-        Label13.AutoSize = True
-        Label13.Location = New Point(3, 224)
-        Label13.Name = "Label13"
-        Label13.Size = New Size(75, 15)
-        Label13.TabIndex = 8
-        Label13.Text = "Elapsed Days"
+        Label14.Text = "Penalty Unit Fee"
         ' 
         ' Label12
         ' 
@@ -783,7 +1039,7 @@ Partial Class MainApp
         LogoutPage.Location = New Point(4, 24)
         LogoutPage.Name = "LogoutPage"
         LogoutPage.Padding = New Padding(3, 10, 3, 3)
-        LogoutPage.Size = New Size(833, 501)
+        LogoutPage.Size = New Size(913, 550)
         LogoutPage.TabIndex = 4
         LogoutPage.Text = "Log out"
         LogoutPage.UseVisualStyleBackColor = True
@@ -818,14 +1074,314 @@ Partial Class MainApp
         LogoutBtn.Text = "Log out"
         LogoutBtn.UseVisualStyleBackColor = True
         ' 
+        ' DriverPage
+        ' 
+        DriverPage.Controls.Add(TableLayoutPanel1)
+        DriverPage.Controls.Add(FlowLayoutPanel3)
+        DriverPage.Location = New Point(4, 24)
+        DriverPage.Name = "DriverPage"
+        DriverPage.Padding = New Padding(3)
+        DriverPage.Size = New Size(913, 550)
+        DriverPage.TabIndex = 5
+        DriverPage.Text = "Driver"
+        DriverPage.UseVisualStyleBackColor = True
+        ' 
+        ' TableLayoutPanel1
+        ' 
+        TableLayoutPanel1.ColumnCount = 1
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
+        TableLayoutPanel1.Controls.Add(DriverDataGridView, 0, 0)
+        TableLayoutPanel1.Controls.Add(Panel2, 0, 1)
+        TableLayoutPanel1.Dock = DockStyle.Fill
+        TableLayoutPanel1.Location = New Point(330, 3)
+        TableLayoutPanel1.Name = "TableLayoutPanel1"
+        TableLayoutPanel1.RowCount = 2
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 54.3434334F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 45.6565666F))
+        TableLayoutPanel1.Size = New Size(580, 544)
+        TableLayoutPanel1.TabIndex = 1
+        ' 
+        ' DriverDataGridView
+        ' 
+        DriverDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DriverDataGridView.Dock = DockStyle.Fill
+        DriverDataGridView.Location = New Point(3, 3)
+        DriverDataGridView.Name = "DriverDataGridView"
+        DriverDataGridView.Size = New Size(574, 289)
+        DriverDataGridView.TabIndex = 0
+        ' 
+        ' Panel2
+        ' 
+        Panel2.Controls.Add(Label17)
+        Panel2.Controls.Add(DriverPictureBox)
+        Panel2.Dock = DockStyle.Fill
+        Panel2.Location = New Point(3, 298)
+        Panel2.Name = "Panel2"
+        Panel2.Size = New Size(574, 243)
+        Panel2.TabIndex = 1
+        ' 
+        ' Label17
+        ' 
+        Label17.AutoSize = True
+        Label17.Location = New Point(3, 12)
+        Label17.Name = "Label17"
+        Label17.Size = New Size(73, 15)
+        Label17.TabIndex = 1
+        Label17.Text = "Driver Photo"
+        ' 
+        ' DriverPictureBox
+        ' 
+        DriverPictureBox.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
+        DriverPictureBox.Location = New Point(3, 41)
+        DriverPictureBox.Name = "DriverPictureBox"
+        DriverPictureBox.Size = New Size(224, 199)
+        DriverPictureBox.SizeMode = PictureBoxSizeMode.Zoom
+        DriverPictureBox.TabIndex = 0
+        DriverPictureBox.TabStop = False
+        DriverPictureBox.WaitOnLoad = True
+        ' 
+        ' FlowLayoutPanel3
+        ' 
+        FlowLayoutPanel3.Controls.Add(FlowLayoutPanel5)
+        FlowLayoutPanel3.Controls.Add(FlowLayoutPanel6)
+        FlowLayoutPanel3.Controls.Add(FlowLayoutPanel7)
+        FlowLayoutPanel3.Controls.Add(FlowLayoutPanel8)
+        FlowLayoutPanel3.Controls.Add(FlowLayoutPanel9)
+        FlowLayoutPanel3.Controls.Add(FlowLayoutPanel10)
+        FlowLayoutPanel3.Dock = DockStyle.Left
+        FlowLayoutPanel3.FlowDirection = FlowDirection.TopDown
+        FlowLayoutPanel3.Location = New Point(3, 3)
+        FlowLayoutPanel3.Name = "FlowLayoutPanel3"
+        FlowLayoutPanel3.Size = New Size(327, 544)
+        FlowLayoutPanel3.TabIndex = 0
+        ' 
+        ' FlowLayoutPanel5
+        ' 
+        FlowLayoutPanel5.Controls.Add(Label6)
+        FlowLayoutPanel5.Controls.Add(DriverFullnameTextBox)
+        FlowLayoutPanel5.FlowDirection = FlowDirection.TopDown
+        FlowLayoutPanel5.Location = New Point(3, 3)
+        FlowLayoutPanel5.Name = "FlowLayoutPanel5"
+        FlowLayoutPanel5.Size = New Size(309, 57)
+        FlowLayoutPanel5.TabIndex = 0
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Location = New Point(3, 0)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(56, 15)
+        Label6.TabIndex = 0
+        Label6.Text = "Fullname"
+        ' 
+        ' DriverFullnameTextBox
+        ' 
+        DriverFullnameTextBox.Location = New Point(3, 18)
+        DriverFullnameTextBox.Name = "DriverFullnameTextBox"
+        DriverFullnameTextBox.Size = New Size(284, 23)
+        DriverFullnameTextBox.TabIndex = 1
+        ' 
+        ' FlowLayoutPanel6
+        ' 
+        FlowLayoutPanel6.Controls.Add(Label7)
+        FlowLayoutPanel6.Controls.Add(DriverContactTextBox)
+        FlowLayoutPanel6.FlowDirection = FlowDirection.TopDown
+        FlowLayoutPanel6.Location = New Point(3, 66)
+        FlowLayoutPanel6.Name = "FlowLayoutPanel6"
+        FlowLayoutPanel6.Size = New Size(309, 57)
+        FlowLayoutPanel6.TabIndex = 1
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Location = New Point(3, 0)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(49, 15)
+        Label7.TabIndex = 0
+        Label7.Text = "Contact"
+        ' 
+        ' DriverContactTextBox
+        ' 
+        DriverContactTextBox.Location = New Point(3, 18)
+        DriverContactTextBox.Name = "DriverContactTextBox"
+        DriverContactTextBox.Size = New Size(284, 23)
+        DriverContactTextBox.TabIndex = 1
+        ' 
+        ' FlowLayoutPanel7
+        ' 
+        FlowLayoutPanel7.Controls.Add(Label15)
+        FlowLayoutPanel7.Controls.Add(DriverAddressTextBox)
+        FlowLayoutPanel7.FlowDirection = FlowDirection.TopDown
+        FlowLayoutPanel7.Location = New Point(3, 129)
+        FlowLayoutPanel7.Name = "FlowLayoutPanel7"
+        FlowLayoutPanel7.Size = New Size(309, 120)
+        FlowLayoutPanel7.TabIndex = 2
+        ' 
+        ' Label15
+        ' 
+        Label15.AutoSize = True
+        Label15.Location = New Point(3, 0)
+        Label15.Name = "Label15"
+        Label15.Size = New Size(49, 15)
+        Label15.TabIndex = 0
+        Label15.Text = "Address"
+        ' 
+        ' DriverAddressTextBox
+        ' 
+        DriverAddressTextBox.Location = New Point(3, 18)
+        DriverAddressTextBox.Multiline = True
+        DriverAddressTextBox.Name = "DriverAddressTextBox"
+        DriverAddressTextBox.Size = New Size(284, 97)
+        DriverAddressTextBox.TabIndex = 1
+        ' 
+        ' FlowLayoutPanel8
+        ' 
+        FlowLayoutPanel8.Controls.Add(Label16)
+        FlowLayoutPanel8.Controls.Add(UploadDriverPhotoBtn)
+        FlowLayoutPanel8.FlowDirection = FlowDirection.TopDown
+        FlowLayoutPanel8.Location = New Point(3, 255)
+        FlowLayoutPanel8.Name = "FlowLayoutPanel8"
+        FlowLayoutPanel8.Size = New Size(309, 57)
+        FlowLayoutPanel8.TabIndex = 3
+        ' 
+        ' Label16
+        ' 
+        Label16.AutoSize = True
+        Label16.Location = New Point(3, 0)
+        Label16.Name = "Label16"
+        Label16.Size = New Size(39, 15)
+        Label16.TabIndex = 0
+        Label16.Text = "Photo"
+        ' 
+        ' UploadDriverPhotoBtn
+        ' 
+        UploadDriverPhotoBtn.Location = New Point(3, 18)
+        UploadDriverPhotoBtn.Name = "UploadDriverPhotoBtn"
+        UploadDriverPhotoBtn.Size = New Size(136, 23)
+        UploadDriverPhotoBtn.TabIndex = 1
+        UploadDriverPhotoBtn.Text = "Upload photo"
+        UploadDriverPhotoBtn.UseVisualStyleBackColor = True
+        ' 
+        ' FlowLayoutPanel9
+        ' 
+        FlowLayoutPanel9.Controls.Add(AddDriverBtn)
+        FlowLayoutPanel9.Controls.Add(DriverUpdateBtn)
+        FlowLayoutPanel9.Controls.Add(DriverDeleteBtn)
+        FlowLayoutPanel9.Location = New Point(3, 335)
+        FlowLayoutPanel9.Margin = New Padding(3, 20, 3, 3)
+        FlowLayoutPanel9.Name = "FlowLayoutPanel9"
+        FlowLayoutPanel9.Size = New Size(309, 42)
+        FlowLayoutPanel9.TabIndex = 7
+        ' 
+        ' AddDriverBtn
+        ' 
+        AddDriverBtn.Location = New Point(3, 3)
+        AddDriverBtn.Name = "AddDriverBtn"
+        AddDriverBtn.Size = New Size(75, 23)
+        AddDriverBtn.TabIndex = 4
+        AddDriverBtn.Text = "Add Driver"
+        AddDriverBtn.UseVisualStyleBackColor = True
+        ' 
+        ' DriverUpdateBtn
+        ' 
+        DriverUpdateBtn.Location = New Point(91, 3)
+        DriverUpdateBtn.Margin = New Padding(10, 3, 3, 3)
+        DriverUpdateBtn.Name = "DriverUpdateBtn"
+        DriverUpdateBtn.Size = New Size(75, 23)
+        DriverUpdateBtn.TabIndex = 7
+        DriverUpdateBtn.Text = "Update"
+        DriverUpdateBtn.UseVisualStyleBackColor = True
+        ' 
+        ' DriverDeleteBtn
+        ' 
+        DriverDeleteBtn.Location = New Point(179, 3)
+        DriverDeleteBtn.Margin = New Padding(10, 3, 3, 3)
+        DriverDeleteBtn.Name = "DriverDeleteBtn"
+        DriverDeleteBtn.Size = New Size(75, 23)
+        DriverDeleteBtn.TabIndex = 6
+        DriverDeleteBtn.Text = "Delete"
+        DriverDeleteBtn.UseVisualStyleBackColor = True
+        ' 
+        ' FlowLayoutPanel10
+        ' 
+        FlowLayoutPanel10.Controls.Add(Label18)
+        FlowLayoutPanel10.Controls.Add(DriverUpdatePhotoBtn)
+        FlowLayoutPanel10.FlowDirection = FlowDirection.TopDown
+        FlowLayoutPanel10.Location = New Point(3, 383)
+        FlowLayoutPanel10.Name = "FlowLayoutPanel10"
+        FlowLayoutPanel10.Size = New Size(309, 51)
+        FlowLayoutPanel10.TabIndex = 8
+        ' 
+        ' Label18
+        ' 
+        Label18.AutoSize = True
+        Label18.Location = New Point(3, 0)
+        Label18.Name = "Label18"
+        Label18.Size = New Size(114, 15)
+        Label18.TabIndex = 0
+        Label18.Text = "Update Driver Photo"
+        ' 
+        ' DriverUpdatePhotoBtn
+        ' 
+        DriverUpdatePhotoBtn.Location = New Point(3, 18)
+        DriverUpdatePhotoBtn.Name = "DriverUpdatePhotoBtn"
+        DriverUpdatePhotoBtn.Size = New Size(114, 23)
+        DriverUpdatePhotoBtn.TabIndex = 1
+        DriverUpdatePhotoBtn.Text = "Update Photo"
+        DriverUpdatePhotoBtn.UseVisualStyleBackColor = True
+        ' 
+        ' TCPage
+        ' 
+        TCPage.Controls.Add(FlowLayout20)
+        TCPage.Location = New Point(4, 24)
+        TCPage.Name = "TCPage"
+        TCPage.Padding = New Padding(3)
+        TCPage.Size = New Size(913, 550)
+        TCPage.TabIndex = 6
+        TCPage.Text = "Terms/Conditions"
+        TCPage.UseVisualStyleBackColor = True
+        ' 
+        ' FlowLayout20
+        ' 
+        FlowLayout20.Controls.Add(Label19)
+        FlowLayout20.Controls.Add(OpenTCBtn)
+        FlowLayout20.Dock = DockStyle.Fill
+        FlowLayout20.Location = New Point(3, 3)
+        FlowLayout20.Name = "FlowLayout20"
+        FlowLayout20.Size = New Size(907, 544)
+        FlowLayout20.TabIndex = 1
+        ' 
+        ' Label19
+        ' 
+        Label19.AutoSize = True
+        Label19.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label19.Location = New Point(25, 27)
+        Label19.Name = "Label19"
+        Label19.Size = New Size(239, 20)
+        Label19.TabIndex = 1
+        Label19.Text = "Click to get terms and conditions"
+        ' 
+        ' OpenTCBtn
+        ' 
+        OpenTCBtn.Location = New Point(25, 71)
+        OpenTCBtn.Name = "OpenTCBtn"
+        OpenTCBtn.Size = New Size(75, 23)
+        OpenTCBtn.TabIndex = 0
+        OpenTCBtn.Text = "Open"
+        OpenTCBtn.UseVisualStyleBackColor = True
+        ' 
+        ' PrintDocument1
+        ' 
+        ' 
         ' MainApp
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImageLayout = ImageLayout.Center
-        ClientSize = New Size(841, 529)
+        ClientSize = New Size(921, 578)
         Controls.Add(AppTabControl)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        MaximizeBox = False
         Name = "MainApp"
         Text = "Super Cars"
         AppTabControl.ResumeLayout(False)
@@ -835,6 +1391,7 @@ Partial Class MainApp
         SplitContainer1.Panel2.ResumeLayout(False)
         CType(SplitContainer1, ComponentModel.ISupportInitialize).EndInit()
         SplitContainer1.ResumeLayout(False)
+        FlowLayoutPanel11.ResumeLayout(False)
         CType(DataGridView2, ComponentModel.ISupportInitialize).EndInit()
         CustomerPage.ResumeLayout(False)
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
@@ -843,10 +1400,29 @@ Partial Class MainApp
         FlowLayoutPanel2.ResumeLayout(False)
         RentalPage.ResumeLayout(False)
         SplitContainer2.Panel1.ResumeLayout(False)
-        SplitContainer2.Panel1.PerformLayout()
         SplitContainer2.Panel2.ResumeLayout(False)
         CType(SplitContainer2, ComponentModel.ISupportInitialize).EndInit()
         SplitContainer2.ResumeLayout(False)
+        FlowLayoutPanel21.ResumeLayout(False)
+        FlowLayoutPanel21.PerformLayout()
+        FlowLayoutPanel12.ResumeLayout(False)
+        FlowLayoutPanel12.PerformLayout()
+        FlowLayoutPanel13.ResumeLayout(False)
+        FlowLayoutPanel13.PerformLayout()
+        FlowLayoutPanel14.ResumeLayout(False)
+        FlowLayoutPanel14.PerformLayout()
+        FlowLayoutPanel15.ResumeLayout(False)
+        FlowLayoutPanel15.PerformLayout()
+        FlowLayoutPanel16.ResumeLayout(False)
+        FlowLayoutPanel16.PerformLayout()
+        CType(RentalDaysNumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        FlowLayoutPanel17.ResumeLayout(False)
+        FlowLayoutPanel17.PerformLayout()
+        FlowLayoutPanel18.ResumeLayout(False)
+        FlowLayoutPanel18.PerformLayout()
+        GroupBox1.ResumeLayout(False)
+        GroupBox1.PerformLayout()
+        FlowLayoutPanel19.ResumeLayout(False)
         SplitContainer3.Panel1.ResumeLayout(False)
         SplitContainer3.Panel2.ResumeLayout(False)
         CType(SplitContainer3, ComponentModel.ISupportInitialize).EndInit()
@@ -857,9 +1433,32 @@ Partial Class MainApp
         CType(ReturnTable, ComponentModel.ISupportInitialize).EndInit()
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
+        GroupBox2.ResumeLayout(False)
+        GroupBox2.PerformLayout()
         LogoutPage.ResumeLayout(False)
         FlowLayoutPanel1.ResumeLayout(False)
         FlowLayoutPanel1.PerformLayout()
+        DriverPage.ResumeLayout(False)
+        TableLayoutPanel1.ResumeLayout(False)
+        CType(DriverDataGridView, ComponentModel.ISupportInitialize).EndInit()
+        Panel2.ResumeLayout(False)
+        Panel2.PerformLayout()
+        CType(DriverPictureBox, ComponentModel.ISupportInitialize).EndInit()
+        FlowLayoutPanel3.ResumeLayout(False)
+        FlowLayoutPanel5.ResumeLayout(False)
+        FlowLayoutPanel5.PerformLayout()
+        FlowLayoutPanel6.ResumeLayout(False)
+        FlowLayoutPanel6.PerformLayout()
+        FlowLayoutPanel7.ResumeLayout(False)
+        FlowLayoutPanel7.PerformLayout()
+        FlowLayoutPanel8.ResumeLayout(False)
+        FlowLayoutPanel8.PerformLayout()
+        FlowLayoutPanel9.ResumeLayout(False)
+        FlowLayoutPanel10.ResumeLayout(False)
+        FlowLayoutPanel10.PerformLayout()
+        TCPage.ResumeLayout(False)
+        FlowLayout20.ResumeLayout(False)
+        FlowLayout20.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -896,8 +1495,8 @@ Partial Class MainApp
     Friend WithEvents RentalCarListlTable As DataGridView
     Friend WithEvents rentalCustomerIdLabel As Label
     Friend WithEvents rentalCarIdLabel As Label
-    Friend WithEvents rentalDate As DateTimePicker
-    Friend WithEvents RentalFeeFd As TextBox
+    Friend WithEvents CarRentalDatePicker As DateTimePicker
+    Friend WithEvents RentalUnitFeeFd As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents RentalDueDate As DateTimePicker
     Friend WithEvents Label2 As Label
@@ -907,10 +1506,8 @@ Partial Class MainApp
     Friend WithEvents rentalSaveBtn As Button
     Friend WithEvents Label4 As Label
     Friend WithEvents CustomerNameSearch As TextBox
-    Friend WithEvents refreshBtn As Button
     Friend WithEvents Label8 As Label
     Friend WithEvents DeleteRentalBtn As Button
-    Friend WithEvents RefreshCarBtn As Button
     Friend WithEvents ReturnTable As DataGridView
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label9 As Label
@@ -921,16 +1518,67 @@ Partial Class MainApp
     Friend WithEvents ReturnCustomerNameCombo As ComboBox
     Friend WithEvents Label11 As Label
     Friend WithEvents ReturnCustomerIDTextBox As TextBox
-    Friend WithEvents ReturnElapsedDayTextBox As TextBox
-    Friend WithEvents Label13 As Label
-    Friend WithEvents ReturnFeeTextbox As TextBox
+    Friend WithEvents ReturnPenaltyUnitFeeTextbox As TextBox
     Friend WithEvents Label14 As Label
     Friend WithEvents ReturnDeleteBtn As Button
     Friend WithEvents ReturnSaveBtn As Button
     Friend WithEvents ReturnDueDateLabel As Label
-    Friend WithEvents ReturnRefreshBtn As Button
     Friend WithEvents Label5 As Label
     Friend WithEvents RentalCarIDTextbox As TextBox
     Friend WithEvents RentalCustomerIDTextbox As TextBox
+    Friend WithEvents DriverPage As TabPage
+    Friend WithEvents FlowLayoutPanel3 As FlowLayoutPanel
+    Friend WithEvents FlowLayoutPanel5 As FlowLayoutPanel
+    Friend WithEvents Label6 As Label
+    Friend WithEvents DriverFullnameTextBox As TextBox
+    Friend WithEvents FlowLayoutPanel6 As FlowLayoutPanel
+    Friend WithEvents Label7 As Label
+    Friend WithEvents DriverContactTextBox As TextBox
+    Friend WithEvents FlowLayoutPanel7 As FlowLayoutPanel
+    Friend WithEvents Label15 As Label
+    Friend WithEvents DriverAddressTextBox As TextBox
+    Friend WithEvents FlowLayoutPanel8 As FlowLayoutPanel
+    Friend WithEvents Label16 As Label
+    Friend WithEvents TCPage As TabPage
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents UploadDriverPhotoBtn As Button
+    Friend WithEvents DriverDataGridView As DataGridView
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Label17 As Label
+    Friend WithEvents DriverPictureBox As PictureBox
+    Friend WithEvents AddDriverBtn As Button
+    Friend WithEvents FlowLayoutPanel9 As FlowLayoutPanel
+    Friend WithEvents DriverDeleteBtn As Button
+    Friend WithEvents DriverUpdateBtn As Button
+    Friend WithEvents FlowLayoutPanel10 As FlowLayoutPanel
+    Friend WithEvents Label18 As Label
+    Friend WithEvents DriverUpdatePhotoBtn As Button
+    Friend WithEvents FlowLayout20 As Panel
+    Friend WithEvents Label19 As Label
+    Friend WithEvents OpenTCBtn As Button
+    Friend WithEvents PrintDocument1 As Printing.PrintDocument
+    Friend WithEvents CarDescriptionTextBox As TextBox
+    Friend WithEvents FlowLayoutPanel11 As FlowLayoutPanel
+    Friend WithEvents FlowLayoutPanel12 As FlowLayoutPanel
+    Friend WithEvents FlowLayoutPanel13 As FlowLayoutPanel
+    Friend WithEvents FlowLayoutPanel14 As FlowLayoutPanel
+    Friend WithEvents FlowLayoutPanel15 As FlowLayoutPanel
+    Friend WithEvents FlowLayoutPanel16 As FlowLayoutPanel
+    Friend WithEvents Label20 As Label
+    Friend WithEvents RentalDaysNumericUpDown As NumericUpDown
+    Friend WithEvents FlowLayoutPanel17 As FlowLayoutPanel
+    Friend WithEvents FlowLayoutPanel18 As FlowLayoutPanel
+    Friend WithEvents FlowLayoutPanel19 As FlowLayoutPanel
+    Friend WithEvents RentalDriverComboBox As ComboBox
+    Friend WithEvents FlowLayoutPanel21 As FlowLayoutPanel
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents YesRadioBtn As RadioButton
+    Friend WithEvents NoRadioBtn As RadioButton
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents RateFourRadioBtn As RadioButton
+    Friend WithEvents RateThreeRadioBtn As RadioButton
+    Friend WithEvents RateTwoRadioBtn As RadioButton
+    Friend WithEvents RateOneRadioBtn As RadioButton
+    Friend WithEvents RateFiveRadioBtn As RadioButton
 
 End Class
