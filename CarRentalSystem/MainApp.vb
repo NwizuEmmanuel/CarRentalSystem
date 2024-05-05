@@ -592,7 +592,7 @@ Public Class MainApp
             End Using
         End Using
 
-        Dim difference As TimeSpan = dueDateValue - DateTime.Parse(ReturnDateDatepicker.Text)
+        Dim difference As TimeSpan = DateTime.Parse(ReturnDateDatepicker.Text).Subtract(dueDateValue)
         Dim totalDays As Int32 = difference.Days
 
         Dim penaltyFee As Int32 = Int32.Parse(ReturnPenaltyUnitFeeTextbox.Text) * totalDays
@@ -714,11 +714,25 @@ Public Class MainApp
 
     Private Sub DeleteReturnCar()
         Dim id As Integer
+        Dim carID As Integer
         If ReturnTable.SelectedRows.Count > 0 Then
             Dim selectedRow As DataGridViewRow = ReturnTable.SelectedRows(0)
 
             id = Convert.ToInt32(selectedRow.Cells("return_id").Value)
+            carID = Convert.ToInt32(selectedRow.Cells("car_id").Value)
         End If
+
+        Dim query2 As String = $"update car set available = 'no' where car_id = {carID}"
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query2, connection)
+                Try
+                    connection.Open()
+                    command.ExecuteNonQuery()
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+            End Using
+        End Using
 
         Dim query As String = "delete from rental_return where return_id=@v1"
         Using connection As New MySqlConnection(connectionString)
