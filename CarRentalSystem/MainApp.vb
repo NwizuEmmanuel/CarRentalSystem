@@ -750,10 +750,12 @@ Public Class MainApp
 
     Private Sub DeleteRentalBtn_Click(sender As Object, e As EventArgs) Handles DeleteRentalBtn.Click
         Dim id As Integer
+        Dim car_id As Int32
         If RentalTable.SelectedRows.Count > 0 Then
             Dim selectedRow As DataGridViewRow = RentalTable.SelectedRows(0)
 
             id = Convert.ToInt32(selectedRow.Cells("rental_id").Value)
+            car_id = Convert.ToInt32(selectedRow.Cells("car_id").Value)
         End If
 
         Dim query As String = "delete from rental where rental_id=@v1"
@@ -773,7 +775,20 @@ Public Class MainApp
                 End If
             End Using
         End Using
+
+        Dim query2 As String = $"update car set available = 'yes' where car_id = {car_id}"
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query2, connection)
+                Try
+                    connection.Open()
+                    command.ExecuteNonQuery()
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+            End Using
+        End Using
         LoadRentalData()
+        LoadRentalCarListData()
     End Sub
 
     Private Sub LoadDriverData()
