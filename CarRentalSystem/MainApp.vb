@@ -3,7 +3,7 @@ Imports MySql.Data.MySqlClient
 
 Public Class MainApp
     Private connectionString As String = "server=localhost;user=root;database=car_rental"
-    Dim idValue As Object
+    Dim customerIdValue As Object
     Dim nameValue As Object
     Dim addressValue As Object
     Dim contactValue As Object
@@ -24,18 +24,26 @@ Public Class MainApp
     Dim globalDriverID As Object
     Dim carRating As Int32
     Dim carPhotoPath As String
+    Dim customerPhotoPath As String
 
     Private Sub AddCustomer()
         If String.IsNullOrWhiteSpace(customerName.Text) Or String.IsNullOrWhiteSpace(contact.Text) Or String.IsNullOrWhiteSpace(address.Text) Then
             MessageBox.Show("Empty/Incomplete Form.")
             Exit Sub
         End If
-        Dim query As String = "insert into customer (customer_name, address, contact) values (@v1, @v2, @v3)"
+        If String.IsNullOrWhiteSpace(customerPhotoPath) Then
+            MessageBox.Show("Photo missing")
+            Exit Sub
+        End If
+
+        Dim query As String = "insert into customer (customer_name, address, contact, customer_photo) values (@v1, @v2, @v3, @v4)"
         Using connection As New MySqlConnection(connectionString)
             Using command As New MySqlCommand(query, connection)
                 command.Parameters.AddWithValue("@v1", customerName.Text)
                 command.Parameters.AddWithValue("@v2", address.Text)
                 command.Parameters.AddWithValue("@v3", contact.Text)
+                Dim imageByte As Byte() = File.ReadAllBytes(customerPhotoPath)
+                command.Parameters.AddWithValue("@v4", imageByte)
 
                 Try
                     connection.Open()
@@ -153,7 +161,7 @@ Public Class MainApp
                 command.Parameters.AddWithValue("@v1", customerName.Text)
                 command.Parameters.AddWithValue("@v2", address.Text)
                 command.Parameters.AddWithValue("@v3", contact.Text)
-                command.Parameters.AddWithValue("@v4", idValue)
+                command.Parameters.AddWithValue("@v4", customerIdValue)
 
                 Try
                     connection.Open()
@@ -202,7 +210,7 @@ Public Class MainApp
         Dim query As String = "delete from customer where customer_id=@v1"
         Using connection As New MySqlConnection(connectionString)
             Using command As New MySqlCommand(query, connection)
-                command.Parameters.AddWithValue("@v1", idValue)
+                command.Parameters.AddWithValue("@v1", customerIdValue)
 
                 Try
                     connection.Open()
@@ -238,7 +246,7 @@ Public Class MainApp
     End Sub
 
     Private Sub LoadCustomerData()
-        Dim query As String = "select * from customer"
+        Dim query As String = "select customer_id, customer_name, address, contact from customer"
 
         Using connection As New MySqlConnection(connectionString)
             Using adapter As New MySqlDataAdapter(query, connection)
@@ -247,8 +255,8 @@ Public Class MainApp
                 Try
                     connection.Open()
                     adapter.Fill(dataTable)
-                    DataGridView1.ClearSelection()
-                    DataGridView1.DataSource = dataTable
+                    CustomerDataGridView.ClearSelection()
+                    CustomerDataGridView.DataSource = dataTable
                 Catch ex As Exception
                     MessageBox.Show("Error loading data: " & ex.Message)
                 End Try
@@ -257,7 +265,7 @@ Public Class MainApp
     End Sub
 
     Private Sub LoadCarData()
-        Dim query As String = "select * from car"
+        Dim query As String = "select car_id, plate_number,brand,model,color,car_description,available from car"
 
         Using connection As New MySqlConnection(connectionString)
             Using adapter As New MySqlDataAdapter(query, connection)
@@ -366,11 +374,11 @@ Public Class MainApp
         LoadDriverNameToComboBox()
     End Sub
 
-    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
+    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles CustomerDataGridView.CellClick
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
-            Dim selectedRow As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
+            Dim selectedRow As DataGridViewRow = CustomerDataGridView.Rows(e.RowIndex)
             ' Access data from the selected row as needed
-            idValue = selectedRow.Cells("customer_id").Value
+            customerIdValue = selectedRow.Cells("customer_id").Value
             nameValue = selectedRow.Cells("customer_name").Value
             addressValue = selectedRow.Cells("address").Value
             contactValue = selectedRow.Cells("contact").Value
@@ -379,6 +387,27 @@ Public Class MainApp
             contact.Text = contactValue
             address.Text = addressValue
         End If
+
+        Dim query As String = $"select customer_photo from customer where customer_id= {customerIdValue}"
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query, connection)
+
+                Try
+                    connection.Open()
+                    Dim imageData As Byte() = DirectCast(command.ExecuteScalar(), Byte())
+
+                    If imageData IsNot Nothing Then
+                        Using stream As New MemoryStream(imageData)
+                            Using image As Image = Image.FromStream(stream)
+                                CustomerPictureBox.Image = New Bitmap(image)
+                            End Using
+                        End Using
+                    End If
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+            End Using
+        End Using
     End Sub
 
     Private Sub updateBtn_Click(sender As Object, e As EventArgs) Handles updateBtn.Click
@@ -403,8 +432,8 @@ Public Class MainApp
                 Try
                     connection.Open()
                     adapter.Fill(dataTable)
-                    DataGridView1.ClearSelection()
-                    DataGridView1.DataSource = dataTable
+                    CustomerDataGridView.ClearSelection()
+                    CustomerDataGridView.DataSource = dataTable
                 Catch ex As Exception
                     MessageBox.Show("Error loading data: " & ex.Message)
                 End Try
@@ -1151,6 +1180,44 @@ Public Class MainApp
                     connection.Open()
                     command.ExecuteNonQuery()
                     MessageBox.Show("Update successful.")
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+            End Using
+        End Using
+    End Sub
+
+    Private Sub AddCustomerPhotoBtn_Click(sender As Object, e As EventArgs) Handles AddCustomerPhotoBtn.Click
+        Dim openFileDialog As New OpenFileDialog()
+
+        If openFileDialog.ShowDialog() = DialogResult.OK Then
+            customerPhotoPath = openFileDialog.FileName
+            MessageBox.Show("Photo Added.")
+        End If
+    End Sub
+
+    Private Sub UpdateCustomerPhotoBtn_Click(sender As Object, e As EventArgs) Handles UpdateCustomerPhotoBtn.Click
+        If String.IsNullOrWhiteSpace(customerIdValue) Then
+            MessageBox.Show("Select a customer from table.")
+            Exit Sub
+        End If
+        Dim openFileDialog As New OpenFileDialog()
+
+        If openFileDialog.ShowDialog() = DialogResult.OK Then
+            customerPhotoPath = openFileDialog.FileName
+            MessageBox.Show("Photo Added.")
+        End If
+
+        Dim query As String = $"update customer set customer_photo = @photo where customer_id = {customerIdValue}"
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query, connection)
+                Dim imageByte As Byte() = File.ReadAllBytes(customerPhotoPath)
+                command.Parameters.AddWithValue("@photo", imageByte)
+
+                Try
+                    connection.Open()
+                    command.ExecuteNonQuery()
+                    MessageBox.Show("Photo updated.")
                 Catch ex As Exception
                     MessageBox.Show(ex.Message)
                 End Try

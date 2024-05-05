@@ -43,17 +43,22 @@ Partial Class MainApp
         plateNumberFd = New TextBox()
         CarDataGridView = New DataGridView()
         CustomerPage = New TabPage()
-        DataGridView1 = New DataGridView()
+        CustomerDataGridView = New DataGridView()
         FlowLayoutPanel4 = New FlowLayoutPanel()
         customerName = New TextBox()
         contact = New TextBox()
         address = New TextBox()
+        Panel4 = New Panel()
+        UpdateCustomerPhotoBtn = New Button()
+        AddCustomerPhotoBtn = New Button()
+        Label21 = New Label()
         FlowLayoutPanel2 = New FlowLayoutPanel()
         addCustomerBtn = New Button()
         updateBtn = New Button()
         deleteBtn = New Button()
         Label8 = New Label()
         searchNameFd = New TextBox()
+        CustomerPictureBox = New PictureBox()
         RentalPage = New TabPage()
         SplitContainer2 = New SplitContainer()
         FlowLayoutPanel21 = New FlowLayoutPanel()
@@ -156,9 +161,11 @@ Partial Class MainApp
         FlowLayoutPanel11.SuspendLayout()
         CType(CarDataGridView, ComponentModel.ISupportInitialize).BeginInit()
         CustomerPage.SuspendLayout()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(CustomerDataGridView, ComponentModel.ISupportInitialize).BeginInit()
         FlowLayoutPanel4.SuspendLayout()
+        Panel4.SuspendLayout()
         FlowLayoutPanel2.SuspendLayout()
+        CType(CustomerPictureBox, ComponentModel.ISupportInitialize).BeginInit()
         RentalPage.SuspendLayout()
         CType(SplitContainer2, ComponentModel.ISupportInitialize).BeginInit()
         SplitContainer2.Panel1.SuspendLayout()
@@ -405,7 +412,7 @@ Partial Class MainApp
         ' CustomerPage
         ' 
         CustomerPage.AutoScroll = True
-        CustomerPage.Controls.Add(DataGridView1)
+        CustomerPage.Controls.Add(CustomerDataGridView)
         CustomerPage.Controls.Add(FlowLayoutPanel4)
         CustomerPage.Location = New Point(4, 24)
         CustomerPage.Name = "CustomerPage"
@@ -415,23 +422,25 @@ Partial Class MainApp
         CustomerPage.Text = "Customer"
         CustomerPage.UseVisualStyleBackColor = True
         ' 
-        ' DataGridView1
+        ' CustomerDataGridView
         ' 
-        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Dock = DockStyle.Fill
-        DataGridView1.Location = New Point(323, 3)
-        DataGridView1.Name = "DataGridView1"
-        DataGridView1.Size = New Size(587, 544)
-        DataGridView1.TabIndex = 7
+        CustomerDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        CustomerDataGridView.Dock = DockStyle.Fill
+        CustomerDataGridView.Location = New Point(323, 3)
+        CustomerDataGridView.Name = "CustomerDataGridView"
+        CustomerDataGridView.Size = New Size(587, 544)
+        CustomerDataGridView.TabIndex = 7
         ' 
         ' FlowLayoutPanel4
         ' 
         FlowLayoutPanel4.Controls.Add(customerName)
         FlowLayoutPanel4.Controls.Add(contact)
         FlowLayoutPanel4.Controls.Add(address)
+        FlowLayoutPanel4.Controls.Add(Panel4)
         FlowLayoutPanel4.Controls.Add(FlowLayoutPanel2)
         FlowLayoutPanel4.Controls.Add(Label8)
         FlowLayoutPanel4.Controls.Add(searchNameFd)
+        FlowLayoutPanel4.Controls.Add(CustomerPictureBox)
         FlowLayoutPanel4.Dock = DockStyle.Left
         FlowLayoutPanel4.FlowDirection = FlowDirection.TopDown
         FlowLayoutPanel4.Location = New Point(3, 3)
@@ -468,12 +477,49 @@ Partial Class MainApp
         address.Size = New Size(281, 59)
         address.TabIndex = 1
         ' 
+        ' Panel4
+        ' 
+        Panel4.Controls.Add(UpdateCustomerPhotoBtn)
+        Panel4.Controls.Add(AddCustomerPhotoBtn)
+        Panel4.Controls.Add(Label21)
+        Panel4.Location = New Point(3, 147)
+        Panel4.Name = "Panel4"
+        Panel4.Size = New Size(295, 49)
+        Panel4.TabIndex = 11
+        ' 
+        ' UpdateCustomerPhotoBtn
+        ' 
+        UpdateCustomerPhotoBtn.Location = New Point(181, 18)
+        UpdateCustomerPhotoBtn.Name = "UpdateCustomerPhotoBtn"
+        UpdateCustomerPhotoBtn.Size = New Size(100, 23)
+        UpdateCustomerPhotoBtn.TabIndex = 2
+        UpdateCustomerPhotoBtn.Text = "Update Photo"
+        UpdateCustomerPhotoBtn.UseVisualStyleBackColor = True
+        ' 
+        ' AddCustomerPhotoBtn
+        ' 
+        AddCustomerPhotoBtn.Location = New Point(2, 18)
+        AddCustomerPhotoBtn.Name = "AddCustomerPhotoBtn"
+        AddCustomerPhotoBtn.Size = New Size(75, 23)
+        AddCustomerPhotoBtn.TabIndex = 1
+        AddCustomerPhotoBtn.Text = "Add Photo"
+        AddCustomerPhotoBtn.UseVisualStyleBackColor = True
+        ' 
+        ' Label21
+        ' 
+        Label21.AutoSize = True
+        Label21.Location = New Point(3, 0)
+        Label21.Name = "Label21"
+        Label21.Size = New Size(94, 15)
+        Label21.TabIndex = 0
+        Label21.Text = "Customer Photo"
+        ' 
         ' FlowLayoutPanel2
         ' 
         FlowLayoutPanel2.Controls.Add(addCustomerBtn)
         FlowLayoutPanel2.Controls.Add(updateBtn)
         FlowLayoutPanel2.Controls.Add(deleteBtn)
-        FlowLayoutPanel2.Location = New Point(3, 147)
+        FlowLayoutPanel2.Location = New Point(3, 202)
         FlowLayoutPanel2.Name = "FlowLayoutPanel2"
         FlowLayoutPanel2.Size = New Size(281, 45)
         FlowLayoutPanel2.TabIndex = 7
@@ -508,7 +554,7 @@ Partial Class MainApp
         ' Label8
         ' 
         Label8.AutoSize = True
-        Label8.Location = New Point(3, 225)
+        Label8.Location = New Point(3, 280)
         Label8.Margin = New Padding(3, 30, 3, 0)
         Label8.Name = "Label8"
         Label8.Size = New Size(154, 15)
@@ -517,12 +563,21 @@ Partial Class MainApp
         ' 
         ' searchNameFd
         ' 
-        searchNameFd.Location = New Point(3, 250)
+        searchNameFd.Location = New Point(3, 305)
         searchNameFd.Margin = New Padding(3, 10, 3, 3)
         searchNameFd.Name = "searchNameFd"
         searchNameFd.PlaceholderText = "Search name"
         searchNameFd.Size = New Size(188, 23)
         searchNameFd.TabIndex = 8
+        ' 
+        ' CustomerPictureBox
+        ' 
+        CustomerPictureBox.Location = New Point(3, 334)
+        CustomerPictureBox.Name = "CustomerPictureBox"
+        CustomerPictureBox.Size = New Size(267, 205)
+        CustomerPictureBox.SizeMode = PictureBoxSizeMode.Zoom
+        CustomerPictureBox.TabIndex = 10
+        CustomerPictureBox.TabStop = False
         ' 
         ' RentalPage
         ' 
@@ -1453,10 +1508,13 @@ Partial Class MainApp
         FlowLayoutPanel11.ResumeLayout(False)
         CType(CarDataGridView, ComponentModel.ISupportInitialize).EndInit()
         CustomerPage.ResumeLayout(False)
-        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        CType(CustomerDataGridView, ComponentModel.ISupportInitialize).EndInit()
         FlowLayoutPanel4.ResumeLayout(False)
         FlowLayoutPanel4.PerformLayout()
+        Panel4.ResumeLayout(False)
+        Panel4.PerformLayout()
         FlowLayoutPanel2.ResumeLayout(False)
+        CType(CustomerPictureBox, ComponentModel.ISupportInitialize).EndInit()
         RentalPage.ResumeLayout(False)
         SplitContainer2.Panel1.ResumeLayout(False)
         SplitContainer2.Panel2.ResumeLayout(False)
@@ -1535,7 +1593,7 @@ Partial Class MainApp
     Friend WithEvents addCustomerBtn As Button
     Friend WithEvents FlowLayoutPanel4 As FlowLayoutPanel
     Friend WithEvents contact As TextBox
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents CustomerDataGridView As DataGridView
     Friend WithEvents deleteBtn As Button
     Friend WithEvents updateBtn As Button
     Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
@@ -1644,5 +1702,10 @@ Partial Class MainApp
     Friend WithEvents CarPhotoPictureBox As PictureBox
     Friend WithEvents Panel3 As Panel
     Friend WithEvents UpdateCarPhotoBtn As Button
+    Friend WithEvents CustomerPictureBox As PictureBox
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents UpdateCustomerPhotoBtn As Button
+    Friend WithEvents AddCustomerPhotoBtn As Button
+    Friend WithEvents Label21 As Label
 
 End Class
