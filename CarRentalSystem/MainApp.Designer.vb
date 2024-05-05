@@ -26,9 +26,11 @@ Partial Class MainApp
         AppTabControl = New TabControl()
         RegPage = New TabPage()
         SplitContainer1 = New SplitContainer()
-        FlowLayoutPanel20 = New FlowLayoutPanel()
-        Label13 = New Label()
+        Panel3 = New Panel()
+        UpdateCarPhotoBtn = New Button()
         AddCarPhotoBtn = New Button()
+        Label13 = New Label()
+        CarPhotoPictureBox = New PictureBox()
         CarDescriptionTextBox = New TextBox()
         FlowLayoutPanel11 = New FlowLayoutPanel()
         addCarBtn = New Button()
@@ -39,7 +41,7 @@ Partial Class MainApp
         modelFd = New TextBox()
         brandFd = New TextBox()
         plateNumberFd = New TextBox()
-        DataGridView2 = New DataGridView()
+        CarDataGridView = New DataGridView()
         CustomerPage = New TabPage()
         DataGridView1 = New DataGridView()
         FlowLayoutPanel4 = New FlowLayoutPanel()
@@ -149,9 +151,10 @@ Partial Class MainApp
         SplitContainer1.Panel1.SuspendLayout()
         SplitContainer1.Panel2.SuspendLayout()
         SplitContainer1.SuspendLayout()
-        FlowLayoutPanel20.SuspendLayout()
+        Panel3.SuspendLayout()
+        CType(CarPhotoPictureBox, ComponentModel.ISupportInitialize).BeginInit()
         FlowLayoutPanel11.SuspendLayout()
-        CType(DataGridView2, ComponentModel.ISupportInitialize).BeginInit()
+        CType(CarDataGridView, ComponentModel.ISupportInitialize).BeginInit()
         CustomerPage.SuspendLayout()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         FlowLayoutPanel4.SuspendLayout()
@@ -235,7 +238,8 @@ Partial Class MainApp
         ' 
         ' SplitContainer1.Panel1
         ' 
-        SplitContainer1.Panel1.Controls.Add(FlowLayoutPanel20)
+        SplitContainer1.Panel1.Controls.Add(Panel3)
+        SplitContainer1.Panel1.Controls.Add(CarPhotoPictureBox)
         SplitContainer1.Panel1.Controls.Add(CarDescriptionTextBox)
         SplitContainer1.Panel1.Controls.Add(FlowLayoutPanel11)
         SplitContainer1.Panel1.Controls.Add(searchBrandFd)
@@ -246,33 +250,33 @@ Partial Class MainApp
         ' 
         ' SplitContainer1.Panel2
         ' 
-        SplitContainer1.Panel2.Controls.Add(DataGridView2)
+        SplitContainer1.Panel2.Controls.Add(CarDataGridView)
         SplitContainer1.Size = New Size(907, 544)
         SplitContainer1.SplitterDistance = 341
         SplitContainer1.TabIndex = 2
         ' 
-        ' FlowLayoutPanel20
+        ' Panel3
         ' 
-        FlowLayoutPanel20.Controls.Add(Label13)
-        FlowLayoutPanel20.Controls.Add(AddCarPhotoBtn)
-        FlowLayoutPanel20.FlowDirection = FlowDirection.TopDown
-        FlowLayoutPanel20.Location = New Point(5, 205)
-        FlowLayoutPanel20.Name = "FlowLayoutPanel20"
-        FlowLayoutPanel20.Size = New Size(231, 61)
-        FlowLayoutPanel20.TabIndex = 11
+        Panel3.Controls.Add(UpdateCarPhotoBtn)
+        Panel3.Controls.Add(AddCarPhotoBtn)
+        Panel3.Controls.Add(Label13)
+        Panel3.Location = New Point(5, 205)
+        Panel3.Name = "Panel3"
+        Panel3.Size = New Size(296, 61)
+        Panel3.TabIndex = 13
         ' 
-        ' Label13
+        ' UpdateCarPhotoBtn
         ' 
-        Label13.AutoSize = True
-        Label13.Location = New Point(3, 0)
-        Label13.Name = "Label13"
-        Label13.Size = New Size(85, 15)
-        Label13.TabIndex = 0
-        Label13.Text = "Add Car Photo"
+        UpdateCarPhotoBtn.Location = New Point(203, 25)
+        UpdateCarPhotoBtn.Name = "UpdateCarPhotoBtn"
+        UpdateCarPhotoBtn.Size = New Size(90, 23)
+        UpdateCarPhotoBtn.TabIndex = 2
+        UpdateCarPhotoBtn.Text = "Update Photo"
+        UpdateCarPhotoBtn.UseVisualStyleBackColor = True
         ' 
         ' AddCarPhotoBtn
         ' 
-        AddCarPhotoBtn.Location = New Point(3, 25)
+        AddCarPhotoBtn.Location = New Point(6, 25)
         AddCarPhotoBtn.Margin = New Padding(3, 10, 3, 3)
         AddCarPhotoBtn.Name = "AddCarPhotoBtn"
         AddCarPhotoBtn.Size = New Size(75, 23)
@@ -280,13 +284,31 @@ Partial Class MainApp
         AddCarPhotoBtn.Text = "Add Photo"
         AddCarPhotoBtn.UseVisualStyleBackColor = True
         ' 
+        ' Label13
+        ' 
+        Label13.AutoSize = True
+        Label13.Location = New Point(3, 0)
+        Label13.Name = "Label13"
+        Label13.Size = New Size(60, 15)
+        Label13.TabIndex = 0
+        Label13.Text = "Car Photo"
+        ' 
+        ' CarPhotoPictureBox
+        ' 
+        CarPhotoPictureBox.Location = New Point(5, 375)
+        CarPhotoPictureBox.Name = "CarPhotoPictureBox"
+        CarPhotoPictureBox.Size = New Size(306, 164)
+        CarPhotoPictureBox.SizeMode = PictureBoxSizeMode.Zoom
+        CarPhotoPictureBox.TabIndex = 12
+        CarPhotoPictureBox.TabStop = False
+        ' 
         ' CarDescriptionTextBox
         ' 
-        CarDescriptionTextBox.Location = New Point(8, 137)
+        CarDescriptionTextBox.Location = New Point(3, 137)
         CarDescriptionTextBox.Multiline = True
         CarDescriptionTextBox.Name = "CarDescriptionTextBox"
         CarDescriptionTextBox.PlaceholderText = "Car Description"
-        CarDescriptionTextBox.Size = New Size(228, 62)
+        CarDescriptionTextBox.Size = New Size(233, 62)
         CarDescriptionTextBox.TabIndex = 10
         ' 
         ' FlowLayoutPanel11
@@ -329,7 +351,7 @@ Partial Class MainApp
         ' 
         ' searchBrandFd
         ' 
-        searchBrandFd.Location = New Point(5, 362)
+        searchBrandFd.Location = New Point(5, 336)
         searchBrandFd.Name = "searchBrandFd"
         searchBrandFd.PlaceholderText = "Search Brand"
         searchBrandFd.Size = New Size(169, 23)
@@ -371,14 +393,14 @@ Partial Class MainApp
         plateNumberFd.Size = New Size(231, 23)
         plateNumberFd.TabIndex = 0
         ' 
-        ' DataGridView2
+        ' CarDataGridView
         ' 
-        DataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView2.Dock = DockStyle.Fill
-        DataGridView2.Location = New Point(0, 0)
-        DataGridView2.Name = "DataGridView2"
-        DataGridView2.Size = New Size(562, 544)
-        DataGridView2.TabIndex = 0
+        CarDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        CarDataGridView.Dock = DockStyle.Fill
+        CarDataGridView.Location = New Point(0, 0)
+        CarDataGridView.Name = "CarDataGridView"
+        CarDataGridView.Size = New Size(562, 544)
+        CarDataGridView.TabIndex = 0
         ' 
         ' CustomerPage
         ' 
@@ -1425,10 +1447,11 @@ Partial Class MainApp
         SplitContainer1.Panel2.ResumeLayout(False)
         CType(SplitContainer1, ComponentModel.ISupportInitialize).EndInit()
         SplitContainer1.ResumeLayout(False)
-        FlowLayoutPanel20.ResumeLayout(False)
-        FlowLayoutPanel20.PerformLayout()
+        Panel3.ResumeLayout(False)
+        Panel3.PerformLayout()
+        CType(CarPhotoPictureBox, ComponentModel.ISupportInitialize).EndInit()
         FlowLayoutPanel11.ResumeLayout(False)
-        CType(DataGridView2, ComponentModel.ISupportInitialize).EndInit()
+        CType(CarDataGridView, ComponentModel.ISupportInitialize).EndInit()
         CustomerPage.ResumeLayout(False)
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         FlowLayoutPanel4.ResumeLayout(False)
@@ -1517,7 +1540,7 @@ Partial Class MainApp
     Friend WithEvents updateBtn As Button
     Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
     Friend WithEvents searchNameFd As TextBox
-    Friend WithEvents DataGridView2 As DataGridView
+    Friend WithEvents CarDataGridView As DataGridView
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents colorFd As TextBox
     Friend WithEvents modelFd As TextBox
@@ -1616,8 +1639,10 @@ Partial Class MainApp
     Friend WithEvents RateTwoRadioBtn As RadioButton
     Friend WithEvents RateOneRadioBtn As RadioButton
     Friend WithEvents RateFiveRadioBtn As RadioButton
-    Friend WithEvents FlowLayoutPanel20 As FlowLayoutPanel
     Friend WithEvents Label13 As Label
     Friend WithEvents AddCarPhotoBtn As Button
+    Friend WithEvents CarPhotoPictureBox As PictureBox
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents UpdateCarPhotoBtn As Button
 
 End Class

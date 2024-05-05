@@ -266,8 +266,8 @@ Public Class MainApp
                 Try
                     connection.Open()
                     adapter.Fill(dataTable)
-                    DataGridView2.ClearSelection()
-                    DataGridView2.DataSource = dataTable
+                    CarDataGridView.ClearSelection()
+                    CarDataGridView.DataSource = dataTable
                 Catch ex As Exception
                     MessageBox.Show("Error loading data: " & ex.Message)
                 End Try
@@ -418,9 +418,9 @@ Public Class MainApp
         ClearCarForm()
     End Sub
 
-    Private Sub DataGridView2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellClick
+    Private Sub DataGridView2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles CarDataGridView.CellClick
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
-            Dim selectedRow As DataGridViewRow = DataGridView2.Rows(e.RowIndex)
+            Dim selectedRow As DataGridViewRow = CarDataGridView.Rows(e.RowIndex)
             ' Access data from the selected row as needed
             carIdValue = selectedRow.Cells("car_id").Value
 
@@ -429,6 +429,27 @@ Public Class MainApp
             modelFd.Text = selectedRow.Cells("model").Value
             colorFd.Text = selectedRow.Cells("color").Value
             CarDescriptionTextBox.Text = selectedRow.Cells("car_description").Value
+
+            Dim query As String = $"select car_photo from car where car_id= {carIdValue}"
+            Using connection As New MySqlConnection(connectionString)
+                Using command As New MySqlCommand(query, connection)
+
+                    Try
+                        connection.Open()
+                        Dim imageData As Byte() = DirectCast(command.ExecuteScalar(), Byte())
+
+                        If imageData IsNot Nothing Then
+                            Using stream As New MemoryStream(imageData)
+                                Using image As Image = Image.FromStream(stream)
+                                    CarPhotoPictureBox.Image = New Bitmap(image)
+                                End Using
+                            End Using
+                        End If
+                    Catch ex As Exception
+                        MessageBox.Show(ex.Message)
+                    End Try
+                End Using
+            End Using
         End If
     End Sub
 
@@ -454,8 +475,8 @@ Public Class MainApp
                 Try
                     connection.Open()
                     adapter.Fill(dataTable)
-                    DataGridView2.ClearSelection()
-                    DataGridView2.DataSource = dataTable
+                    CarDataGridView.ClearSelection()
+                    CarDataGridView.DataSource = dataTable
                 Catch ex As Exception
                     MessageBox.Show("Error loading data: " & ex.Message)
                 End Try
@@ -1105,5 +1126,35 @@ Public Class MainApp
             carPhotoPath = openFileDialog.FileName
             MessageBox.Show("Photo Added.")
         End If
+    End Sub
+
+    Private Sub UpdateCarPhotoBtn_Click(sender As Object, e As EventArgs) Handles UpdateCarPhotoBtn.Click
+        If String.IsNullOrWhiteSpace(carIdValue) Then
+            MessageBox.Show("Select a car from table.")
+            Exit Sub
+        End If
+
+        Dim openFileDialog As New OpenFileDialog()
+
+        If openFileDialog.ShowDialog() = DialogResult.OK Then
+            carPhotoPath = openFileDialog.FileName
+            MessageBox.Show("Photo Added.")
+        End If
+
+        Dim query As String = $"update car set car_photo = @photo where car_id = {carIdValue}"
+        Dim imageByte As Byte() = File.ReadAllBytes(carPhotoPath)
+        Using connection As New MySqlConnection(connectionString)
+            Using command As New MySqlCommand(query, connection)
+                command.Parameters.AddWithValue("@photo", imageByte)
+
+                Try
+                    connection.Open()
+                    command.ExecuteNonQuery()
+                    MessageBox.Show("Update successful.")
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+            End Using
+        End Using
     End Sub
 End Class
